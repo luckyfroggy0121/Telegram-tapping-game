@@ -13,14 +13,14 @@ import diamond from "@/assets/svg/diamond.svg?react";
 export const seaCreatures = [
   {
     name: "Rayfish",
-    medal: bronze,
+    Medal: bronze,
     title: "Bronze",
     image: Rayfish,
     diamonds: 5000,
   },
   {
     name: "Octopus",
-    medal: silver,
+    Medal: silver,
     title: "Silver",
     image: Octopus,
     diamonds: 50000,
@@ -28,21 +28,21 @@ export const seaCreatures = [
   {
     name: "Seahorse",
     image: Seahorse,
-    medal: gold,
+    Medal: gold,
     title: "Gold",
     diamonds: 500000,
   },
   {
     name: "Draken",
     image: Draken,
-    medal: platinum,
+    Medal: platinum,
     title: "Platinum",
     diamonds: 1000000,
   },
   {
     name: "Turtle",
     image: Turtle,
-    medal: diamond,
+    Medal: diamond,
     title: "Diamond",
     diamonds: 100000000,
   },

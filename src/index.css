@@ -144,3 +144,25 @@
   font-weight: 200;
 }
 
+
+
+.wave {
+  background-color: #3f68c5;
+  position: absolute;
+  height: 200%;
+  width: 200%;
+  border-radius: 38%;
+  left: -50%;
+  transform: rotate(0deg); /* Fix rotation */
+  transition: top 0.1s ease;
+  animation: wave 30s linear infinite;
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(3600deg);
+  }
+}

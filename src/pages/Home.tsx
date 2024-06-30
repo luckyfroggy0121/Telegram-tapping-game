@@ -1,22 +1,89 @@
 import { seaCreatures } from "@/lib/seacreatures";
-import Prize from "@/components/common/Prize";
+import { Button } from "@/components/ui/button";
+import PumpIcon from "@/assets/svg/pump.svg?react";
+import FriendsIcon from "@/assets/svg/friends.svg?react";
+import EarnIcon from "@/assets/svg/earn.svg?react";
+import BoostIcon from "@/assets/svg/boost.svg?react";
+import Diamod from "@/assets/images/diamond.png";
+import Lightning from "@/assets/images/lightning.png";
+import ProgressBar from "@ramonak/react-progress-bar";
+import { displayNumbers } from "@/lib/utils";
+
+const bottomControls = [
+  {
+    label: "Pump",
+    icon: PumpIcon,
+  },
+  {
+    label: "Friends",
+    icon: FriendsIcon,
+  },
+  {
+    label: "Earn",
+    icon: EarnIcon,
+  },
+  {
+    label: "Boost",
+    icon: BoostIcon,
+  },
+];
 
 const HomePage = () => {
   const random = Math.floor(Math.random() * seaCreatures.length);
-  const randomseaCreature = seaCreatures[random];
+  const { Medal, diamonds, title, image } = seaCreatures[random];
 
   return (
-    <div className="flex h-[calc(100%-200px)] flex-col items-center pt-2">
-      <Prize
-        medalTitle={randomseaCreature.title}
-        diamonds={randomseaCreature.diamonds}
-        Icon={randomseaCreature.medal}
-        index={random}
-      />
-      <div className="h-full flex justify-center items-center">
-        <img src={randomseaCreature.image} alt="fish" className="w-[85%]" />
+    <>
+      <div className="flex h-[calc(100%-200px)] flex-col items-center pt-2">
+        <Button
+          className="w-[198px] bg-[#AD12F5C2] h-[44px] font-bold text-[16px] leading-5 rounded-[30px]"
+          style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
+        >
+          Join Tank
+        </Button>
+        <div className="flex mt-3 items-center gap-2 font-extrabold text-[36px] text-white">
+          <img src={Diamod} alt="diamond" className="h-9" />
+          <div>{displayNumbers(diamonds)}</div>
+        </div>
+        <div className="bg-[#C3C3C340] mt-2 gap-2 font-bold text-[15px] w-auto px-6 py-1 justify-center h-auto text-white flex rounded-[11px] items-center">
+          <div>{title}</div>
+          {Medal && <Medal className="h-5 w-5" />}
+        </div>
+        <div className="w-full px-5 mt-5">
+          <div className="flex justify-between text-white font-bold">
+            <div className="text-[11px]">Hydration Goal</div>
+            <div className="text-[10px]">Level {random}/6</div>
+          </div>
+          <ProgressBar
+            completed={(random / 6) * 100}
+            bgColor="#65E4F0"
+            height="5px"
+            className="mt-1 mb-2"
+            isLabelVisible={false}
+            borderRadius="10px"
+            baseBgColor="#C3C3C340"
+          />
+          <div className="items-center mt-2 flex gap-2">
+            <img src={Lightning} alt="lightning" />
+            <div className="text-white font-extrabold text-[10px]">500/500</div>
+          </div>
+        </div>
+        <div className="h-full flex justify-center items-center">
+          <img src={image} alt="fish" className="w-[85%]" />
+        </div>
       </div>
-    </div>
+      <div className="flex gap-3 justify-center bottom-10 absolute w-full">
+        {bottomControls.map((control, index) => (
+          <Button
+            key={index}
+            className="flex flex-col items-center h-auto gap-1 bg-[#C3C3C340]"
+          >
+            <control.icon height={24} />
+            <div>{control.label}</div>
+          </Button>
+        ))}
+      </div>
+    </>
   );
 };
 
