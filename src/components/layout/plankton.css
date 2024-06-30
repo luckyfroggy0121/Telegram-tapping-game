@@ -8,11 +8,3 @@
   height: 100%;
   z-index: 1;
 }
-
-.content {
-  position: relative;
-  z-index: 2;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}

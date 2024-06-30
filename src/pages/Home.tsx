@@ -34,7 +34,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="flex h-[calc(100%-200px)] flex-col items-center pt-2">
+      <div className="flex  flex-col items-center pt-2">
         <Button
           className="w-[198px] bg-[#AD12F5C2] h-[44px] font-bold text-[16px] leading-5 rounded-[30px]"
           style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
@@ -72,11 +72,11 @@ const HomePage = () => {
           <img src={image} alt="fish" className="w-[85%]" />
         </div>
       </div>
-      <div className="flex gap-3 justify-center bottom-10 absolute w-full">
+      <div className="flex gap-3 justify-center w-full">
         {bottomControls.map((control, index) => (
           <Button
             key={index}
-            className="flex flex-col items-center h-auto gap-1 bg-[#C3C3C340]"
+            className="flex flex-col items-center h-[60px] mt-5 w-[70px] gap-1 bg-[#C3C3C340]"
           >
             <control.icon height={24} />
             <div>{control.label}</div>
