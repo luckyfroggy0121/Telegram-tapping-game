@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import Navbar from "../common/Navbar";
-import "./plankton.css";
 
 const GameLayout = ({ children }: { children: React.ReactNode }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -15,7 +14,7 @@ const GameLayout = ({ children }: { children: React.ReactNode }) => {
     if (!con) return;
 
     const windowSize = () => {
-      const wrapper = document.querySelector<HTMLDivElement>('.galaxy-wrapper');
+      const wrapper = document.querySelector<HTMLDivElement>('#galaxy-wrapper');
       if (!wrapper) return;
 
       const WIDTH = wrapper.clientWidth;
@@ -51,6 +50,7 @@ const GameLayout = ({ children }: { children: React.ReactNode }) => {
     return () => {
       window.removeEventListener('resize', windowSize);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   class Circle {
@@ -145,7 +145,7 @@ const GameLayout = ({ children }: { children: React.ReactNode }) => {
 
 
   return (
-    <div className="relative galaxy-wrapper h-full overflow-hidden">
+    <div id="galaxy-wrapper" className="relative h-full overflow-hidden">
       <canvas
         id="galaxy"
         className="absolute top-0 left-0 w-full h-full z-10"
