@@ -174,9 +174,7 @@
   }
 }
 
-.back {
-  background-image: url("/rayfish.png");
-  height: 15rem;
-  width: 50rem;
+.fish > path, .fish > g >path {
+  fill: #5417B0;
 
 }

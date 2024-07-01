@@ -1,9 +1,9 @@
-import Rayfish from "@/assets/svg/rayfish.svg";
-import Octopus from "@/assets/svg/octopus.svg";
-import Seahorse from "@/assets/svg/seahorse.svg";
-import Draken from "@/assets/svg/darken.svg";
-import Turtle from "@/assets/svg/turtle.svg";
-import Jellyfish from "@/assets/svg/jellyfish.svg";
+import Rayfish from "@/assets/svg/rayfish.svg?react";
+import Octopus from "@/assets/svg/octopus.svg?react";
+import Seahorse from "@/assets/svg/seahorse.svg?react";
+import Draken from "@/assets/svg/darken.svg?react";
+import Turtle from "@/assets/svg/turtle.svg?react";
+import Jellyfish from "@/assets/svg/jellyfish.svg?react";
 import bronze from "@/assets/svg/bronze.svg?react";
 import silver from "@/assets/svg/silver.svg?react";
 import gold from "@/assets/svg/gold.svg?react";
@@ -15,40 +15,40 @@ export const seaCreatures = [
     name: "Rayfish",
     Medal: bronze,
     title: "Bronze",
-    image: Rayfish,
+    Fish: Rayfish,
     diamonds: 5000,
   },
   {
     name: "Octopus",
     Medal: silver,
     title: "Silver",
-    image: Octopus,
+    Fish: Octopus,
     diamonds: 50000,
   },
   {
     name: "Seahorse",
-    image: Seahorse,
+    Fish: Seahorse,
     Medal: gold,
     title: "Gold",
     diamonds: 500000,
   },
   {
     name: "Draken",
-    image: Draken,
+    Fish: Draken,
     Medal: platinum,
     title: "Platinum",
     diamonds: 1000000,
   },
   {
     name: "Turtle",
-    image: Turtle,
+    Fish: Turtle,
     Medal: diamond,
     title: "Diamond",
     diamonds: 100000000,
   },
   {
     name: "Jellyfish",
-    image: Jellyfish,
+    Fish: Jellyfish,
     title: "Diamond",
     diamonds: 1000000000,
   },

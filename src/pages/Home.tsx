@@ -30,7 +30,7 @@ const bottomControls = [
 
 const HomePage = () => {
   const random = Math.floor(Math.random() * seaCreatures.length);
-  const { Medal, diamonds, title, image } = seaCreatures[random];
+  const { Medal, diamonds, title, Fish } = seaCreatures[random];
 
   return (
     <>
@@ -68,7 +68,7 @@ const HomePage = () => {
             <div className="text-white font-extrabold text-[10px]">500/500</div>
           </div>
         </div>
-        <div className="h-[15rem]"></div>
+       <Fish  className="fish"/>
       </div>
       <div className="flex mt-3 gap-3 justify-center w-full">
         {bottomControls.map((control, index) => (
