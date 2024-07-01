@@ -7,6 +7,7 @@ import Layout from "./components/layout/Layout";
 import SplashPage from "./pages/Spash";
 import { Suspense } from "react";
 import GameLayout from "./components/layout/GameLayout";
+import JoinTank from "./pages/JoinTank";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <RecoilRoot>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/join-tank" element={<JoinTank />} />
             </Routes>
           </BrowserRouter>
         </GameLayout>

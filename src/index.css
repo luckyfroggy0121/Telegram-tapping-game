@@ -90,16 +90,11 @@
   }
 }
 
-@font-face {
-  font-family: "Distruction";
-  src: url("./assets/fonts/Distruction/Distruction.otf");
-  font-weight: 400;
-}
+
 
 @font-face {
   font-family: "Distruction";
-  src: url("./assets/fonts/Distruction/Bold.otf");
-  font-weight: 700;
+  src: url("./assets/fonts/Distruction/Distruction.ttf");
 }
 
 @font-face {

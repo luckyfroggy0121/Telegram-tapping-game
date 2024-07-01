@@ -11,6 +11,7 @@ import { BsLightningFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import Confetti from "react-confetti";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const bottomControls = [
   {
@@ -36,7 +37,6 @@ const HomePage = () => {
   const [waterLevel, setWaterLevel] = useState<number>(0);
   const [showConfetti, setShowConfetti] = useState(false);
 
-
   const handlePumping = () => {
     if (waterLevel === 100) {
       toast.error("You have already pumped enough water");
@@ -59,12 +59,14 @@ const HomePage = () => {
   return (
     <>
       <div className="flex px-3 flex-col items-center">
-        <Button
-          className="w-[198px] bg-[#AD12F5C2] h-[44px] font-bold text-[16px] leading-5 rounded-[30px]"
-          style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
-        >
-          Join Tank
-        </Button>
+        <Link to="/join-tank">
+          <Button
+            className="w-[198px] bg-[#AD12F5C2] h-[44px] font-bold text-[16px] leading-5 rounded-[30px]"
+            style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
+          >
+            Join Tank
+          </Button>
+        </Link>
         <div className="flex mt-1 items-center gap-2 font-extrabold text-[36px] text-white">
           <img src={Diamod} alt="diamond" className="h-9" />
           <div>{displayNumbers(diamonds)}</div>
@@ -77,7 +79,8 @@ const HomePage = () => {
           <div className="flex justify-between text-white font-bold">
             <div className="text-[11px]">Hydration Goal</div>
             <div className="text-[10px]">
-              Level {waterLevel === 0 ? 0 : Math.floor((waterLevel / 100) * 6)}/6
+              Level {waterLevel === 0 ? 0 : Math.floor((waterLevel / 100) * 6)}
+              /6
             </div>
           </div>
           <ProgressBar

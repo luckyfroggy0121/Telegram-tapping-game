@@ -7,7 +7,7 @@ const Navbar = () => {
       <div className="rounded-xl border-[3.5px] p-1 border-[#C3C3C340]">
         <FaArrowLeft color="white" />
       </div>
-      <div className="uppercase text-white font-Distruction font-bold text-xl">SmartLitre</div>
+      <div className="uppercase text-white font-[Distruction] text-xl">SmartLitre</div>
       <CgMoreVertical color="white" />
     </div>
   );
