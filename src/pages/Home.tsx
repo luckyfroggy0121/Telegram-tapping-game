@@ -8,7 +8,7 @@ import Diamod from "@/assets/images/diamond.png";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { displayNumbers } from "@/lib/utils";
 import { BsLightningFill } from "react-icons/bs";
-import { useState } from "react";
+// import { useState } from "react";
 
 const bottomControls = [
   {
@@ -32,7 +32,7 @@ const bottomControls = [
 const HomePage = () => {
   const random = Math.floor(Math.random() * seaCreatures.length);
   const { Medal, diamonds, title, Fish } = seaCreatures[random];
-  const [waterLevel, setWaterLevel] = useState(0);
+  // const [waterLevel, setWaterLevel] = useState(0);
 
   return (
     <>
