@@ -76,7 +76,6 @@
     font-family: Nunito;
   }
 
-
   body {
     background-image: url("/sea-ground.svg"), url("/background-logo.svg"),
       radial-gradient(50% 50% at 50% 50%, #7b3fe7 0%, #6327ce 100%);
@@ -151,30 +150,14 @@
   font-weight: 200;
 }
 
-
-
-.wave {
-  background-color: #3f68c5;
-  position: absolute;
-  height: 200%;
-  width: 200%;
-  border-radius: 38%;
-  left: -50%;
-  transform: rotate(0deg); /* Fix rotation */
-  transition: top 0.1s ease;
-  animation: wave 30s linear infinite;
-}
-
-@keyframes wave {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(3600deg);
-  }
-}
-
-.fish > path, .fish > g >path {
-  fill: #5417B0;
-
+.fish {
+  height: 15rem;
+  width: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #5417B0;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  mask-position: center;
 }

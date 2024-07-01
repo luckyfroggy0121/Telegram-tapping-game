@@ -8,6 +8,7 @@ import Diamod from "@/assets/images/diamond.png";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { displayNumbers } from "@/lib/utils";
 import { BsLightningFill } from "react-icons/bs";
+import { useState } from "react";
 
 const bottomControls = [
   {
@@ -31,10 +32,11 @@ const bottomControls = [
 const HomePage = () => {
   const random = Math.floor(Math.random() * seaCreatures.length);
   const { Medal, diamonds, title, Fish } = seaCreatures[random];
+  const [waterLevel, setWaterLevel] = useState(0);
 
   return (
     <>
-      <div className="flex  flex-col items-center pt-2">
+      <div className="flex px-3 flex-col items-center pt-2">
         <Button
           className="w-[198px] bg-[#AD12F5C2] h-[44px] font-bold text-[16px] leading-5 rounded-[30px]"
           style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
@@ -49,10 +51,10 @@ const HomePage = () => {
           <div>{title}</div>
           {Medal && <Medal className="h-5 w-5" />}
         </Button>
-        <div className="w-full px-5 mt-5">
+        <div className="w-full px-8 mt-5">
           <div className="flex justify-between text-white font-bold">
             <div className="text-[11px]">Hydration Goal</div>
-            <div className="text-[10px]">Level {random}/6</div>
+            <div className="text-[10px]">Level 0/6</div>
           </div>
           <ProgressBar
             completed={0}
@@ -68,12 +70,18 @@ const HomePage = () => {
             <div className="text-white font-extrabold text-[10px]">500/500</div>
           </div>
         </div>
-       <Fish  className="fish"/>
+        <div
+          className="fish mt-2"
+          style={{
+            maskImage: `url(${Fish})`,
+          }}
+        ></div>
       </div>
       <div className="flex mt-3 gap-3 justify-center w-full">
         {bottomControls.map((control, index) => (
           <Button
             key={index}
+            onClick={() => {}}
             className="flex flex-col items-center h-[60px] mt-5 w-[70px] gap-1 bg-[#C3C3C340]"
           >
             <control.icon height={24} />
