@@ -69,7 +69,10 @@ const HomePage = () => {
           </div>
         </div>
         <div className="h-full flex justify-center items-center">
-          <img src={image} alt="fish" className="w-[85%]" />
+          <div
+            className=" back"
+            
+          ></div>
         </div>
       </div>
       <div className="flex gap-3 justify-center w-full">
