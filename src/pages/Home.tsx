@@ -5,9 +5,9 @@ import FriendsIcon from "@/assets/svg/friends.svg?react";
 import EarnIcon from "@/assets/svg/earn.svg?react";
 import BoostIcon from "@/assets/svg/boost.svg?react";
 import Diamod from "@/assets/images/diamond.png";
-import Lightning from "@/assets/images/lightning.png";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { displayNumbers } from "@/lib/utils";
+import { BsLightningFill } from "react-icons/bs";
 
 const bottomControls = [
   {
@@ -63,8 +63,8 @@ const HomePage = () => {
             borderRadius="10px"
             baseBgColor="#C3C3C340"
           />
-          <div className="items-center mt-2 flex gap-2">
-            <img src={Lightning} alt="lightning" />
+          <div className="items-center mt-2 flex gap-1">
+            <BsLightningFill color="#ffcc20" />
             <div className="text-white font-extrabold text-[10px]">500/500</div>
           </div>
         </div>
