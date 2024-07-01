@@ -45,17 +45,17 @@ const HomePage = () => {
           <img src={Diamod} alt="diamond" className="h-9" />
           <div>{displayNumbers(diamonds)}</div>
         </div>
-        <div className="bg-[#C3C3C340] mt-2 gap-2 font-bold text-[15px] w-auto px-6 py-1 justify-center h-auto text-white flex rounded-[11px] items-center">
+        <Button className="bg-[#C3C3C340] mt-2 gap-2 font-bold text-[15px] w-auto px-6 py-1 justify-center h-auto text-white flex rounded-[11px] items-center">
           <div>{title}</div>
           {Medal && <Medal className="h-5 w-5" />}
-        </div>
+        </Button>
         <div className="w-full px-5 mt-5">
           <div className="flex justify-between text-white font-bold">
             <div className="text-[11px]">Hydration Goal</div>
             <div className="text-[10px]">Level {random}/6</div>
           </div>
           <ProgressBar
-            completed={(random / 6) * 100}
+            completed={0}
             bgColor="#65E4F0"
             height="5px"
             className="mt-1 mb-2"
@@ -68,14 +68,9 @@ const HomePage = () => {
             <div className="text-white font-extrabold text-[10px]">500/500</div>
           </div>
         </div>
-        <div className="h-full flex justify-center items-center">
-          <div
-            className=" back"
-            
-          ></div>
-        </div>
+        <div className="h-[15rem]"></div>
       </div>
-      <div className="flex gap-3 justify-center w-full">
+      <div className="flex mt-3 gap-3 justify-center w-full">
         {bottomControls.map((control, index) => (
           <Button
             key={index}
