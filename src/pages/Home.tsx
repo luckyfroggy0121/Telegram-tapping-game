@@ -52,7 +52,7 @@ const HomePage = () => {
         setShowConfetti(false);
       }, 2000);
     } else {
-      toast.success("Water level increased by 1%");
+      toast.success("Water level increased by " + waterLevel + "%");
     }
   }, [waterLevel]);
 
