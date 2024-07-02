@@ -1,5 +1,5 @@
 import HomePage from "@/pages/Home";
-import Navbar from "../common/Navbar";
+import Navbar from "../components/common/Navbar";
 import { Toaster } from "react-hot-toast";
 import { useRecoilValue } from "recoil";
 import { tabsAtom } from "@/lib/atom";
@@ -19,18 +19,17 @@ const tabs = [
 const GameLayout = () => {
   const tabsState = useRecoilValue(tabsAtom);
 
-  const currentTab = tabs.find(
-    (tab) => tab.name === tabsState[tabsState.length - 1]
-  );
-
-  console.log(tabsState );
-
   return (
     <div className="h-full relative z-20">
       <Navbar />
-      {currentTab && (
-        <currentTab.Component />
-      )}
+      {tabs.map((tab) => {
+        const { name, Component } = tab;
+        return (
+          <div className={`${name !== tabsState[tabsState.length - 1] ? "hidden" : ""}`}>
+            <Component />
+          </div>
+        );
+      })}
       <Toaster position="bottom-center" />
     </div>
   );

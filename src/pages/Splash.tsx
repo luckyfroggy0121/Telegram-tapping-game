@@ -3,9 +3,11 @@ import LogoText from "@/assets/svg/logo-text.svg?react";
 
 const SplashPage = () => {
   return (
-    <div className="flex gap-5 items-center justify-center flex-col h-full">
+    <div className="flex gap-5 items-center justify-center flex-col h-screen">
       <Logo />
-      <LogoText />
+      <div className="overflow-hidden">
+        <LogoText className="animate-appearFromBottom" />
+      </div>
     </div>
   );
 };

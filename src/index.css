@@ -83,14 +83,12 @@
     background-size: 100% auto, auto;
     background-repeat: no-repeat;
     background-color: #7b3fe7;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     min-height: 100vh;
     width: 100%;
     padding-bottom: 15px;
   }
 }
-
-
 
 @font-face {
   font-family: "Distruction";
