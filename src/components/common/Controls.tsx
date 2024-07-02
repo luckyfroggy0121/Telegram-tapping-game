@@ -12,6 +12,7 @@ import {
 } from "../ui/drawer";
 import { useState } from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
+import Diamod from "@/assets/images/diamond.png";
 
 const bottomControls = [
   {
@@ -27,6 +28,11 @@ const bottomControls = [
     icon: BoostIcon,
   },
 ];
+
+const dropsDays = [
+  500, 1000, 2500, 5000, 15000, 25000, 100000, 500000, 1000000, 5000000,
+];
+
 const Controls = () => {
   const [showPumpDrawer, setShowPumpDrawer] = useState(false);
 
@@ -45,7 +51,7 @@ const Controls = () => {
             <div>Pump</div>
           </Button>
         </DrawerTrigger>
-        <DrawerContent className="pt-6 flex flex-col items-center pb-5">
+        <DrawerContent className="pt-6 flex flex-col items-center pb-3">
           <DrawerTitle className="flex items-center w-full justify-between mr-5">
             <div></div>
             <div className="font-extrabold text-[24px] text-white leading-6">
@@ -55,7 +61,34 @@ const Controls = () => {
               <IoCloseCircleSharp color="#FFFFFF80" size={25} />
             </DrawerClose>
           </DrawerTitle>
-          <PumpIcon />
+          <div>
+            <PumpIcon
+              height={100}
+              width={100}
+              className="[transform:rotateY(180deg)]"
+            />
+            <img src={Diamod} alt="diamond" />
+          </div>
+          <div className="font-semibold text-[16px] text-white">
+            Pump DROPS daily without skipping.
+          </div>
+          <div className="grid grid-cols-4 gap-2 px-4 mt-5">
+            {dropsDays.map((drops, index) => (
+              <Button
+                key={index}
+                className="text-white font-extrabold text-[12px] leading-[18px] flex flex-col h-auto bg-[#C3C3C33D]"
+              >
+                <div>Day {index + 1}</div>
+                <img src={Diamod} alt="diamond" />
+                <div>{drops}</div>
+              </Button>
+            ))}
+          </div>
+          <div className='px-4  w-full mt-4'>
+            <Button className="bg-[#9712F4] font-bold h-12 w-full text-[16px] text-white rounded-full">
+              Pump
+            </Button>
+          </div>
         </DrawerContent>
       </Drawer>
       {bottomControls.map((control, index) => (
