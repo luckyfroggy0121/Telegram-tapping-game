@@ -23,11 +23,13 @@ const GameLayout = () => {
     (tab) => tab.name === tabsState[tabsState.length - 1]
   );
 
+  console.log(tabsState );
+
   return (
-    <div className="h-full">
+    <div className="h-full relative z-20">
       <Navbar />
       {currentTab && (
-        <div className="z-20 relative">{<currentTab.Component />}</div>
+        <currentTab.Component />
       )}
       <Toaster position="bottom-center" />
     </div>
