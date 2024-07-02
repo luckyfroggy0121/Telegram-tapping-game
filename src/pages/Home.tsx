@@ -31,8 +31,8 @@ const HomePage = () => {
         >
           Join Tank
         </Button>
-        <div className="flex mt-1 items-center gap-2 font-extrabold text-[36px] text-white">
-          <img src={Diamod} alt="diamond" className="h-9" />
+        <div className="flex mt-1 justify-center items-center gap-2 font-extrabold text-[36px] text-white">
+          <img src={Diamod} alt="diamond" className="mt-1 h-9" />
           <div>{displayNumbers(diamonds)}</div>
         </div>
         <Button className="bg-[#C3C3C340] gap-2 font-bold text-[15px] w-auto px-6 py-1 justify-center h-auto text-white flex rounded-[11px] items-center">
