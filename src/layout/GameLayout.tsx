@@ -25,7 +25,11 @@ const GameLayout = () => {
       {tabs.map((tab) => {
         const { name, Component } = tab;
         return (
-          <div className={`${name !== tabsState[tabsState.length - 1] ? "hidden" : ""} grow shrink basis-auto flex flex-col justify-between pb-4`}>
+          <div
+            className={`${
+              name !== tabsState[tabsState.length - 1] ? "hidden" : ""
+            } grow shrink basis-auto flex flex-col justify-between pb-4`}
+          >
             <Component />
           </div>
         );
