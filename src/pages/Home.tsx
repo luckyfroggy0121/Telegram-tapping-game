@@ -11,7 +11,7 @@ import { BsLightningFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import Confetti from "react-confetti";
 import toast from "react-hot-toast";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { tabsAtom } from "@/lib/atom";
 
 const bottomControls = [
@@ -34,7 +34,7 @@ const bottomControls = [
 ];
 
 const HomePage = () => {
-  const { Medal, diamonds, title, Fish } = seaCreatures[1];
+  const { Medal, diamonds, title, Fish } = seaCreatures[0];
   const [waterLevel, setWaterLevel] = useState<number>(0);
   const [showConfetti, setShowConfetti] = useState(false);
 
