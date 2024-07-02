@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: ["src/**/*.{ts,tsx}"],
+  content: ["src/**/*.{ts,tsx}", "./index.html"],
   theme: {
     container: {
       center: true,
@@ -75,7 +75,7 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        appearFromBottom: "appearFromBottom 0.4s ease-out forwards",
+        appearFromBottom: "appearFromBottom 0.6s ease-out forwards",
       },
     },
   },

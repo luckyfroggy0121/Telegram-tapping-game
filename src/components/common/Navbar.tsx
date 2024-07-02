@@ -6,7 +6,7 @@ import { tabsAtom } from "@/lib/atom";
 const Navbar = () => {
   const setTabs = useSetRecoilState(tabsAtom);
   return (
-    <div className="w-full justify-between flex items-center py-4 px-4">
+    <div className="w-full justify-between flex items-center py-4 px-4 grow-0 shrink basis-auto">
       <div
         onClick={() => {
           setTabs((tabs) =>

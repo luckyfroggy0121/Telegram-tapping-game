@@ -20,12 +20,12 @@ const GameLayout = () => {
   const tabsState = useRecoilValue(tabsAtom);
 
   return (
-    <div className="h-full relative z-20">
+    <div className="min-h-screen flex flex-col relative z-20">
       <Navbar />
       {tabs.map((tab) => {
         const { name, Component } = tab;
         return (
-          <div className={`${name !== tabsState[tabsState.length - 1] ? "hidden" : ""}`}>
+          <div className={`${name !== tabsState[tabsState.length - 1] ? "hidden" : ""} grow shrink basis-auto flex flex-col justify-between pb-4`}>
             <Component />
           </div>
         );

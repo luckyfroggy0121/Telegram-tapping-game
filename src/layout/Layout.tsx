@@ -153,7 +153,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <MediaQuery maxWidth={600}>
-        <div className="relative h-full" id="galaxy-wrapper">
+        <div className="relative min-h-screen" id="galaxy-wrapper">
           <canvas
             id="galaxy"
             className="absolute top-0 left-0 w-full h-full z-10"

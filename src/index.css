@@ -81,12 +81,6 @@
       radial-gradient(50% 50% at 50% 50%, #7b3fe7 0%, #6327ce 100%);
     background-position: bottom, center 80%;
     background-size: 100% auto, auto;
-    background-repeat: no-repeat;
-    background-color: #7b3fe7;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    width: 100%;
-    padding-bottom: 15px;
   }
 }
 

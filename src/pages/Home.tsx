@@ -1,63 +1,23 @@
 import { seaCreatures } from "@/lib/seacreatures";
-import { Button } from "@/components/ui/button";
-import PumpIcon from "@/assets/svg/pump.svg?react";
-import FriendsIcon from "@/assets/svg/friends.svg?react";
-import EarnIcon from "@/assets/svg/earn.svg?react";
-import BoostIcon from "@/assets/svg/boost.svg?react";
+import { Button } from "@/components/ui/button"
 import Diamod from "@/assets/images/diamond.png";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { displayNumbers } from "@/lib/utils";
 import { BsLightningFill } from "react-icons/bs";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Confetti from "react-confetti";
-import toast from "react-hot-toast";
 import { useRecoilState } from "recoil";
 import { tabsAtom } from "@/lib/atom";
+import Controls from "@/components/common/Controls";
 
-const bottomControls = [
-  {
-    label: "Pump",
-    icon: PumpIcon,
-  },
-  {
-    label: "Friends",
-    icon: FriendsIcon,
-  },
-  {
-    label: "Earn",
-    icon: EarnIcon,
-  },
-  {
-    label: "Boost",
-    icon: BoostIcon,
-  },
-];
 
 const HomePage = () => {
   const { Medal, diamonds, title, Fish } = seaCreatures[0];
-  const [waterLevel, setWaterLevel] = useState<number>(0);
-  const [showConfetti, setShowConfetti] = useState(false);
-
+  const [showConfetti,] = useState(false);
+  const [waterLevel,] = useState(0);
   const [tabs, setTabs] = useRecoilState(tabsAtom);
 
-  const handlePumping = () => {
-    if (waterLevel === 100) {
-      toast.error("You have already pumped enough water");
-      return;
-    }
-    setWaterLevel(Math.min(waterLevel + 1, 100));
-  };
 
-  useEffect(() => {
-    if (waterLevel === 100) {
-      setShowConfetti(true);
-      setTimeout(() => {
-        setShowConfetti(false);
-      }, 2000);
-    } else {
-      toast.success("Water level increased by " + waterLevel + "%");
-    }
-  }, [waterLevel]);
 
   return (
     <>
@@ -115,21 +75,10 @@ const HomePage = () => {
           }
         ></div>
         {showConfetti && (
-          <Confetti className="w-full h-screen fixed top-0 z-50 " />
+          <Confetti className="w-full h-screen absolute top-0 z-50 " />
         )}
       </div>
-      <div className="flex mt-3 gap-3 justify-center w-full">
-        {bottomControls.map((control, index) => (
-          <Button
-            key={index}
-            onClick={control.label === "Pump" ? handlePumping : undefined}
-            className="flex flex-col items-center h-[60px] mt-5 w-[70px] gap-1 bg-[#C3C3C340]"
-          >
-            <control.icon height={24} />
-            <div>{control.label}</div>
-          </Button>
-        ))}
-      </div>
+      <Controls />
     </>
   );
 };
