@@ -11,7 +11,8 @@ import { BsLightningFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import Confetti from "react-confetti";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { tabsAtom } from "@/lib/atom";
 
 const bottomControls = [
   {
@@ -37,6 +38,8 @@ const HomePage = () => {
   const [waterLevel, setWaterLevel] = useState<number>(0);
   const [showConfetti, setShowConfetti] = useState(false);
 
+  const [tabs, setTabs] = useRecoilState(tabsAtom);
+
   const handlePumping = () => {
     if (waterLevel === 100) {
       toast.error("You have already pumped enough water");
@@ -59,14 +62,15 @@ const HomePage = () => {
   return (
     <>
       <div className="flex px-3 flex-col items-center">
-        <Link to="/join-tank">
-          <Button
-            className="w-[198px] bg-[#AD12F5C2] h-[44px] font-bold text-[16px] leading-5 rounded-[30px]"
-            style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
-          >
-            Join Tank
-          </Button>
-        </Link>
+        <Button
+          onClick={() => {
+            setTabs([...tabs, "jointank"]);
+          }}
+          className="w-[198px] bg-[#AD12F5C2] h-[44px] font-bold text-[16px] leading-5 rounded-[30px]"
+          style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
+        >
+          Join Tank
+        </Button>
         <div className="flex mt-1 items-center gap-2 font-extrabold text-[36px] text-white">
           <img src={Diamod} alt="diamond" className="h-9" />
           <div>{displayNumbers(diamonds)}</div>
