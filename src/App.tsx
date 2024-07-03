@@ -11,7 +11,7 @@ const App = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowGame(true);
-    }, 200);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);

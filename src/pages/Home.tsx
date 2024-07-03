@@ -1,4 +1,5 @@
-import Diamod from "@/assets/images/diamond.png";
+import DropIcon from "@/assets/svg/dropIcon.svg";
+import EnergyIcon from "@/assets/svg/energyIcon.svg";
 import AnimatedNumber from "@/components/common/AnimatedNumber";
 import Controls from "@/components/common/Controls";
 import Water from "@/components/common/Water";
@@ -137,7 +138,7 @@ const HomePage = () => {
           </Drawer>
         )}
         <div className="flex mt-1 justify-center items-center gap-2 font-extrabold text-[36px]">
-          <img src={Diamod} alt="diamond" className="mt-1 h-9" />
+          <img src={DropIcon} alt="diamond" className="mt-1 h-9" />
           <div>{displayNumbers(drops)}</div>
         </div>
         <Button
@@ -173,7 +174,7 @@ const HomePage = () => {
             baseBgColor="#C3C3C340"
           />
           <div className="items-center mt-2 flex gap-1">
-            <BsLightningFill color="#ffcc20" />
+            <img src={EnergyIcon} alt="energy" className=""/>
             <div className="font-extrabold text-[10px]">500/500</div>
           </div>
         </div>

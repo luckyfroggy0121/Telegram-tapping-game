@@ -17,7 +17,7 @@ const Navbar = () => {
       >
         <FaArrowLeft color="white" />
       </div>
-      <div className="uppercase font-[Distruction] text-xl">
+      <div className="uppercase font-[Distruction] font-thin leading-6">
         SmartLitre
       </div>
       <CgMoreVertical color="white" />
