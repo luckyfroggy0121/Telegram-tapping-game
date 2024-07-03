@@ -16,8 +16,10 @@ import {
   DrawerTrigger,
   DrawerTitle,
 } from "@/components/ui/drawer";
-import { Button } from "@/components/ui/button";
 import { IoCloseCircleSharp } from "react-icons/io5";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { currentTankAtom, tabsAtom } from "@/lib/atom";
+import toast from "react-hot-toast";
 
 const tanks = [
   {
@@ -54,6 +56,8 @@ const tanks = [
 ];
 
 const JoinTank = () => {
+  const [currentTank, setCurrentTank] = useRecoilState(currentTankAtom);
+  const setTabs = useSetRecoilState(tabsAtom);
   return (
     <div className="pt-5 flex flex-col px-6 items-center">
       <div className="font-extrabold text-center text-[36px] leading-6">
@@ -64,15 +68,15 @@ const JoinTank = () => {
         Which tank do you want to join and see us being listed on?
       </div>
       <div className="rounded-[11px] mt-2 w-full bg-[#C3C3C340]">
-        {tanks.map(({ name, image, Medal }, index) => (
+        {tanks.map((tank, index) => (
           <Drawer key={index}>
             <DrawerTrigger className="flex items-center gap-2 p-3 justify-between w-full">
               <div className="flex items-center gap-2">
-                <img src={image} alt={name} className="h-10" />
-                <div className="font-bold text-[15px]">{name}</div>
+                <img src={tank.image} alt={tank.name} className="h-10" />
+                <div className="font-bold text-[15px]">{tank.name}</div>
               </div>
-              {Medal ? (
-                <Medal className="h-5 w-5" />
+              {tank.Medal ? (
+                <tank.Medal className="h-5 w-5" />
               ) : (
                 <div>{index + 1}</div>
               )}
@@ -80,18 +84,32 @@ const JoinTank = () => {
             <DrawerContent className="flex pt-7 pb-8 flex-col items-center">
               <DrawerTitle className="ml-auto mr-5">
                 <DrawerClose>
-                  <IoCloseCircleSharp color="#FFFFFF80"  size={25}/>
+                  <IoCloseCircleSharp color="#FFFFFF80" size={25} />
                 </DrawerClose>
               </DrawerTitle>
-              <img src={image} alt={name} className='w-[100px]' />
-              <div className="font-bold text-[24px] leading-[18px] my-6">{name}</div>
-              <Button
-                onClick={() => {}}
+              <img src={tank.image} alt={tank.name} className="w-[100px]" />
+              <div className="font-bold text-[24px] leading-[18px] my-6">
+                {tank.name}
+              </div>
+              <DrawerClose
+                onClick={() => {
+                  setCurrentTank(tank);
+                  setTabs((tabs) =>
+                    tabs.length === 1 ? tabs : tabs.slice(0, tabs.length - 1)
+                  );
+                  toast.success(`You joined the ${tank.name} Tank`,{
+                    className:'!w-full !rounded-full !bg-[#6a1fc9] !text-white !font-bold !flex !items-center !justify-start ',
+                    iconTheme:{
+                      primary:"white",
+                      secondary:"#6a1fc9"
+                    }
+                  })
+                }}
                 className="w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]"
                 style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
               >
                 Join Tank
-              </Button>
+              </DrawerClose>
             </DrawerContent>
           </Drawer>
         ))}

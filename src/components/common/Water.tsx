@@ -7,7 +7,7 @@ const Water = memo(({ incomingWaterLevel }: { incomingWaterLevel: number }) => {
   const animationRef = useRef<number | null>(null);
   const offsetRef = useRef<number>(0);
   const transitionSpeed = 50;
-  const WATER_COLOR = "rgb(173, 216, 230)";
+  const WATER_COLOR = "rgb(56, 181, 255)";
 
   const [{ waterLevel }, setWaterLevel] = useSpring(() => ({
     waterLevel: 0,
@@ -67,7 +67,7 @@ const Water = memo(({ incomingWaterLevel }: { incomingWaterLevel: number }) => {
         if (ctx) drawWater(ctx, waterLevel.get(), offsetRef.current);
         animationRef.current = requestAnimationFrame(animate);
       };
-      
+
       animate();
     }
 

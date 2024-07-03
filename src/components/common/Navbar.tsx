@@ -9,9 +9,9 @@ const Navbar = () => {
     <div className="w-full justify-between flex items-center py-4 px-4 grow-0 shrink basis-auto">
       <div
         onClick={() => {
-          setTabs((tabs) =>
-            tabs.length === 1 ? tabs : tabs.slice(0, tabs.length - 1)
-          );
+            setTabs((tabs) =>
+              tabs.length === 1 ? tabs : tabs.slice(0, tabs.length - 1)
+            );
         }}
         className="rounded-xl border-[3.5px] p-1 border-[#C3C3C340]"
       >
