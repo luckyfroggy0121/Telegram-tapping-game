@@ -12,7 +12,7 @@ import {
 } from "../ui/drawer";
 import { useState } from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
-import Diamod from "@/assets/images/diamond.png";
+import Diamond from "@/assets/images/diamond.png";
 import { displayNumbers } from "@/lib/utils";
 import { useRecoilState } from "recoil";
 import { tabsAtom } from "@/lib/atom";
@@ -72,7 +72,7 @@ const Controls = () => {
               width={100}
               className="[transform:rotateY(180deg)]"
             />
-            <img src={Diamod} alt="diamond" />
+            <img src={Diamond} alt="diamond" />
           </div>
           <div className="font-semibold text-[16px]">
             Pump DROPS daily without skipping.
@@ -84,7 +84,7 @@ const Controls = () => {
                 className="font-extrabold text-[12px] leading-[18px] flex flex-col h-auto bg-[#C3C3C33D]"
               >
                 <div>Day {index + 1}</div>
-                <img src={Diamod} alt="diamond" />
+                <img src={Diamond} alt="diamond" />
                 <div>{displayNumbers(drops)}</div>
               </Button>
             ))}

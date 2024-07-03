@@ -9,15 +9,15 @@ import silver from "@/assets/svg/silver.svg?react";
 import gold from "@/assets/svg/gold.svg?react";
 import platinum from "@/assets/svg/platinum.svg?react";
 import diamond from "@/assets/svg/diamond.svg?react";
+import { SeaCreature } from "@/interface/SeaCreature";
 
-export const seaCreatures = [
+export const seaCreatures: SeaCreature[] = [
   {
     name: "Rayfish",
     Medal: bronze,
     title: "Bronze",
     Fish: Rayfish,
     drops: 5000,
-    height: 166,
   },
   {
     name: "Octopus",
@@ -25,7 +25,6 @@ export const seaCreatures = [
     title: "Silver",
     Fish: Octopus,
     drops: 50000,
-    height: 223,
   },
   {
     name: "Seahorse",
@@ -33,7 +32,6 @@ export const seaCreatures = [
     Medal: gold,
     title: "Gold",
     drops: 500000,
-    height: 221,
   },
   {
     name: "Draken",
@@ -41,7 +39,6 @@ export const seaCreatures = [
     Medal: platinum,
     title: "Platinum",
     drops: 1000000,
-    height: 218,
   },
   {
     name: "Turtle",
@@ -49,13 +46,11 @@ export const seaCreatures = [
     Medal: diamond,
     title: "Diamond",
     drops: 100000000,
-    height: 219,
   },
   {
     name: "Jellyfish",
     Fish: Jellyfish,
-    title: "Diamond",
+    title: "Epic",
     drops: 1000000000,
-    height: 229,
   },
 ];
