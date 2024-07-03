@@ -112,7 +112,7 @@ const Leaderboard = () => {
           Collect 500K DROPS to unlock Gold character and advance to Platinum
           level.
         </div>
-        <div className="w-full flex flex-col gap-3 mt-5">
+        <div className="w-full flex flex-col gap-2 mt-5">
           {people.map((person, index) => (
             <div
               key={index}
@@ -137,14 +137,14 @@ const Leaderboard = () => {
                   ></div>
                 </div>
                 <div className="flex flex-col">
-                  <div>{person.name}</div>
+                  <div className="font-bold text-[11px]">{person.name}</div>
                   <div className="flex items-center">
                     <img src={Diamond} alt="diamond" className="h-4 w-4" />
-                    <div>{displayNumbers(person.drops)}</div>
+                    <div className="font-extrabold text-[11px]">{displayNumbers(person.drops)}</div>
                   </div>
                 </div>
               </div>
-              <div>{index + 1}</div>
+              <div className="font-extrabold text-[10px]">{index + 1}</div>
             </div>
           ))}
         </div>
