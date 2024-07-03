@@ -5,6 +5,7 @@ import { useRecoilValue } from "recoil";
 import { tabsAtom } from "@/lib/atom";
 import JoinTank from "@/pages/JoinTank";
 import Leaderboard from "@/pages/Leaderboard";
+import Friends from "@/pages/Friends";
 
 const tabs = [
   {
@@ -18,7 +19,11 @@ const tabs = [
   {
     name: "leaderboard",
     Component: Leaderboard,
-  }
+  },
+  {
+    name: "friends",
+    Component: Friends,
+  },
 ];
 
 const GameLayout = () => {

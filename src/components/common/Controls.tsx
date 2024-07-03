@@ -14,6 +14,8 @@ import { useState } from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import Diamod from "@/assets/images/diamond.png";
 import { displayNumbers } from "@/lib/utils";
+import { useRecoilState } from "recoil";
+import { tabsAtom } from "@/lib/atom";
 
 const bottomControls = [
   {
@@ -36,10 +38,12 @@ const dropsDays = [
 
 const Controls = () => {
   const [showPumpDrawer, setShowPumpDrawer] = useState(false);
-
+  const [tabs, setTabs] = useRecoilState(tabsAtom)
   const handleControl = (label: string) => {
     if (label === "Pump") {
       setShowPumpDrawer(true);
+    } else if (label === "Friends") {
+      setTabs([...tabs, "friends"]);
     }
   };
 
