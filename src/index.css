@@ -81,6 +81,7 @@
       radial-gradient(50% 50% at 50% 50%, #7b3fe7 0%, #6327ce 100%);
     background-position: bottom, center 80%;
     background-size: 100% auto, auto;
+    color: white;
   }
 }
 
@@ -135,16 +136,4 @@
   font-family: "Nunito";
   src: url("./assets/fonts/Nunito/static/Nunito-ExtraLight.ttf");
   font-weight: 200;
-}
-
-.fish {
-  height: 15rem;
-  width: 100%;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #5417b0;
-  mask-size: 100% 100%;
-  mask-repeat: no-repeat;
-  mask-position: center;
 }

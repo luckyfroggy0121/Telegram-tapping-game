@@ -16,7 +16,7 @@ export const seaCreatures = [
     Medal: bronze,
     title: "Bronze",
     Fish: Rayfish,
-    diamonds: 5000,
+    drops: 5000,
     height: 166,
   },
   {
@@ -24,7 +24,7 @@ export const seaCreatures = [
     Medal: silver,
     title: "Silver",
     Fish: Octopus,
-    diamonds: 50000,
+    drops: 50000,
     height: 223,
   },
   {
@@ -32,7 +32,7 @@ export const seaCreatures = [
     Fish: Seahorse,
     Medal: gold,
     title: "Gold",
-    diamonds: 500000,
+    drops: 500000,
     height: 221,
   },
   {
@@ -40,7 +40,7 @@ export const seaCreatures = [
     Fish: Draken,
     Medal: platinum,
     title: "Platinum",
-    diamonds: 1000000,
+    drops: 1000000,
     height: 218,
   },
   {
@@ -48,14 +48,14 @@ export const seaCreatures = [
     Fish: Turtle,
     Medal: diamond,
     title: "Diamond",
-    diamonds: 100000000,
+    drops: 100000000,
     height: 219,
   },
   {
     name: "Jellyfish",
     Fish: Jellyfish,
     title: "Diamond",
-    diamonds: 1000000000,
+    drops: 1000000000,
     height: 229,
   },
 ];

@@ -1,11 +1,12 @@
+import { CurrentData } from "@/interface/currentData";
 import { atom } from "recoil";
-
-export const fishState = atom({
-  key: "fishState",
-  default: 0,
-});
 
 export const tabsAtom = atom({
   key: "tabsATom",
   default: ["home"],
+});
+
+export const currentDataAtom = atom<CurrentData>({
+  key: "currentSeaCreatureAtom",
+  default: undefined,
 });
