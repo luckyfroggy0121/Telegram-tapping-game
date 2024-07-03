@@ -79,7 +79,7 @@ const Leaderboard = () => {
             {seaCreatures.map(({ Fish }, index) => (
               <CarouselItem key={index} className="">
                 <div
-                  className="h-[6rem] w-full bg-contain bg-center bg-[#5417b0] relative overflow-hidden mt-2"
+                  className="h-[6rem] w-full bg-contain bg-no-repeat bg-center bg-[#5417b0] relative overflow-hidden mt-2"
                   style={
                     currentData.waterLevel === 100
                       ? {

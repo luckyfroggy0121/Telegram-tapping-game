@@ -1,8 +1,14 @@
-import PumpIcon from "@/assets/svg/pump.svg?react";
-import FriendsIcon from "@/assets/svg/friends.svg?react";
-import EarnIcon from "@/assets/svg/earn.svg?react";
+import Diamond from "@/assets/images/diamond.png";
 import BoostIcon from "@/assets/svg/boost.svg?react";
+import EarnIcon from "@/assets/svg/earn.svg?react";
+import FriendsIcon from "@/assets/svg/friends.svg?react";
+import PumpIcon from "@/assets/svg/pump.svg?react";
 import { Button } from "@/components/ui/button";
+import { tabsAtom } from "@/lib/atom";
+import { displayNumbers } from "@/lib/utils";
+import { useState } from "react";
+import { IoCloseCircleSharp } from "react-icons/io5";
+import { useRecoilState } from "recoil";
 import {
   Drawer,
   DrawerClose,
@@ -10,12 +16,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "../ui/drawer";
-import { useState } from "react";
-import { IoCloseCircleSharp } from "react-icons/io5";
-import Diamond from "@/assets/images/diamond.png";
-import { displayNumbers } from "@/lib/utils";
-import { useRecoilState } from "recoil";
-import { tabsAtom } from "@/lib/atom";
 
 const bottomControls = [
   {
@@ -38,7 +38,7 @@ const dropsDays = [
 
 const Controls = () => {
   const [showPumpDrawer, setShowPumpDrawer] = useState(false);
-  const [tabs, setTabs] = useRecoilState(tabsAtom)
+  const [tabs, setTabs] = useRecoilState(tabsAtom);
   const handleControl = (label: string) => {
     if (label === "Pump") {
       setShowPumpDrawer(true);
@@ -89,7 +89,7 @@ const Controls = () => {
               </Button>
             ))}
           </div>
-          <div className='px-4  w-full mt-4'>
+          <div className="px-4  w-full mt-4">
             <Button className="bg-[#9712F4] font-bold h-12 w-full text-[16px] rounded-full">
               Pump
             </Button>

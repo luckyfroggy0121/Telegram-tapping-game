@@ -1,27 +1,50 @@
-import { seaCreatures } from "@/lib/seacreatures";
-import { Button } from "@/components/ui/button";
 import Diamod from "@/assets/images/diamond.png";
-import ProgressBar from "@ramonak/react-progress-bar";
-import { displayNumbers } from "@/lib/utils";
-import { BsLightningFill } from "react-icons/bs";
-import { useState } from "react";
-import Confetti from "react-confetti";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { currentDataAtom, tabsAtom } from "@/lib/atom";
-import Controls from "@/components/common/Controls";
 import AnimatedNumber from "@/components/common/AnimatedNumber";
+import Controls from "@/components/common/Controls";
+import Water from "@/components/common/Water";
+import { Button } from "@/components/ui/button";
+import { currentDataAtom, tabsAtom } from "@/lib/atom";
+import { seaCreatures } from "@/lib/seacreatures";
+import { cn, displayNumbers } from "@/lib/utils";
+import ProgressBar from "@ramonak/react-progress-bar";
+import { useEffect, useState } from "react";
+import Confetti from "react-confetti";
+import { BsLightningFill } from "react-icons/bs";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 const HomePage = () => {
-  const { Medal, drops, title, Fish } = seaCreatures[0];
-  const [showConfetti] = useState(false);
-  const [waterLevel] = useState(0);
+  const { Medal, drops, title, Fish } = seaCreatures[2];
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [waterLevel, setWaterLevel] = useState(0);
   const [tabs, setTabs] = useRecoilState(tabsAtom);
   const setCurrentSeaCreature = useSetRecoilState(currentDataAtom);
   const [numbers, setNumbers] = useState<number[]>([]);
 
+  const STEP = 1;
+
   const handleClick = () => {
-    setNumbers([...numbers, 10]);
+    if (waterLevel < 100) setNumbers([...numbers, STEP]);
+    setWaterLevel((prev) => Math.min(prev + STEP, 100));
+    if (waterLevel + STEP >= 100) {
+      setShowConfetti(true);
+      setTimeout(() => {
+        setShowConfetti(false);
+      }, 30000);
+    }
   };
+
+  useEffect(() => {
+    if (waterLevel === 100) {
+      setNumbers([]);
+    }
+  }, [waterLevel]);
+
+  useEffect(() => {
+    if (waterLevel === 100) {
+      setWaterLevel(0);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [title]);
 
   return (
     <>
@@ -65,6 +88,7 @@ const HomePage = () => {
             completed={waterLevel}
             bgColor="#65E4F0"
             height="5px"
+            transitionDuration="0.5s"
             className="mt-1 mb-2"
             isLabelVisible={false}
             borderRadius="10px"
@@ -82,7 +106,10 @@ const HomePage = () => {
         </div>
         <div
           onClick={handleClick}
-          className="h-[15rem] w-full bg-contain bg-center bg-[#5417b0] relative overflow-hidden mt-2"
+          className={cn(
+            "h-[15rem] w-full bg-contain bg-center bg-no-repeat bg-[#5417b0] relative overflow-hidden mt-2",
+            waterLevel < 100 ? "cursor-pointer" : "animate-bounce"
+          )}
           style={
             waterLevel === 100
               ? {
@@ -95,7 +122,11 @@ const HomePage = () => {
                   maskPosition: "center",
                 }
           }
-        ></div>
+        >
+          {waterLevel < 100 && waterLevel > 0 && (
+            <Water incomingWaterLevel={waterLevel} />
+          )}
+        </div>
         {showConfetti && (
           <Confetti className="w-full h-screen absolute top-0 z-50 " />
         )}
