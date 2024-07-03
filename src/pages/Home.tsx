@@ -9,6 +9,7 @@ import Confetti from "react-confetti";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { currentDataAtom, tabsAtom } from "@/lib/atom";
 import Controls from "@/components/common/Controls";
+import AnimatedNumber from "@/components/common/AnimatedNumber";
 
 const HomePage = () => {
   const { Medal, drops, title, Fish } = seaCreatures[0];
@@ -16,6 +17,11 @@ const HomePage = () => {
   const [waterLevel] = useState(0);
   const [tabs, setTabs] = useRecoilState(tabsAtom);
   const setCurrentSeaCreature = useSetRecoilState(currentDataAtom);
+  const [numbers, setNumbers] = useState<number[]>([]);
+
+  const handleClick = () => {
+    setNumbers([...numbers, 10]);
+  };
 
   return (
     <>
@@ -69,8 +75,14 @@ const HomePage = () => {
             <div className="font-extrabold text-[10px]">500/500</div>
           </div>
         </div>
+        <div className="absolute top-[50%] w-24 h-24 mt-5">
+          {numbers.map((number, index) => (
+            <AnimatedNumber key={index} number={number} />
+          ))}
+        </div>
         <div
-          className="h-[15rem] w-full bg-contain bg-center bg-[#5417b0] relative  overflow-hidden mt-2"
+          onClick={handleClick}
+          className="h-[15rem] w-full bg-contain bg-center bg-[#5417b0] relative overflow-hidden mt-2"
           style={
             waterLevel === 100
               ? {
