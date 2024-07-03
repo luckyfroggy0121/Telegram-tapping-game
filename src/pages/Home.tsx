@@ -9,7 +9,6 @@ import { cn, displayNumbers } from "@/lib/utils";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useEffect, useState } from "react";
 import Confetti from "react-confetti";
-import { BsLightningFill } from "react-icons/bs";
 import { useRecoilState, useSetRecoilState } from "recoil";
 
 import { currentDataAtom, tabsAtom, currentTankAtom } from "@/lib/atom";
@@ -26,7 +25,6 @@ import toast from "react-hot-toast";
 
 const HomePage = () => {
   const [showConfetti, setShowConfetti] = useState(false);
-  const [waterLevel, setWaterLevel] = useState(0);
   const [tabs, setTabs] = useRecoilState(tabsAtom);
   const setCurrentSeaCreature = useSetRecoilState(currentDataAtom);
   const [currentTank, setCurrentTank] = useRecoilState(currentTankAtom);
@@ -37,18 +35,6 @@ const HomePage = () => {
   const [level, setLevel] = useState(0);
 
   const { Medal, drops, title, Fish } = seaCreatures[level];
-
-  // const STEP = 1;
-  // const handleClick = () => {
-  //   if (waterLevel < 100) setNumbers([...numbers, STEP]);
-  //   setWaterLevel((prev) => Math.min(prev + STEP, 100));
-  //   if (waterLevel + STEP >= 100) {
-  //     setShowConfetti(true);
-  //     setTimeout(() => {
-  //       setShowConfetti(false);
-  //     }, 30000);
-  //   }
-  // };
 
   const handleClick = (addition: number) => {
     if (level < 6 && progress < 100) {
@@ -146,7 +132,7 @@ const HomePage = () => {
             setCurrentSeaCreature({
               image: Fish,
               medal: title,
-              waterLevel,
+              waterLevel: progress,
             });
             setTabs([...tabs, "leaderboard"]);
           }}
