@@ -193,9 +193,11 @@ const Controls = () => {
                 Pump
               </Button>
             ) : (
-              <Button className="bg-[#402F4D] font-bold h-12 w-full text-[16px] text-white rounded-full">
-                <DrawerClose>Come Back Tommorrow</DrawerClose>
-              </Button>
+              <DrawerClose asChild>
+                <Button className="bg-[#402F4D] font-bold h-12 w-full text-[16px] text-white rounded-full">
+                  Come Back Tommorrow
+                </Button>
+              </DrawerClose>
             )}
           </div>
           <Toaster position="bottom-center" />

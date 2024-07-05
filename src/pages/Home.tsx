@@ -1,5 +1,6 @@
-import DropIcon from "@/assets/svg/dropIcon.svg";
-import EnergyIcon from "@/assets/svg/energyIcon.svg";
+/* eslint-disable react-hooks/exhaustive-deps */
+import DropIcon from "@/assets/svg/dropIcon.svg?react";
+import EnergyIcon from "@/assets/svg/energyIcon.svg?react";
 import AnimatedNumber from "@/components/common/AnimatedNumber";
 import Controls from "@/components/common/Controls";
 import Water from "@/components/common/Water";
@@ -17,6 +18,7 @@ import {
   currentTankAtom,
   levelAtom,
   balanceAtom,
+  energyAtom,
 } from "@/lib/atom";
 import {
   Drawer,
@@ -34,32 +36,47 @@ const HomePage = () => {
   const [tabs, setTabs] = useRecoilState(tabsAtom);
   const setCurrentSeaCreature = useSetRecoilState(currentDataAtom);
   const [currentTank, setCurrentTank] = useRecoilState(currentTankAtom);
-  const [levell, setLevell] = useRecoilState(levelAtom);
+  const [level, setLevel] = useRecoilState(levelAtom);
   const [balance, setBalance] = useRecoilState(balanceAtom);
-
+  const [energy, setEnergy] = useRecoilState(energyAtom);
   const [numbers, setNumbers] = useState<number[]>([]);
 
-  const [progress, setProgress] = useState(0);
-  const [level, setLevel] = useState(0);
+  const [waterLevel, setWaterLevel] = useState(0);
 
   const { Medal, drops, title, Fish } = seaCreatures[level];
 
-  const currentLevelProgress = (balance.balance / drops) * 100;
+  const currentLevelProgress = (balance / drops) * 100;
 
-  const handleClick = (addition: number) => {
-    if (level < 6 && currentLevelProgress <= 100) {
-      setBalance({ balance: balance.balance + parseInt(addition.toFixed(1)) });
-      setProgress((prev) => {
-        const newProgress = prev + addition;
-        if (newProgress > 100 && level < 5) {
+  const handleClick = () => {
+    const addition = eval("100 / (level + 3)");
+    if (level < 6 && currentLevelProgress <= 100 && energy > 0) {
+      setEnergy((prev) => Math.max(prev - 1, 0));
+      setBalance(balance + parseInt(addition.toFixed(1)));
+      const newProgress = waterLevel + addition;
+
+      setWaterLevel(() => {
+        if (newProgress > 100) {
           return 0;
         }
+        if (newProgress === 100) return 99;
         return newProgress;
       });
-
+      if (newProgress === 100) {
+        setTimeout(() => {
+          setWaterLevel(0);
+        }, 800);
+      }
       setNumbers([...numbers, parseInt(addition.toFixed(2))]);
     }
   };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setEnergy((prev) => Math.min(prev + 10, 500)); // Add energy up to 500
+    }, 5000);
+    if (energy >= 500) clearInterval(timer);
+    return () => clearInterval(timer);
+  }, [balance]);
 
   useEffect(() => {
     if (currentLevelProgress >= 100) {
@@ -67,13 +84,9 @@ const HomePage = () => {
       setTimeout(() => {
         setLevel(level + 1);
       }, 5000);
-      setProgress(0);
+      setWaterLevel(0);
     }
   }, [currentLevelProgress]);
-
-  useEffect(() => {
-    setLevell({ level: level + 1 });
-  }, [level]);
 
   return (
     <>
@@ -136,16 +149,16 @@ const HomePage = () => {
           </Drawer>
         )}
         <div className="flex mt-1 justify-center items-center gap-2 font-extrabold text-[36px]">
-          <img src={DropIcon} alt="diamond" className="mt-1 h-9" />
-          <div>{displayNumbers(parseInt(balance.balance.toFixed(2)))}</div>
+          <DropIcon className="mt-1 h-9" />
+          <div>{displayNumbers(parseInt(balance.toFixed(2)))}</div>
         </div>
         <Button
           onClick={() => {
             setCurrentSeaCreature({
               image: Fish,
               medal: title,
-              waterLevel: currentLevelProgress,
-
+              progress: currentLevelProgress,
+              waterLevel: waterLevel,
             });
             setTabs([...tabs, "leaderboard"]);
           }}
@@ -158,7 +171,7 @@ const HomePage = () => {
           <div className="flex justify-between font-bold">
             <div className="text-[11px]">Hydration Goal</div>
             <div className="text-[10px]">
-              Level {levell.level}
+              Level {level}
               /6
             </div>
           </div>
@@ -173,8 +186,8 @@ const HomePage = () => {
             baseBgColor="#C3C3C340"
           />
           <div className="items-center mt-2 flex gap-1">
-            <img src={EnergyIcon} alt="energy" className="" />
-            <div className="font-extrabold text-[10px]">500/500</div>
+            <EnergyIcon />
+            <div className="font-extrabold text-[10px]">{energy}/500</div>
           </div>
         </div>
         <div className="absolute top-[50%] w-24 h-24 mt-5">
@@ -183,21 +196,7 @@ const HomePage = () => {
           ))}
         </div>
         <div
-          onClick={() =>
-            handleClick(
-              level === 0
-                ? 33.333333333
-                : level === 1
-                ? 25
-                : level === 2
-                ? 20
-                : level === 3
-                ? 16.666666667
-                : level === 4
-                ? 14.285714286
-                : 12.5
-            )
-          }
+          onClick={handleClick}
           className={cn(
             "h-[15rem] w-full bg-contain bg-center bg-no-repeat bg-[#5417b0] relative overflow-hidden mt-2",
             currentLevelProgress >= 100 ? "animate-bounce" : ""
@@ -216,8 +215,8 @@ const HomePage = () => {
                 }
           }
         >
-          {currentLevelProgress < 100 && currentLevelProgress > 0 && (
-            <Water incomingWaterLevel={progress} />
+          {waterLevel < 100 && waterLevel > 0 && (
+            <Water incomingWaterLevel={waterLevel} />
           )}
         </div>
         {showConfetti && (

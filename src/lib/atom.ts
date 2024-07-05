@@ -1,6 +1,5 @@
 import { CurrentData } from "@/interface/currentData";
 import { CurrentTank } from "@/interface/currentTank";
-import { Balance, level } from "@/interface/level";
 import { atom } from "recoil";
 
 export const tabsAtom = atom({
@@ -18,12 +17,17 @@ export const currentTankAtom = atom<CurrentTank>({
   default: { name: "", image: "" },
 });
 
-export const levelAtom = atom<level>({
+export const levelAtom = atom<number>({
   key: "levelAtom",
-  default: { level:1 },
+  default: 0,
 });
 
-export const balanceAtom = atom<Balance>({
+export const balanceAtom = atom<number>({
   key: "balanceAtom",
-  default: { balance: 0 },
+  default: 0,
+});
+
+export const energyAtom = atom<number>({
+  key: "energyAtom",
+  default: 500,
 });

@@ -13,6 +13,7 @@ import Diamond from "@/assets/images/diamond.png";
 import { displayNumbers } from "@/lib/utils";
 import { type CarouselApi } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
+import Water from "@/components/common/Water";
 
 const people = [
   {
@@ -81,7 +82,7 @@ const Leaderboard = () => {
                 <div
                   className="h-[6rem] w-full bg-no-repeat bg-contain bg-center bg-[#5417b0] relative overflow-hidden mt-2"
                   style={
-                    currentData.waterLevel === 100
+                    currentData.progress === 100
                       ? {
                           backgroundImage: `url(${Fish})`,
                           backgroundColor: "transparent",
@@ -92,7 +93,11 @@ const Leaderboard = () => {
                           maskPosition: "center",
                         }
                   }
-                ></div>
+                >
+                  {currentData.waterLevel < 100 && currentData.waterLevel > 0 && (
+                    <Water incomingWaterLevel={currentData.waterLevel} />
+                  )}
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
@@ -100,7 +105,7 @@ const Leaderboard = () => {
           <CarouselNext />
         </Carousel>
         <ProgressBar
-          completed={currentData.waterLevel}
+          completed={currentData.progress}
           bgColor="#65E4F0"
           height="5px"
           className="mt-2 w-full"
@@ -123,7 +128,7 @@ const Leaderboard = () => {
                   <div
                     className="w-full h-full bg-contain bg-center bg-[#5417b0] relative overflow-hidden mt-2"
                     style={
-                      currentData.waterLevel === 100
+                      currentData.progress === 100
                         ? {
                             backgroundImage: `url(${currentData.image})`,
                             backgroundColor: "transparent",
@@ -140,7 +145,9 @@ const Leaderboard = () => {
                   <div className="font-bold text-[11px]">{person.name}</div>
                   <div className="flex items-center">
                     <img src={Diamond} alt="diamond" className="h-4 w-4" />
-                    <div className="font-extrabold text-[11px]">{displayNumbers(person.drops)}</div>
+                    <div className="font-extrabold text-[11px]">
+                      {displayNumbers(person.drops)}
+                    </div>
                   </div>
                 </div>
               </div>
