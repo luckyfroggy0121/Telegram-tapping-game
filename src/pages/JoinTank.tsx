@@ -1,11 +1,11 @@
 import Fishes from "@/assets/images/fishes.gif";
-import binance from "@/assets/images/binance.png";
-import bybit from "@/assets/images/bybit.png";
-import okxx from "@/assets/images/okxx.png";
-import bingx from "@/assets/images/bingx.png";
-import htx from "@/assets/images/htx.png";
-import kucoin from "@/assets/images/kucoin.png";
-import mexc from "@/assets/images/mexc.png";
+import binance from "@/assets/svg/tanks/binance.svg";
+import bybit from "@/assets/svg/tanks/byibit.svg";
+import okxx from "@/assets/svg/tanks/okx.svg";
+import bingx from "@/assets/svg/tanks/bingx.svg";
+import htx from "@/assets/svg/tanks/htx.svg";
+import kucoin from "@/assets/svg/tanks/kucoin.svg";
+import mexc from "@/assets/svg/tanks/mexc.svg";
 import binanceMedal from "@/assets/svg/binance-medal.svg?react";
 import bybitMedal from "@/assets/svg/bybit-medal.svg?react";
 import okxxMedal from "@/assets/svg/okxx-medal.svg?react";
@@ -63,7 +63,7 @@ const JoinTank = () => {
       <div className="font-extrabold text-center text-[36px] leading-6">
         Join Tank
       </div>
-      <img src={Fishes} className="mt-3 w-[20rem]" />
+      <img src={Fishes} className="mt-3 w-full" />
       <div className="text-white/80 font-bold text-[16px] text-center mt-3 max-w-[18rem]">
         Which tank do you want to join and see us being listed on?
       </div>
@@ -76,9 +76,9 @@ const JoinTank = () => {
                 <div className="font-bold text-[15px]">{tank.name}</div>
               </div>
               {tank.Medal ? (
-                <tank.Medal className="h-5 w-5" />
+                <tank.Medal className="h-8 w-8" />
               ) : (
-                <div>{index + 1}</div>
+                <div className="flex items-center justify-center h-8 w-8">{index + 1}</div>
               )}
             </DrawerTrigger>
             <DrawerContent className="flex pt-7 pb-8 flex-col items-center">

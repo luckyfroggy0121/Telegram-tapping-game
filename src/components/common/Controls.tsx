@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 import { tabsAtom } from "@/lib/atom";
 import { displayNumbers } from "@/lib/utils";
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { useRecoilState } from "recoil";
 import Confetti from "react-confetti";
@@ -19,7 +19,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "../ui/drawer";
-
 
 const bottomControls = [
   {
@@ -39,7 +38,6 @@ const bottomControls = [
 const dropsDays = [
   500, 1000, 2500, 5000, 15000, 25000, 100000, 500000, 1000000, 5000000,
 ];
-
 
 const Controls = () => {
   const [showPumpDrawer, setShowPumpDrawer] = useState(false);
@@ -133,9 +131,12 @@ const Controls = () => {
     <div className="flex gap-3 justify-center w-full z-40">
       <Drawer open={showPumpDrawer} onOpenChange={setShowPumpDrawer}>
         <DrawerTrigger asChild>
-          <Button className="flex flex-col items-center h-[60px] mt-5 w-[70px] gap-1 rounded-md  bg-[#C3C3C340]">
+          <Button className=" relative flex flex-col items-center h-[60px] mt-5 w-[70px] gap-1 rounded-md  bg-[#C3C3C340]">
             <PumpIcon height={24} />
             <div>Pump</div>
+            <div className="absolute -top-3 right-0 px-3 bg-[#bd5ef8] text-white font-semibold rounded-full ">
+              <p>soon</p>
+            </div>
           </Button>
         </DrawerTrigger>
         <DrawerContent className="pt-6 flex flex-col items-center pb-3">
@@ -183,7 +184,6 @@ const Controls = () => {
             ))}
           </div>
           <div className="px-4  w-full mt-4">
-
             {isPumpAvailable ? (
               <Button
                 onClick={handlePump}
@@ -197,7 +197,6 @@ const Controls = () => {
                 <DrawerClose>Come Back Tommorrow</DrawerClose>
               </Button>
             )}
-
           </div>
           <Toaster position="bottom-center" />
         </DrawerContent>
@@ -206,10 +205,13 @@ const Controls = () => {
         <Button
           key={index}
           onClick={() => handleControl(control.label)}
-          className="flex flex-col items-center h-[60px] mt-5 w-[70px] gap-1 bg-[#C3C3C340]"
+          className=" relative flex flex-col items-center h-[60px] mt-5 w-[70px] gap-1 bg-[#C3C3C340]"
         >
           <control.icon height={24} />
           <div>{control.label}</div>
+          <div className="absolute -top-3 right-0 px-3 bg-[#bd5ef8] text-white font-semibold rounded-full ">
+            <p>soon</p>
+          </div>
         </Button>
       ))}
     </div>

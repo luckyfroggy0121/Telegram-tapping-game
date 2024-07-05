@@ -11,7 +11,13 @@ import { useEffect, useState } from "react";
 import Confetti from "react-confetti";
 import { useRecoilState, useSetRecoilState } from "recoil";
 
-import { currentDataAtom, tabsAtom, currentTankAtom } from "@/lib/atom";
+import {
+  currentDataAtom,
+  tabsAtom,
+  currentTankAtom,
+  levelAtom,
+  balanceAtom,
+} from "@/lib/atom";
 import {
   Drawer,
   DrawerClose,
@@ -28,6 +34,8 @@ const HomePage = () => {
   const [tabs, setTabs] = useRecoilState(tabsAtom);
   const setCurrentSeaCreature = useSetRecoilState(currentDataAtom);
   const [currentTank, setCurrentTank] = useRecoilState(currentTankAtom);
+  const [levell, setLevell] = useRecoilState(levelAtom);
+  const [balance, setBalance] = useRecoilState(balanceAtom);
 
   const [numbers, setNumbers] = useState<number[]>([]);
 
@@ -36,31 +44,35 @@ const HomePage = () => {
 
   const { Medal, drops, title, Fish } = seaCreatures[level];
 
+  const currentLevelProgress = (balance.balance / drops) * 100;
+
   const handleClick = (addition: number) => {
-    if (level < 6 && progress < 100) {
+    if (level < 6 && currentLevelProgress <= 100) {
+      setBalance({ balance: balance.balance + parseInt(addition.toFixed(1)) });
       setProgress((prev) => {
         const newProgress = prev + addition;
-        if (newProgress >= 100 && level < 5) {
-          setShowConfetti(true);
-          setTimeout(() => {
-            setLevel(level + 1);
-            return 0;
-          }, 5000);
-        }else if (level === 5 && newProgress >= 100){
-          setShowConfetti(true);
-          setTimeout(() => {
-            setLevel(0)
-          }, 5000);
+        if (newProgress > 100 && level < 5) {
+          return 0;
         }
         return newProgress;
       });
+
       setNumbers([...numbers, parseInt(addition.toFixed(2))]);
     }
   };
 
   useEffect(() => {
-    setProgress(0);
-    setShowConfetti(false);
+    if (currentLevelProgress >= 100) {
+      setShowConfetti(true);
+      setTimeout(() => {
+        setLevel(level + 1);
+      }, 5000);
+      setProgress(0);
+    }
+  }, [currentLevelProgress]);
+
+  useEffect(() => {
+    setLevell({ level: level + 1 });
   }, [level]);
 
   return (
@@ -125,14 +137,15 @@ const HomePage = () => {
         )}
         <div className="flex mt-1 justify-center items-center gap-2 font-extrabold text-[36px]">
           <img src={DropIcon} alt="diamond" className="mt-1 h-9" />
-          <div>{displayNumbers(drops)}</div>
+          <div>{displayNumbers(parseInt(balance.balance.toFixed(2)))}</div>
         </div>
         <Button
           onClick={() => {
             setCurrentSeaCreature({
               image: Fish,
               medal: title,
-              waterLevel: progress,
+              waterLevel: currentLevelProgress,
+
             });
             setTabs([...tabs, "leaderboard"]);
           }}
@@ -145,12 +158,12 @@ const HomePage = () => {
           <div className="flex justify-between font-bold">
             <div className="text-[11px]">Hydration Goal</div>
             <div className="text-[10px]">
-              Level {level + 1}
+              Level {levell.level}
               /6
             </div>
           </div>
           <ProgressBar
-            completed={progress}
+            completed={currentLevelProgress}
             bgColor="#65E4F0"
             height="5px"
             transitionDuration="0.5s"
@@ -160,7 +173,7 @@ const HomePage = () => {
             baseBgColor="#C3C3C340"
           />
           <div className="items-center mt-2 flex gap-1">
-            <img src={EnergyIcon} alt="energy" className=""/>
+            <img src={EnergyIcon} alt="energy" className="" />
             <div className="font-extrabold text-[10px]">500/500</div>
           </div>
         </div>
@@ -173,24 +186,24 @@ const HomePage = () => {
           onClick={() =>
             handleClick(
               level === 0
-                ? 16.666666667
+                ? 33.333333333
                 : level === 1
-                ? 12.5
+                ? 25
                 : level === 2
-                ? 10
+                ? 20
                 : level === 3
-                ? 8.333333333
+                ? 16.666666667
                 : level === 4
-                ? 6.666666667
-                : 5
+                ? 14.285714286
+                : 12.5
             )
           }
           className={cn(
             "h-[15rem] w-full bg-contain bg-center bg-no-repeat bg-[#5417b0] relative overflow-hidden mt-2",
-            progress >= 100 ? "animate-bounce" : ""
+            currentLevelProgress >= 100 ? "animate-bounce" : ""
           )}
           style={
-            progress >= 100
+            currentLevelProgress >= 100
               ? {
                   backgroundImage: `url(${Fish})`,
                   backgroundColor: "transparent",
@@ -203,12 +216,17 @@ const HomePage = () => {
                 }
           }
         >
-          {progress < 100 && progress > 0 && (
+          {currentLevelProgress < 100 && currentLevelProgress > 0 && (
             <Water incomingWaterLevel={progress} />
           )}
         </div>
         {showConfetti && (
-          <Confetti className="w-full h-screen absolute top-0 z-50" numberOfPieces={1500} recycle={false} gravity={0.09} />
+          <Confetti
+            className="w-full h-screen absolute top-0 z-50"
+            numberOfPieces={1500}
+            recycle={false}
+            gravity={0.09}
+          />
         )}
       </div>
       <Controls />
