@@ -43,10 +43,10 @@ const Controls = () => {
   const [showPumpDrawer, setShowPumpDrawer] = useState(false);
   const [tabs, setTabs] = useRecoilState(tabsAtom);
   const handleControl = (label: string) => {
-    if (label === "Pump") {
-      setShowPumpDrawer(true);
-    } else if (label === "Friends") {
+    if (label === "Friends") {
       setTabs([...tabs, "friends"]);
+    } else if (label === "Earn") {
+      setTabs([...tabs, "earn"]);
     }
   };
 

@@ -1,4 +1,4 @@
-import { currentDataAtom, tabsAtom } from "@/lib/atom";
+import { currentDataAtom, levelAtom, tabsAtom } from "@/lib/atom";
 import { useRecoilValue } from "recoil";
 import {
   Carousel,
@@ -52,6 +52,7 @@ const people = [
 
 const Leaderboard = () => {
   const currentData = useRecoilValue(currentDataAtom);
+  const level = useRecoilValue(levelAtom);
   const [api, setApi] = useState<CarouselApi>();
   const tabs = useRecoilValue(tabsAtom);
 
@@ -62,11 +63,13 @@ const Leaderboard = () => {
 
     // set selected index to the index of the current sea creature
     if (tabs.includes("leaderboard"))
-      api.scrollTo(
-        seaCreatures.findIndex(
-          (seaCreature) => seaCreature.title === currentData?.medal
-        )
-      );
+      setTimeout(() => {
+        api.scrollTo(
+          seaCreatures.findIndex(
+            (seaCreature) => seaCreature.title === currentData?.medal
+          )
+        );
+      }, 50);
   }, [api, currentData, tabs]);
 
   return (
@@ -94,9 +97,11 @@ const Leaderboard = () => {
                         }
                   }
                 >
-                  {currentData.waterLevel < 100 && currentData.waterLevel > 0 && (
-                    <Water incomingWaterLevel={currentData.waterLevel} />
-                  )}
+                  {currentData.waterLevel < 100 &&
+                    currentData.waterLevel > 0 &&
+                    index === level && (
+                      <Water incomingWaterLevel={currentData.waterLevel} />
+                    )}
                 </div>
               </CarouselItem>
             ))}
