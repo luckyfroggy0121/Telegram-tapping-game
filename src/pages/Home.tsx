@@ -90,6 +90,13 @@ const HomePage = () => {
   }, [balance]);
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setNumbers([]);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [numbers]);
+
+  useEffect(() => {
     if (currentLevelProgress >= 100) {
       setShowConfetti(true);
       setTimeout(() => {
@@ -201,7 +208,14 @@ const HomePage = () => {
             <div className="font-extrabold text-[10px]">{energy}/500</div>
           </div>
         </div>
-
+        {numbers.map((num, index) => (
+          <AnimatedNumber
+            key={index}
+            number={num.number}
+            x={num.x - 220}
+            y={num.y - 80}
+          />
+        ))}
         <div
           onClick={handleClick}
           className={cn(
@@ -225,16 +239,6 @@ const HomePage = () => {
           {waterLevel < 100 && waterLevel > 0 && (
             <Water incomingWaterLevel={waterLevel} />
           )}
-          <div className="w-full top-0 fixed h-full">
-            {numbers.map((num, index) => (
-              <AnimatedNumber
-                key={index}
-                number={num.number}
-                x={num.x - 235}
-                y={num.y}
-              />
-            ))}
-          </div>
         </div>
         {showConfetti && (
           <Confetti
