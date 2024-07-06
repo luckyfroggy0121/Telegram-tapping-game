@@ -43,9 +43,7 @@ const Controls = () => {
   const [showPumpDrawer, setShowPumpDrawer] = useState(false);
   const [tabs, setTabs] = useRecoilState(tabsAtom);
   const handleControl = (label: string) => {
-    if (label === "Friends") {
-      setTabs([...tabs, "friends"]);
-    } else if (label === "Earn") {
+    if (label === "Earn") {
       setTabs([...tabs, "earn"]);
     }
   };
@@ -211,9 +209,11 @@ const Controls = () => {
         >
           <control.icon height={24} />
           <div>{control.label}</div>
-          <div className="absolute -top-3 right-0 px-3 bg-[#bd5ef8] text-white font-semibold rounded-full ">
-            <p>soon</p>
-          </div>
+          {control.label !== "Earn" && (
+            <div className="absolute -top-3 right-0 px-3 bg-[#bd5ef8] text-white font-bold rounded-full ">
+              <p>soon</p>
+            </div>
+          )}
         </Button>
       ))}
     </div>
