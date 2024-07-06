@@ -12,12 +12,7 @@ import { IoCloseCircleSharp } from "react-icons/io5";
 import { useRecoilState } from "recoil";
 import Confetti from "react-confetti";
 import toast, { Toaster } from "react-hot-toast";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerTitle,
-} from "../ui/drawer";
+import { Drawer, DrawerClose, DrawerContent, DrawerTitle } from "../ui/drawer";
 
 const bottomControls = [
   {
@@ -108,14 +103,17 @@ const Controls = () => {
     const newCollected = [...collected];
     newCollected[currentDay] = true;
 
-    toast.success(`You’ve received +${dropsDays[currentDay]} DROPS`, {
-      style: { zIndex: 999 },
-      className: "w-full !rounded-full !bg-[#AD12F5] !text-white !font-bold",
-    });
+    toast.success(
+      `You've received +${dropsDays[currentDay]} DROPS`
+      // {
+      //   style: { zIndex: 999 },
+      //   className: "w-full !rounded-full !bg-[#AD12F5] !text-white !font-bold",
+      // }
+    );
     setTotalDrops(newTotalDrops);
     setCollected(newCollected);
     setLastPumpTime(new Date());
-    setShowConfetti(true);
+    setShowConfetti(true);  
 
     setTimeout(() => {
       setShowConfetti(false);
@@ -131,7 +129,6 @@ const Controls = () => {
   return (
     <div className="flex gap-3 justify-center w-full mb-[52px]">
       <Drawer open={showPumpDrawer} onOpenChange={setShowPumpDrawer}>
-       
         <DrawerContent className="pt-6 flex flex-col items-center pb-3">
           {showConfetti && (
             <Confetti numberOfPieces={1500} recycle={false} gravity={0.09} />

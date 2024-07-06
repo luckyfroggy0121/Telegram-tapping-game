@@ -20,38 +20,47 @@ import { IoCloseCircleSharp } from "react-icons/io5";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { currentTankAtom, tabsAtom } from "@/lib/atom";
 import toast from "react-hot-toast";
+import { MdPerson } from "react-icons/md";
+import { displayMinimizedNumbers } from "@/lib/utils";
 
 const tanks = [
   {
     name: "Binance",
     image: binance,
     Medal: binanceMedal,
+    money: 2300000,
   },
   {
     name: "Bybit",
     image: bybit,
     Medal: bybitMedal,
+    money: 1700000,
   },
   {
     name: "Okxx",
     image: okxx,
     Medal: okxxMedal,
+    money: 1600000,
   },
   {
     name: "Bingx",
     image: bingx,
+    money: 518400,
   },
   {
     name: "HTX",
     image: htx,
+    money: 128300,
   },
   {
     name: "Kucoin",
     image: kucoin,
+    money: 51700,
   },
   {
     name: "Mexc",
     image: mexc,
+    money: 33700,
   },
 ];
 
@@ -72,13 +81,21 @@ const JoinTank = () => {
           <Drawer key={index}>
             <DrawerTrigger className="flex items-center gap-2 p-3 justify-between w-full">
               <div className="flex items-center gap-2">
-                <img src={tank.image} alt={tank.name} className="h-10" />
+                <div className="relative">
+                  <img src={tank.image} alt={tank.name} className="h-10" />
+                  <div className="absolute flex items-center bg-[#a016f5] shadow-[0px_0px_20px_0px_#FFFFFF80_inset] rounded-full left-1/2 -translate-x-1/2 px-[3px] py-[0.1px] font-extrabold text-[8px] bottom-[0.5px]">
+                    <MdPerson />
+                    <div className="mt-0.5">{displayMinimizedNumbers(tank.money)}+</div>
+                  </div>
+                </div>
                 <div className="font-bold text-[15px]">{tank.name}</div>
               </div>
               {tank.Medal ? (
                 <tank.Medal className="h-8 w-8" />
               ) : (
-                <div className="flex items-center justify-center h-8 w-8">{index + 1}</div>
+                <div className="flex items-center justify-center h-8 w-8">
+                  {index + 1}
+                </div>
               )}
             </DrawerTrigger>
             <DrawerContent className="flex pt-7 pb-8 flex-col items-center">
@@ -97,14 +114,7 @@ const JoinTank = () => {
                   setTabs((tabs) =>
                     tabs.length === 1 ? tabs : tabs.slice(0, tabs.length - 1)
                   );
-                  toast.success(`You joined the ${tank.name} Tank`, {
-                    className:
-                      "!w-full !rounded-full !bg-[#6a1fc9] !text-white !font-bold !flex !items-center !justify-start ",
-                    iconTheme: {
-                      primary: "white",
-                      secondary: "#6a1fc9",
-                    },
-                  });
+                  toast.success(`You joined the ${tank.name} Tank`);
                 }}
                 className="w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]"
                 style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
