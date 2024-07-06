@@ -129,7 +129,7 @@ const Controls = () => {
     }
   };
   return (
-    <div className="flex gap-3 justify-center w-full z-40">
+    <div className="flex gap-3 justify-center w-full mb-[52px]">
       <Drawer open={showPumpDrawer} onOpenChange={setShowPumpDrawer}>
        
         <DrawerContent className="pt-6 flex flex-col items-center pb-3">
