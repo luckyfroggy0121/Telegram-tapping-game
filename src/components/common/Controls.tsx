@@ -17,10 +17,13 @@ import {
   DrawerClose,
   DrawerContent,
   DrawerTitle,
-  DrawerTrigger,
 } from "../ui/drawer";
 
 const bottomControls = [
+  {
+    label: "Pump",
+    icon: PumpIcon,
+  },
   {
     label: "Friends",
     icon: FriendsIcon,
@@ -128,15 +131,7 @@ const Controls = () => {
   return (
     <div className="flex gap-3 justify-center w-full z-40">
       <Drawer open={showPumpDrawer} onOpenChange={setShowPumpDrawer}>
-        <DrawerTrigger asChild>
-          <Button className=" relative flex flex-col items-center h-[60px] mt-5 w-[70px] gap-1 rounded-md  bg-[#C3C3C340]">
-            <PumpIcon height={24} />
-            <div>Pump</div>
-            <div className="absolute -top-3 right-0 px-3 bg-[#bd5ef8] text-white font-semibold rounded-full ">
-              <p>soon</p>
-            </div>
-          </Button>
-        </DrawerTrigger>
+       
         <DrawerContent className="pt-6 flex flex-col items-center pb-3">
           {showConfetti && (
             <Confetti numberOfPieces={1500} recycle={false} gravity={0.09} />

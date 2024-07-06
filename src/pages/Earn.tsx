@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { FaChevronRight } from "react-icons/fa6";
 import Diamond from "@/assets/images/diamond.png";
 import { displayNumbers } from "@/lib/utils";
+// import { LiaCheckSolid } from "react-icons/lia";
 
 const tasks = [
   {
