@@ -13,7 +13,6 @@ import Diamond from "@/assets/images/diamond.png";
 import { displayNumbers } from "@/lib/utils";
 import { type CarouselApi } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
-import Water from "@/components/common/Water";
 
 const people = [
   {
@@ -56,6 +55,8 @@ const Leaderboard = () => {
   const [api, setApi] = useState<CarouselApi>();
   const tabs = useRecoilValue(tabsAtom);
 
+  const [currentTab, setCurrentTab] = useState<number>(0);
+
   useEffect(() => {
     if (!api) {
       return;
@@ -70,6 +71,11 @@ const Leaderboard = () => {
           )
         );
       }, 50);
+    setCurrentTab(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrentTab(api.selectedScrollSnap());
+    });
   }, [api, currentData, tabs]);
 
   return (
@@ -85,7 +91,7 @@ const Leaderboard = () => {
                 <div
                   className="h-[6rem] w-full bg-no-repeat bg-contain bg-center bg-[#5417b0] relative overflow-hidden mt-2"
                   style={
-                    currentData.progress === 100
+                    level > index
                       ? {
                           backgroundImage: `url(${Fish})`,
                           backgroundColor: "transparent",
@@ -96,13 +102,7 @@ const Leaderboard = () => {
                           maskPosition: "center",
                         }
                   }
-                >
-                  {currentData.waterLevel < 100 &&
-                    currentData.waterLevel > 0 &&
-                    index === level && (
-                      <Water incomingWaterLevel={currentData.waterLevel} />
-                    )}
-                </div>
+                ></div>
               </CarouselItem>
             ))}
           </CarouselContent>
@@ -110,7 +110,13 @@ const Leaderboard = () => {
           <CarouselNext />
         </Carousel>
         <ProgressBar
-          completed={currentData.progress}
+          completed={
+            currentTab < level
+              ? 100
+              : currentTab === level
+              ? currentData.progress
+              : 0
+          }
           bgColor="#65E4F0"
           height="5px"
           className="mt-2 w-full"

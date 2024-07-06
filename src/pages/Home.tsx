@@ -54,7 +54,7 @@ const HomePage = () => {
   const currentLevelProgress = (balance / drops) * 100;
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const addition = eval("100 / (level + 3)");
+    const addition = eval("100 / (10*(level+1))");
     if (level < 6 && currentLevelProgress <= 100 && energy > 0) {
       setEnergy((prev) => Math.max(prev - 1, 0));
       setBalance(balance + parseInt(addition.toFixed(1)));
@@ -79,12 +79,15 @@ const HomePage = () => {
         { number: parseInt(addition.toFixed(2)), x: clickX, y: clickY },
       ]);
     }
+    if (energy === 0) {
+      toast.error("You can't pump with no energy.");
+    }
   };
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setEnergy((prev) => Math.min(prev + 10, 500)); // Add energy up to 500
-    }, 5000);
+      setEnergy((prev) => Math.min(prev + 1, 500)); // Add energy up to 500
+    }, 1000);
     if (energy >= 500) clearInterval(timer);
     return () => clearInterval(timer);
   }, [balance]);
@@ -108,7 +111,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="flex px-3 flex-col items-center">
+      <div className="flex px-3 h-full flex-col items-center grow shrink basis-auto">
         {currentTank.name === "" && currentTank.image === "" ? (
           <Button
             onClick={() => {
@@ -176,7 +179,6 @@ const HomePage = () => {
               image: Fish,
               medal: title,
               progress: currentLevelProgress,
-              waterLevel: waterLevel,
             });
             setTabs([...tabs, "leaderboard"]);
           }}
@@ -216,38 +218,41 @@ const HomePage = () => {
             y={num.y - 80}
           />
         ))}
-        <div
-          onClick={handleClick}
-          className={cn(
-            "h-[15rem] w-full z-20 bg-contain bg-center bg-no-repeat bg-[#5417b0] relative overflow-hidden mt-2",
-            currentLevelProgress >= 100 ? "animate-bounce" : ""
-          )}
-          style={
-            currentLevelProgress >= 100
-              ? {
-                  backgroundImage: `url(${Fish})`,
-                  backgroundColor: "transparent",
-                  scale: 100,
-                }
-              : {
-                  maskImage: `url(${Fish})`,
-                  maskSize: "100% 100%",
-                  maskPosition: "center",
-                }
-          }
-        >
-          {waterLevel < 100 && waterLevel > 0 && (
-            <Water incomingWaterLevel={waterLevel} />
+        <div className="flex h-full w-full justify-center items-center grow shrink basis-auto">
+          <div
+            onClick={handleClick}
+            className={cn(
+              "w-full z-20 bg-contain bg-center bg-no-repeat bg-[#5417b0] relative overflow-hidden mt-2",
+              currentLevelProgress >= 100 ? "animate-bounce" : ""
+            )}
+            style={
+              currentLevelProgress >= 100
+                ? {
+                    backgroundImage: `url(${Fish})`,
+                    backgroundColor: "transparent",
+                    height: title === "Bronze" ? 126 : 220,
+                  }
+                : {
+                    maskImage: `url(${Fish})`,
+                    maskSize: "100% 100%",
+                    maskPosition: "center",
+                    height: title === "Bronze" ? 126 : 220,
+                  }
+            }
+          >
+            {waterLevel < 100 && waterLevel > 0 && (
+              <Water incomingWaterLevel={waterLevel} />
+            )}
+          </div>
+          {!showConfetti && (
+            <Confetti
+              className="w-full h-screen fixed top-0 z-50"
+              numberOfPieces={1500}
+              recycle={false}
+              gravity={0.09}
+            />
           )}
         </div>
-        {showConfetti && (
-          <Confetti
-            className="w-full h-screen absolute top-0 z-50"
-            numberOfPieces={1500}
-            recycle={false}
-            gravity={0.09}
-          />
-        )}
       </div>
       <Controls />
     </>
