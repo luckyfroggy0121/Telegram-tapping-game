@@ -5,7 +5,7 @@ import { easings, useSpring } from "@react-spring/web";
 const Water = memo(({ incomingWaterLevel }: { incomingWaterLevel: number }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRef = useRef<number | null>(null);
-  const offsetRef = useRef<number>(0);
+  const offsetRef = useRef(0);
   const transitionSpeed = 50;
   const WATER_COLOR = "rgb(56, 181, 255)";
 

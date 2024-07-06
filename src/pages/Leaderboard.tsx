@@ -55,7 +55,7 @@ const Leaderboard = () => {
   const [api, setApi] = useState<CarouselApi>();
   const tabs = useRecoilValue(tabsAtom);
 
-  const [currentTab, setCurrentTab] = useState<number>(0);
+  const [currentTab, setCurrentTab] = useState(0);
 
   useEffect(() => {
     if (!api) {

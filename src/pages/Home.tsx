@@ -33,6 +33,7 @@ import toast from "react-hot-toast";
 
 const HomePage = () => {
   const [showConfetti, setShowConfetti] = useState(false);
+  const [isGlowing, setIsGlowing] = useState(false);
   const [tabs, setTabs] = useRecoilState(tabsAtom);
   const setCurrentSeaCreature = useSetRecoilState(currentDataAtom);
   const [currentTank, setCurrentTank] = useRecoilState(currentTankAtom);
@@ -46,11 +47,9 @@ const HomePage = () => {
       y: number;
     }[]
   >([]);
-
   const [waterLevel, setWaterLevel] = useState(0);
 
   const { Medal, drops, title, Fish } = seaCreatures[level];
-
   const currentLevelProgress = (balance / drops) * 100;
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -102,10 +101,15 @@ const HomePage = () => {
   useEffect(() => {
     if (currentLevelProgress >= 100) {
       setShowConfetti(true);
+      setIsGlowing(true);
       setTimeout(() => {
         setLevel(level + 1);
+        setIsGlowing(false);
+      }, 1000); // 1-second glow
+      setTimeout(() => {
+        setShowConfetti(false);
+        setWaterLevel(0);
       }, 5000);
-      setWaterLevel(0);
     }
   }, [currentLevelProgress]);
 
@@ -218,20 +222,23 @@ const HomePage = () => {
               "w-full z-20 bg-contain bg-center bg-no-repeat bg-[#5417b0] relative overflow-hidden mt-2",
               currentLevelProgress >= 100 ? "animate-bounce" : ""
             )}
-            style={
-              currentLevelProgress >= 100
+            style={{
+              ...(currentLevelProgress >= 100
                 ? {
                     backgroundImage: `url(${Fish})`,
                     backgroundColor: "transparent",
                     height: title === "Bronze" ? 126 : 220,
+                    boxShadow: isGlowing
+                      ? '0 0 20px 5px rgba(56, 181, 255, 0.7)'
+                      : 'none',
                   }
                 : {
                     maskImage: `url(${Fish})`,
                     maskSize: "100% 100%",
                     maskPosition: "center",
                     height: title === "Bronze" ? 126 : 220,
-                  }
-            }
+                  }),
+            }}
           >
             {waterLevel < 100 && waterLevel > 0 && (
               <Water incomingWaterLevel={waterLevel} />
