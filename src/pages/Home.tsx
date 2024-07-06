@@ -244,9 +244,9 @@ const HomePage = () => {
               <Water incomingWaterLevel={waterLevel} />
             )}
           </div>
-          {!showConfetti && (
+          {showConfetti && (
             <Confetti
-              className="w-full h-screen fixed top-0 z-50"
+              className="w-full h-screen absolute top-0 z-50"
               numberOfPieces={1500}
               recycle={false}
               gravity={0.09}
