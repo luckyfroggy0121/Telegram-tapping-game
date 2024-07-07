@@ -22,6 +22,7 @@ import { currentTankAtom, tabsAtom } from "@/lib/atom";
 import toast from "react-hot-toast";
 import { MdPerson } from "react-icons/md";
 import { displayMinimizedNumbers } from "@/lib/utils";
+import { BsCheckCircleFill} from "react-icons/bs";
 
 const tanks = [
   {
@@ -83,9 +84,11 @@ const JoinTank = () => {
               <div className="flex items-center gap-2">
                 <div className="relative">
                   <img src={tank.image} alt={tank.name} className="h-10" />
-                  <div className="absolute flex items-center bg-[#a016f5] shadow-[0px_0px_20px_0px_#FFFFFF80_inset] rounded-full left-1/2 -translate-x-1/2 px-[3px] py-[0.1px] font-extrabold text-[8px] bottom-[0.5px]">
+                  <div className="absolute flex items-center bg-[#a016f5] shadow-[0px_0px_20px_0px_#FFFFFF80_inset] rounded-full left-1/2 -translate-x-1/2 px-[3px] py-[0.1px] font-extrabold text-[8px] -bottom-[4px]">
                     <MdPerson />
-                    <div className="mt-0.5">{displayMinimizedNumbers(tank.money)}+</div>
+                    <div className="mt-0.5 text-[6px] font-extrabold">
+                      {displayMinimizedNumbers(tank.money)}+
+                    </div>
                   </div>
                 </div>
                 <div className="font-bold text-[15px]">{tank.name}</div>
@@ -105,7 +108,7 @@ const JoinTank = () => {
                 </DrawerClose>
               </DrawerTitle>
               <img src={tank.image} alt={tank.name} className="w-[100px]" />
-              <div className="font-bold text-[24px] leading-[18px] my-6">
+              <div className="font-bold text-[24px] leading-[18px] my-8">
                 {tank.name}
               </div>
               <DrawerClose
@@ -114,9 +117,20 @@ const JoinTank = () => {
                   setTabs((tabs) =>
                     tabs.length === 1 ? tabs : tabs.slice(0, tabs.length - 1)
                   );
-                  toast.success(`You joined the ${tank.name} Tank`);
+                  toast.custom((t) => (
+                    <div
+                      className={`${
+                        t.visible ? "animate-enter" : "animate-leave"
+                      } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-3 px-3`}
+                    >
+                      <BsCheckCircleFill size={25} />
+                      <h3 className="text-sm font-bold text-white">
+                        you've joined the {tank.name} Tank
+                      </h3>
+                    </div>
+                  ));
                 }}
-                className="w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]"
+                className="w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px] mb-2"
                 style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
               >
                 Join Tank

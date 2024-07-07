@@ -5,9 +5,7 @@ import { useRecoilValue } from "recoil";
 import { tabsAtom } from "@/lib/atom";
 import JoinTank from "@/pages/JoinTank";
 import Leaderboard from "@/pages/Leaderboard";
-// import Friends from "@/pages/Friends";
 import Earn from "@/pages/Earn";
-import { BsExclamationCircleFill } from "react-icons/bs";
 
 const tabs = [
   {
@@ -54,23 +52,7 @@ const GameLayout = () => {
       <Toaster
         position="bottom-center"
         toastOptions={{
-          success: {
-            className:
-              "!w-full !rounded-full !bg-[#6a1fc9] !text-white !font-bold !flex !items-center !justify-start ",
-            iconTheme: {
-              primary: "white",
-              secondary: "#6a1fc9",
-            },
-          },
-          error: {
-            className:
-              "!w-full !rounded-full !bg-[#6a1fc9] !text-white !font-bold !flex !items-center !justify-start ",
-            iconTheme: {
-              primary: "white",
-              secondary: "#6a1fc9",
-            },
-            icon: <BsExclamationCircleFill size={25} />,
-          },
+          duration:3000,
         }}
       />
     </div>

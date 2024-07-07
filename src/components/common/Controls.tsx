@@ -13,6 +13,7 @@ import { useRecoilState } from "recoil";
 import Confetti from "react-confetti";
 import toast, { Toaster } from "react-hot-toast";
 import { Drawer, DrawerClose, DrawerContent, DrawerTitle } from "../ui/drawer";
+import { BsCheckCircleFill } from "react-icons/bs";
 
 const bottomControls = [
   {
@@ -103,17 +104,22 @@ const Controls = () => {
     const newCollected = [...collected];
     newCollected[currentDay] = true;
 
-    toast.success(
-      `You've received +${dropsDays[currentDay]} DROPS`
-      // {
-      //   style: { zIndex: 999 },
-      //   className: "w-full !rounded-full !bg-[#AD12F5] !text-white !font-bold",
-      // }
-    );
+    toast.custom((t) => (
+      <div
+        className={`${
+          t.visible ? "animate-enter" : "animate-leave"
+        } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-3 px-3`}
+      >
+        <BsCheckCircleFill size={25} />
+        <h3 className="text-sm font-bold text-white">
+          You've received +{dropsDays[currentDay]} DROPS
+        </h3>
+      </div>
+    ));
     setTotalDrops(newTotalDrops);
     setCollected(newCollected);
     setLastPumpTime(new Date());
-    setShowConfetti(true);  
+    setShowConfetti(true);
 
     setTimeout(() => {
       setShowConfetti(false);
@@ -200,7 +206,7 @@ const Controls = () => {
           className=" relative flex flex-col items-center h-[60px] mt-5 w-[70px] gap-1 bg-[#C3C3C340]"
         >
           <control.icon height={24} />
-          <div>{control.label}</div>
+          <div className="font-bold">{control.label}</div>
           {control.label !== "Earn" && (
             <div className="absolute -top-3 right-0 px-3 bg-[#bd5ef8] text-white font-bold rounded-full ">
               <p>soon</p>

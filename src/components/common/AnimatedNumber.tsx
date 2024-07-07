@@ -18,7 +18,7 @@ const AnimatedNumber = ({
   return (
     <animated.div
       style={props}
-      className="absolute z-50 left-1/2 transform -translate-x-1/2 text-white text-3xl"
+      className="absolute z-50 left-1/2 transform -translate-x-1/2 text-white text-3xl font-bold"
     >
       +{number}
     </animated.div>

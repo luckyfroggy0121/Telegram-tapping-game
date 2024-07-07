@@ -78,7 +78,7 @@ const Water = memo(({ incomingWaterLevel }: { incomingWaterLevel: number }) => {
     };
   }, [waterLevel]);
 
-  return <canvas ref={canvasRef} width="600" className="h-full" />;
+  return <canvas ref={canvasRef} width="600" className="h-full w-full" />;
 });
 
 export default Water;
