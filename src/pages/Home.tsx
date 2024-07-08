@@ -98,8 +98,6 @@ const HomePage = () => {
     return () => clearTimeout(timer);
   }, [balance]);
 
-  console.log(numbers);
-
   useEffect(() => {
     if (currentLevelProgress >= 100) {
       setShowConfetti(true);
