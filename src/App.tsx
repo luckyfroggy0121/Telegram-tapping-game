@@ -15,6 +15,7 @@ const App = () => {
 
     return () => clearTimeout(timer);
   }, []);
+  
 
   useEffect(() => {
     // Ensure that the Telegram WebApp script is loaded

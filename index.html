@@ -9,9 +9,19 @@
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Smartlitre</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
+          Telegram.WebApp.expand();
+        } else {
+          console.error('Telegram WebApp is not available');
+        }
+      });
+    </script>
   </head>
   <body class="min-h-screen bg-no-repeat bg-[#7b3fe7] w-full">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
   </body>
 </html>
