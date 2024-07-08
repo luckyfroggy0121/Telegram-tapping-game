@@ -140,7 +140,7 @@ const HomePage = () => {
               </div>
               <FaChevronRight fontSize={20} className="text-white" />
             </DrawerTrigger>
-            <DrawerContent className="flex flex-col items-center pb-16 pt-7">
+            <DrawerContent className="flex flex-col items-center pb-20 pt-7">
               <DrawerTitle className="ml-auto mr-5">
                 <DrawerClose>
                   <IoCloseCircleSharp color="#FFFFFF80" size={25} />
@@ -151,7 +151,7 @@ const HomePage = () => {
                 alt={currentTank.name}
                 className="w-[100px]"
               />
-              <div className="font-bold text-[24px] leading-[18px] my-6">
+              <div className="font-bold text-[24px] leading-[18px] my-8">
                 {currentTank.name}
               </div>
               <DrawerClose

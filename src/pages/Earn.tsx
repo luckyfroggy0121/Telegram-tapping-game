@@ -1,8 +1,8 @@
 import SaveIcon from "@/assets/svg/save.svg?react";
 import DropIcon from "@/assets/svg/dropIcon.svg?react";
-import Telegram from "@/assets/images/tele.gif";
-import Twitter from "@/assets/images/twitter.gif";
-import Youtube from "@/assets/images/youtube.gif";
+import Telegram from "@/assets/images/tele.png";
+import Twitter from "@/assets/svg/earn/twitter.svg";
+import Youtube from "@/assets/svg/earn/youtube.svg";
 import Community from "@/assets/images/community.png";
 import DailPump from "@/assets/images/dailpump.png";
 import JoinTank from "@/assets/svg/tank.svg";
@@ -103,7 +103,7 @@ const Earn = () => {
                   className="flex items-center bg-[#C3C3C33D] h-[55px] justify-between w-full"
                 >
                   <div className="flex items-center gap-2">
-                    <img src={task.image} alt={task.title} className="h-9" />
+                    <img src={task.image} alt={task.title} className="h-9"  />
                     <div className="flex flex-col">
                       <div className="font-bold text-[11px] leading-6">
                         {task.title}

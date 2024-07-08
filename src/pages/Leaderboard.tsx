@@ -121,7 +121,7 @@ const Leaderboard = () => {
 
   return (
     currentData && (
-      <div className="flex flex-col items-center pt-4 w-full px-5">
+      <div className="flex flex-col items-center w-full px-5">
         <Carousel setApi={setApi}>
           <CarouselContent className="w-[calc(100vw-8rem)] mt-2">
             {seaCreatures.map(({ Fish, title }, index) => (
@@ -136,6 +136,7 @@ const Leaderboard = () => {
                       ? {
                           backgroundImage: `url(${Fish})`,
                           backgroundColor: "transparent",
+                          width:title === "Bronze" ? 234 : "100%",
                         }
                       : {
                           maskImage: `url(${Fish})`,
