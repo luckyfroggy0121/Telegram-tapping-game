@@ -96,7 +96,7 @@ const Earn = () => {
               <FaChevronRight color="white" />
             </Button>
           ) : (
-            <Drawer>
+            <Drawer key={index}>
               <DrawerTrigger asChild>
                 <Button
                   key={index}
