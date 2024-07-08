@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import DropIcon from "@/assets/svg/dropIcon.svg?react";
 import EnergyIcon from "@/assets/svg/energyIcon.svg?react";
+import ThumbsUp from "@/assets/svg/thumbs.svg?react";
 import AnimatedNumber from "@/components/common/AnimatedNumber";
 import Controls from "@/components/common/Controls";
 import Water from "@/components/common/Water";
@@ -58,7 +59,7 @@ const HomePage = () => {
     const addition = eval("100 / (10*(level+1))");
     if (level < 6 && currentLevelProgress <= 100 && energy > 0) {
       setEnergy((prev) => Math.max(prev - 1, 0));
-      setBalance(balance + 1);
+      setBalance((prev) => prev + 1);
       const newProgress = waterLevel + addition;
 
       setWaterLevel(() => {
@@ -75,10 +76,7 @@ const HomePage = () => {
       }
       const clickX = event.clientX;
       const clickY = event.clientY;
-      setNumbers([
-        ...numbers,
-        { number: 1, x: clickX, y: clickY },
-      ]);
+      setNumbers([...numbers, { number: 1, x: clickX, y: clickY }]);
     }
     if (energy === 0) {
       toast.error("You can't pump with no energy.");
@@ -88,21 +86,27 @@ const HomePage = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setEnergy((prev) => Math.min(prev + 1, 500)); // Add energy up to 500
-    }, 1000);
+    }, 2000);
     if (energy >= 500) clearInterval(timer);
     return () => clearInterval(timer);
   }, [balance]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setNumbers([]);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, [numbers]);
-
-  useEffect(() => {
     if (currentLevelProgress >= 100) {
       setShowConfetti(true);
+      if (currentLevelProgress === 100)
+        toast.custom((t) => (
+          <div
+            className={`${
+              t.visible ? "animate-enter" : "animate-leave"
+            } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-2 px-3`}
+          >
+            <ThumbsUp />
+            <h3 className="text-xs font-bold text-white">
+              {title} Level Completed - {seaCreatures[level + 1].title} Unlocked
+            </h3>
+          </div>
+        ));
       setTimeout(() => {
         setLevel(level + 1);
       }, 5000);
@@ -118,7 +122,7 @@ const HomePage = () => {
             onClick={() => {
               setTabs([...tabs, "jointank"]);
             }}
-            className="w-[198px] bg-[#AD12F5C2] h-[44px] font-bold text-[16px] leading-5 rounded-[30px]"
+            className="w-[198px] bg-[#9712f3] h-[44px] font-bold text-[16px] leading-5 rounded-[30px]"
             style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
           >
             Join Tank
@@ -161,7 +165,7 @@ const HomePage = () => {
                     >
                       <BsExclamationCircleFill size={25} />
                       <h3 className="text-sm font-bold text-white">
-                        You've left the {currentTank.name} Tank
+                        You left the {currentTank.name} Tank
                       </h3>
                     </div>
                   ));
@@ -184,6 +188,7 @@ const HomePage = () => {
               image: Fish,
               medal: title,
               progress: currentLevelProgress,
+              waterlevel: waterLevel,
             });
             setTabs([...tabs, "leaderboard"]);
           }}
@@ -227,13 +232,13 @@ const HomePage = () => {
           <div
             onClick={handleClick}
             className={cn(
-              "w-full grow z-20 bg-contain bg-center bg-no-repeat relative overflow-hidden flex flex-col justify-center items-center",
+              "w-full grow bg-contain bg-center bg-no-repeat relative overflow-hidden flex flex-col justify-center items-center",
               currentLevelProgress >= 100 ? "animate-bounce" : ""
             )}
           >
             <div
               className={cn(
-                "w-full z-20 bg-contain bg-center bg-no-repeat bg-[#4d307a] relative overflow-hidden",
+                "w-full bg-contain bg-center bg-no-repeat bg-[#4d307a] relative overflow-hidden",
                 currentLevelProgress >= 100 ? "animate-bounce" : ""
               )}
               style={
@@ -241,13 +246,13 @@ const HomePage = () => {
                   ? {
                       backgroundImage: `url(${Fish})`,
                       backgroundColor: "transparent",
-                      height: title === "Bronze" ? 126 : 220,
+                      height: title === "Bronze" ? 126 : 200,
                     }
                   : {
                       maskImage: `url(${Fish})`,
                       maskSize: "100% 100%",
                       maskPosition: "center",
-                      height: title === "Bronze" ? 126 : 220,
+                      height: title === "Bronze" ? 126 : 200,
                     }
               }
             >

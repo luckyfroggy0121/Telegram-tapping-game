@@ -1,5 +1,5 @@
 import SaveIcon from "@/assets/svg/save.svg?react";
-import DropIcon from "@/assets/svg/dropIcon.svg";
+import DropIcon from "@/assets/svg/dropIcon.svg?react";
 import Telegram from "@/assets/images/tele.gif";
 import Twitter from "@/assets/images/twitter.gif";
 import Youtube from "@/assets/images/youtube.gif";
@@ -68,7 +68,7 @@ const Earn = () => {
         Earn more DROPS
       </div>
       <div className="flex flex-col items-center">
-        <img src={DropIcon} alt="drop" className="h-12 mt-2" />
+        <DropIcon />
         <SaveIcon className="-mt-4" />
       </div>
       <div className="mt-3 font-extrabold text-[13px] leading-6">Tasks</div>
@@ -77,7 +77,7 @@ const Earn = () => {
           return task.id === 1 || task.id === 2 || task.id === 3 ? (
             <Button
               key={index}
-              className="flex items-center bg-[#C3C3C33D] h-auto justify-between w-full"
+              className="flex items-center bg-[#C3C3C33D] h-[55px] justify-between w-full"
             >
               <div className="flex items-center gap-2">
                 <img src={task.image} alt={task.title} className="h-9" />
@@ -100,7 +100,7 @@ const Earn = () => {
               <DrawerTrigger asChild>
                 <Button
                   key={index}
-                  className="flex items-center bg-[#C3C3C33D] h-auto justify-between w-full"
+                  className="flex items-center bg-[#C3C3C33D] h-[55px] justify-between w-full"
                 >
                   <div className="flex items-center gap-2">
                     <img src={task.image} alt={task.title} className="h-9" />

@@ -59,12 +59,12 @@ const Controls = () => {
   useEffect(() => {
     // Load streak data from localStorage
     // localStorage.clear();
-    const savedDay = Number(localStorage.getItem("currentDay") || 0);
-    const savedDrops = Number(localStorage.getItem("totalDrops") || 0);
+    const savedDay = Number(localStorage.getItem("currentDay")||0);
+    const savedDrops = Number(localStorage.getItem("totalDrops")||0);
     const savedCollected = JSON.parse(
       localStorage.getItem("collected") || "[]"
     );
-    const savedLastPumpTime = localStorage.getItem("lastPumpTime");
+    const savedLastPumpTime = localStorage.getItem("lastPumpTime") || null;
 
     setCurrentDay(savedDay);
     setTotalDrops(savedDrops);
@@ -208,8 +208,8 @@ const Controls = () => {
           <control.icon height={24} />
           <div className="font-bold">{control.label}</div>
           {control.label !== "Earn" && (
-            <div className="absolute -top-3 right-0 px-3 bg-[#bd5ef8] text-white font-bold rounded-full ">
-              <p>soon</p>
+            <div className="absolute -top-[13px] right-0 py-0 px-2 bg-[#bd5ef8] text-white font-bold rounded-full text-[11px] h-fit">
+              <p className="h-4 flex items-center justify-center">soon</p>
             </div>
           )}
         </Button>

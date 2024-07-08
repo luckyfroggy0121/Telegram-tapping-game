@@ -38,13 +38,13 @@ const tanks = [
     money: 1700000,
   },
   {
-    name: "Okxx",
+    name: "OKX",
     image: okxx,
     Medal: okxxMedal,
     money: 1600000,
   },
   {
-    name: "Bingx",
+    name: "Bing X",
     image: bingx,
     money: 518400,
   },
@@ -59,7 +59,7 @@ const tanks = [
     money: 51700,
   },
   {
-    name: "Mexc",
+    name: "MEXC",
     image: mexc,
     money: 33700,
   },
@@ -125,7 +125,7 @@ const JoinTank = () => {
                     >
                       <BsCheckCircleFill size={25} />
                       <h3 className="text-sm font-bold text-white">
-                        You've joined the {tank.name} Tank
+                        You joined the {tank.name} Tank
                       </h3>
                     </div>
                   ));

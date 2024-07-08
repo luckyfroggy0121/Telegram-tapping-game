@@ -13,6 +13,7 @@ import Diamond from "@/assets/images/diamond.png";
 import { displayNumbers } from "@/lib/utils";
 import { type CarouselApi } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
+import Water from "@/components/common/Water";
 
 const people = [
   {
@@ -81,13 +82,13 @@ const Leaderboard = () => {
   return (
     currentData && (
       <div className="flex flex-col items-center pt-4 w-full px-5">
-        <div className="font-extrabold text-[36px] leading-6">
-          {currentData.medal}
-        </div>
         <Carousel setApi={setApi}>
           <CarouselContent className="w-[calc(100vw-8rem)] mt-2">
-            {seaCreatures.map(({ Fish }, index) => (
-              <CarouselItem key={index} className="">
+            {seaCreatures.map(({ Fish,title }, index) => (
+              <CarouselItem key={index} className="flex flex-col items-center">
+                <div className="font-extrabold text-[36px] leading-6 mb-4">
+                  {title}
+                </div>
                 <div
                   className="h-[6rem] w-full bg-no-repeat bg-contain bg-center bg-[#5417b0] relative overflow-hidden mt-2"
                   style={
@@ -102,7 +103,11 @@ const Leaderboard = () => {
                           maskPosition: "center",
                         }
                   }
-                ></div>
+                >
+                  {level === index && (
+                    <Water incomingWaterLevel={currentData.waterlevel} />
+                  )}
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
