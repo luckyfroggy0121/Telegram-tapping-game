@@ -50,10 +50,43 @@ const people = [
   },
 ];
 
+const CollectionMessage = [
+  {
+    progress:
+      "Collect 5K DROPS to unlock Bronze character and advance to Silver level.",
+    completed: "Well done, You’ve unlocked Ray.",
+  },
+  {
+    progress:
+      "Collect 50K DROPS to unlock Silver character and advance to Gold level.",
+    completed: "Brilliant job! You’ve unlocked Octopus.",
+  },
+  {
+    progress:
+      "Collect 500K DROPS to unlock Gold character and advance to Platinum level.",
+    completed: "Smashed it! You’ve unlocked Seahorse.",
+  },
+  {
+    progress:
+      "Collect 1M DROPS to unlock Gold character and advance to Platinum level.",
+    completed: "You’re a Pro Hydrator! You’ve unlocked Anglerfish.",
+  },
+  {
+    progress:
+      "Collect 10M DROPS to unlock Diamond character and advance to Epic level.",
+    completed: "You’re a Hydration Hero. You’ve unlocked Sea Turtle.",
+  },
+  {
+    progress: "Collect 1B+ DROPS to unlock Epic Character!",
+    completed: "The Master of Hydration. You’ve unlocked Jellyfish.",
+  },
+];
+
 const Leaderboard = () => {
   const currentData = useRecoilValue(currentDataAtom);
   const level = useRecoilValue(levelAtom);
   const [api, setApi] = useState<CarouselApi>();
+  const [messageApi, setMessageApi] = useState<CarouselApi>();
   const tabs = useRecoilValue(tabsAtom);
 
   const [currentTab, setCurrentTab] = useState(0);
@@ -79,12 +112,19 @@ const Leaderboard = () => {
     });
   }, [api, currentData, tabs]);
 
+  useEffect(() => {
+    if (!messageApi) return;
+    messageApi.scrollTo(
+      CollectionMessage.findIndex((_, indx) => indx === currentTab)
+    );
+  }, [messageApi, currentTab]);
+
   return (
     currentData && (
       <div className="flex flex-col items-center pt-4 w-full px-5">
         <Carousel setApi={setApi}>
           <CarouselContent className="w-[calc(100vw-8rem)] mt-2">
-            {seaCreatures.map(({ Fish,title }, index) => (
+            {seaCreatures.map(({ Fish, title }, index) => (
               <CarouselItem key={index} className="flex flex-col items-center">
                 <div className="font-extrabold text-[36px] leading-6 mb-4">
                   {title}
@@ -129,10 +169,26 @@ const Leaderboard = () => {
           borderRadius="10px"
           baseBgColor="#C3C3C340"
         />
-        <div className="text-center font-bold text-[13px] leading-[18px] text-white/80 max-w-[16rem] mt-2">
-          Collect 500K DROPS to unlock Gold character and advance to Platinum
-          level.
-        </div>
+        <Carousel setApi={setMessageApi}>
+          <CarouselContent className="mt-2 w-[calc(100vw-3rem)]">
+            {CollectionMessage.map(({ progress, completed }, idx) => (
+              <CarouselItem
+                key={idx}
+                className="flex items-center justify-center"
+              >
+                {level > idx ? (
+                  <div className="text-center font-bold text-[13px] leading-[18px] text-white/80 max-w-[16rem] mt-2">
+                    {completed}
+                  </div>
+                ) : (
+                  <div className="text-center font-bold text-[13px] leading-[18px] text-white/80 max-w-[16rem] mt-2">
+                    {progress}
+                  </div>
+                )}
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
         <div className="w-full flex flex-col gap-2 mt-5">
           {people.map((person, index) => (
             <div

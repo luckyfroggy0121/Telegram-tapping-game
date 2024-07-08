@@ -5,7 +5,7 @@ import Twitter from "@/assets/images/twitter.gif";
 import Youtube from "@/assets/images/youtube.gif";
 import Community from "@/assets/images/community.png";
 import DailPump from "@/assets/images/dailpump.png";
-import JoinTank from "@/assets/images/jointank.png";
+import JoinTank from "@/assets/svg/tank.svg";
 import { Button } from "@/components/ui/button";
 import { FaChevronRight } from "react-icons/fa6";
 import Diamond from "@/assets/images/diamond.png";

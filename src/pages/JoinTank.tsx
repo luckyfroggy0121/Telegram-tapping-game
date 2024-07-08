@@ -101,7 +101,7 @@ const JoinTank = () => {
                 </div>
               )}
             </DrawerTrigger>
-            <DrawerContent className="flex pt-7 pb-8 flex-col items-center">
+            <DrawerContent className="flex pt-7 pb-16 flex-col items-center">
               <DrawerTitle className="ml-auto mr-5">
                 <DrawerClose>
                   <IoCloseCircleSharp color="#FFFFFF80" size={25} />

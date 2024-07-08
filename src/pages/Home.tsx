@@ -140,7 +140,7 @@ const HomePage = () => {
               </div>
               <FaChevronRight fontSize={20} className="text-white" />
             </DrawerTrigger>
-            <DrawerContent className="flex flex-col items-center pb-8 pt-7">
+            <DrawerContent className="flex flex-col items-center pb-16 pt-7">
               <DrawerTitle className="ml-auto mr-5">
                 <DrawerClose>
                   <IoCloseCircleSharp color="#FFFFFF80" size={25} />
