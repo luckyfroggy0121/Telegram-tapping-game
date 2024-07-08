@@ -16,16 +16,6 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
   
-
-  useEffect(() => {
-    // Ensure that the Telegram WebApp script is loaded
-    if (typeof Telegram !== "undefined" && Telegram.WebApp) {
-      Telegram.WebApp.expand();
-    } else {
-      console.log("Telegram WebApp is not available");
-    }
-  }, []);
-
   return (
     <RecoilRoot>
       <Layout>
