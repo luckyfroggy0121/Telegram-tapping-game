@@ -125,7 +125,7 @@ const JoinTank = () => {
                     >
                       <BsCheckCircleFill size={25} />
                       <h3 className="text-sm font-bold text-white">
-                        you've joined the {tank.name} Tank
+                        You've joined the {tank.name} Tank
                       </h3>
                     </div>
                   ));

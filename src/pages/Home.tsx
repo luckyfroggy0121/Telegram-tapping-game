@@ -56,7 +56,6 @@ const HomePage = () => {
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const addition = eval("100 / (10*(level+1))");
-    console.log(addition);
     if (level < 6 && currentLevelProgress <= 100 && energy > 0) {
       setEnergy((prev) => Math.max(prev - 1, 0));
       setBalance(balance + 1);
@@ -162,7 +161,7 @@ const HomePage = () => {
                     >
                       <BsExclamationCircleFill size={25} />
                       <h3 className="text-sm font-bold text-white">
-                        you've left the {currentTank.name} Tank
+                        You've left the {currentTank.name} Tank
                       </h3>
                     </div>
                   ));
