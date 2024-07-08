@@ -56,6 +56,7 @@ const HomePage = () => {
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const addition = eval("100 / (10*(level+1))");
+    console.log(addition);
     if (level < 6 && currentLevelProgress <= 100 && energy > 0) {
       setEnergy((prev) => Math.max(prev - 1, 0));
       setBalance(balance + 1);
@@ -112,7 +113,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="flex px-3 h-full flex-col items-center grow shrink basis-auto">
+      <div className="flex flex-col items-center h-full px-3 grow shrink basis-auto">
         {currentTank.name === "" && currentTank.image === "" ? (
           <Button
             onClick={() => {
@@ -136,7 +137,7 @@ const HomePage = () => {
               </div>
               <FaChevronRight fontSize={20} className="text-white" />
             </DrawerTrigger>
-            <DrawerContent className="flex pt-7 pb-8 flex-col items-center">
+            <DrawerContent className="flex flex-col items-center pb-8 pt-7">
               <DrawerTitle className="ml-auto mr-5">
                 <DrawerClose>
                   <IoCloseCircleSharp color="#FFFFFF80" size={25} />
@@ -190,7 +191,7 @@ const HomePage = () => {
           className="bg-[#C3C3C340] gap-2 font-bold text-[15px] w-auto px-6 py-1 justify-center h-auto flex rounded-[11px] items-center"
         >
           <div>{title}</div>
-          {Medal && <Medal className="h-5 w-5" />}
+          {Medal && <Medal className="w-5 h-5" />}
         </Button>
         <div className="w-full px-4 mt-3">
           <div className="flex justify-between font-bold">
@@ -210,7 +211,7 @@ const HomePage = () => {
             borderRadius="10px"
             baseBgColor="#C3C3C340"
           />
-          <div className="items-center mt-2 flex gap-1">
+          <div className="flex items-center gap-1 mt-2">
             <EnergyIcon />
             <div className="font-extrabold text-[10px]">{energy}/500</div>
           </div>
@@ -223,7 +224,7 @@ const HomePage = () => {
             y={num.y - 80}
           />
         ))}
-        <div className="flex w-full justify-center grow">
+        <div className="flex justify-center w-full grow">
           <div
             onClick={handleClick}
             className={cn(
@@ -258,7 +259,7 @@ const HomePage = () => {
           </div>
           {showConfetti && (
             <Confetti
-              className="w-full h-screen absolute top-0 z-50"
+              className="absolute top-0 z-50 w-full h-screen"
               numberOfPieces={1500}
               recycle={false}
               gravity={0.09}
