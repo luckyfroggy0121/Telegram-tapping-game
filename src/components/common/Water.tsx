@@ -12,7 +12,7 @@ const Water = memo(({ incomingWaterLevel }: { incomingWaterLevel: number }) => {
   const [{ waterLevel }, setWaterLevel] = useSpring(() => ({
     waterLevel: 0,
     config: {
-      duration: 1000,
+      duration: 500,
       easing: easings.easeOutCubic,
     },
   }));

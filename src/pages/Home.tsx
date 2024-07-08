@@ -92,6 +92,15 @@ const HomePage = () => {
   }, [balance]);
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setNumbers([]);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [balance]);
+
+  console.log(numbers);
+
+  useEffect(() => {
     if (currentLevelProgress >= 100) {
       setShowConfetti(true);
       if (currentLevelProgress === 100)
