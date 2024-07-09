@@ -4,10 +4,12 @@ const AnimatedNumber = ({
   number,
   x,
   y,
+  onClick
 }: {
   number: number;
   x: number;
   y: number;
+  onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }) => {
   const props = useSpring({
     from: { opacity: 1, transform: `translate(${x}px, ${y}px)` },
@@ -18,6 +20,7 @@ const AnimatedNumber = ({
   return (
     <animated.div
       style={props}
+      onClick={onClick}
       className="absolute text-3xl z-50 font-bold text-white transform -translate-x-1/2 left-1/2"
     >
       +{number}

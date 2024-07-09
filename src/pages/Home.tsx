@@ -232,6 +232,7 @@ const HomePage = () => {
             key={index}
             number={num.number}
             x={num.x - 220}
+            onClick={handleClick}
             y={num.y - 80}
           />
         ))}
