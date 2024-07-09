@@ -17,16 +17,16 @@ import { BsExclamationCircleFill } from "react-icons/bs";
 import { IoCloseCircleSharp } from "react-icons/io5";
 
 
-const boosters = [
-    {
-        image:"",
-        title:"Electrolyte",
-        subtitle:"Increase the amount of energy",
-        desc:"+500 energy points for Silver level",
-        drops:2000,
-        level:"Silver"
-    }
-]
+// const boosters = [
+//     {
+//         image:"",
+//         title:"Electrolyte",
+//         subtitle:"Increase the amount of energy",
+//         desc:"+500 energy points for Silver level",
+//         drops:2000,
+//         level:"Silver"
+//     }
+// ]
 const Boost = () => {
   const [balance] = useRecoilState(balanceAtom);
   return (
