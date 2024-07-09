@@ -6,6 +6,8 @@ import { tabsAtom } from "@/lib/atom";
 import JoinTank from "@/pages/JoinTank";
 import Leaderboard from "@/pages/Leaderboard";
 import Earn from "@/pages/Earn";
+import Boost from "@/pages/Boost";
+import Friends from "@/pages/Friends";
 
 const tabs = [
   {
@@ -20,13 +22,17 @@ const tabs = [
     name: "leaderboard",
     Component: Leaderboard,
   },
-  // {
-  //   name: "friends",
-  //   Component: Friends,
-  // },
+  {
+    name: "friends",
+    Component: Friends,
+  },
   {
     name: "earn",
     Component: Earn,
+  },
+  {
+    name: "boost",
+    Component: Boost,
   },
 ];
 

@@ -7,7 +7,7 @@ import { displayNumbers } from "@/lib/utils";
 
 import Diamond from "@/assets/images/diamond.png";
 import Confetti from "react-confetti";
-import PumpIcon from "@/assets/svg/pump.svg?react";
+import PumpIcon from "@/assets/svg/pumpIcon.svg";
 import { BsCheckCircleFill } from "react-icons/bs";
 
 const dropsDays = [
@@ -113,12 +113,7 @@ const DailyPump = () => {
         </DrawerClose>
       </DrawerTitle>
       <div>
-        <PumpIcon
-          height={100}
-          width={100}
-          className="[transform:rotateY(180deg)]"
-        />
-        <img src={Diamond} alt="diamond" />
+        <img src={PumpIcon} alt="pump icon" className="w-[100px] mb-2" />
       </div>
       <div className="font-semibold text-[16px]">
         Pump DROPS daily without skipping.

@@ -1,12 +1,12 @@
 import SaveIcon from "@/assets/svg/save.svg?react";
-import DropIcon from "@/assets/svg/dropIcon.svg?react";
+import DropIcon from "@/assets/svg/dropIcon.svg";
 // import DropIcon from "@/assets/images/drop.png";
 import Telegram from "@/assets/images/tele.png";
 import Twitter from "@/assets/svg/earn/twitter.svg";
 import Youtube from "@/assets/svg/earn/youtube.svg";
 import Community from "@/assets/images/community.png";
 import DailPump from "@/assets/images/dailpump.png";
-import JoinTank from "@/assets/images/jointank.png";
+import JoinTank from "@/assets/svg/joinTank.svg";
 import { Button } from "@/components/ui/button";
 import { FaChevronRight } from "react-icons/fa6";
 import Diamond from "@/assets/images/diamond.png";
@@ -70,8 +70,8 @@ const Earn = () => {
       <div className="font-extrabold text-center text-[20px] leading-6">
         Earn more DROPS
       </div>
-      <div className="flex flex-col items-center">
-        <DropIcon /> 
+      <div className="flex flex-col items-center mt-1">
+        <img src={DropIcon} alt="drop" />
         <SaveIcon className="-mt-4" />
       </div>
       <div className="mt-3 font-extrabold text-[13px] leading-6">Tasks</div>

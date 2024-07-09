@@ -41,10 +41,9 @@ const dropsDays = [
 const Controls = () => {
   const [showPumpDrawer, setShowPumpDrawer] = useState(false);
   const [tabs, setTabs] = useRecoilState(tabsAtom);
+
   const handleControl = (label: string) => {
-    if (label === "Earn") {
-      setTabs([...tabs, "earn"]);
-    }
+    if (label === "Earn") setTabs([...tabs, label.toLowerCase()]);
   };
 
   const [currentDay, setCurrentDay] = useState(0);
@@ -59,8 +58,8 @@ const Controls = () => {
   useEffect(() => {
     // Load streak data from localStorage
     // localStorage.clear();
-    const savedDay = Number(localStorage.getItem("currentDay")||0);
-    const savedDrops = Number(localStorage.getItem("totalDrops")||0);
+    const savedDay = Number(localStorage.getItem("currentDay") || 0);
+    const savedDrops = Number(localStorage.getItem("totalDrops") || 0);
     const savedCollected = JSON.parse(
       localStorage.getItem("collected") || "[]"
     );
