@@ -101,12 +101,12 @@ const DailyPump = () => {
     }
   };
   return (
-    <DrawerContent className="pt-6 flex flex-col items-center pb-3">
+    <DrawerContent className="flex flex-col items-center pt-6 pb-3">
       {showConfetti && (
         <Confetti numberOfPieces={1500} recycle={false} gravity={0.09} />
       )}
-      <DrawerTitle className="flex items-center w-full justify-between mr-5">
-        <div></div>
+      <DrawerTitle className="flex items-center justify-between w-full mr-5">
+        <div style={{width:'40px'}}></div>
         <div className="font-extrabold text-[24px] leading-6">Pump DROPS</div>
         <DrawerClose>
           <IoCloseCircleSharp color="#FFFFFF80" size={25} />
@@ -143,7 +143,7 @@ const DailyPump = () => {
           </Button>
         ))}
       </div>
-      <div className="px-4  w-full mt-4">
+      <div className="w-full px-4 mt-4">
         {isPumpAvailable ? (
           <Button
             onClick={handlePump}

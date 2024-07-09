@@ -69,18 +69,18 @@ const JoinTank = () => {
   const [, setCurrentTank] = useRecoilState(currentTankAtom);
   const setTabs = useSetRecoilState(tabsAtom);
   return (
-    <div className="pt-5 flex flex-col px-6 items-center">
+    <div className="flex flex-col items-center px-6 pt-5">
       <div className="font-extrabold text-center text-[36px] leading-6">
         Join Tank
       </div>
-      <img src={Fishes} className="mt-3 w-full" />
+      <img src={Fishes} className="w-full mt-3" />
       <div className="text-white/80 font-bold text-[16px] text-center mt-3 max-w-[18rem]">
         Which tank do you want to join and see us being listed on?
       </div>
       <div className="rounded-[11px] mt-2 w-full bg-[#C3C3C340]">
         {tanks.map((tank, index) => (
           <Drawer key={index}>
-            <DrawerTrigger className="flex items-center gap-2 p-3 justify-between w-full">
+            <DrawerTrigger className="flex items-center justify-between w-full gap-2 p-3">
               <div className="flex items-center gap-2">
                 <div className="relative">
                   <img src={tank.image} alt={tank.name} className="h-10" />
@@ -94,14 +94,14 @@ const JoinTank = () => {
                 <div className="font-bold text-[15px]">{tank.name}</div>
               </div>
               {tank.Medal ? (
-                <tank.Medal className="h-8 w-8" />
+                <tank.Medal className="w-8 h-8" />
               ) : (
-                <div className="flex items-center justify-center h-8 w-8">
+                <div className="flex items-center justify-center w-8 h-8">
                   {index + 1}
                 </div>
               )}
             </DrawerTrigger>
-            <DrawerContent className="flex pt-7 pb-16 flex-col items-center">
+            <DrawerContent className="flex flex-col items-center pb-16 pt-7">
               <DrawerTitle className="ml-auto mr-5">
                 <DrawerClose>
                   <IoCloseCircleSharp color="#FFFFFF80" size={25} />

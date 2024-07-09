@@ -1,15 +1,18 @@
 import SaveIcon from "@/assets/svg/save.svg?react";
 import DropIcon from "@/assets/svg/dropIcon.svg?react";
+// import DropIcon from "@/assets/images/drop.png";
 import Telegram from "@/assets/images/tele.png";
 import Twitter from "@/assets/svg/earn/twitter.svg";
 import Youtube from "@/assets/svg/earn/youtube.svg";
 import Community from "@/assets/images/community.png";
 import DailPump from "@/assets/images/dailpump.png";
-import JoinTank from "@/assets/svg/tank.svg";
+import JoinTank from "@/assets/images/jointank.png";
 import { Button } from "@/components/ui/button";
 import { FaChevronRight } from "react-icons/fa6";
 import Diamond from "@/assets/images/diamond.png";
 import { displayNumbers } from "@/lib/utils";
+import toast from "react-hot-toast";
+import { BsExclamationCircleFill } from "react-icons/bs";
 // import { LiaCheckSolid } from "react-icons/lia";
 
 import {
@@ -68,7 +71,7 @@ const Earn = () => {
         Earn more DROPS
       </div>
       <div className="flex flex-col items-center">
-        <DropIcon />
+        <DropIcon /> 
         <SaveIcon className="-mt-4" />
       </div>
       <div className="mt-3 font-extrabold text-[13px] leading-6">Tasks</div>
@@ -85,7 +88,7 @@ const Earn = () => {
                   <div className="font-bold text-[11px] leading-6">
                     {task.title}
                   </div>
-                  <div className="flex -ml-1 -mt-1 items-center">
+                  <div className="flex items-center -mt-1 -ml-1">
                     <img src={Diamond} alt="diamond" className="h-5" />
                     <div className="font-extrabold text-[11px] leading-6">
                       +{displayNumbers(task.drops)}
@@ -108,7 +111,7 @@ const Earn = () => {
                       <div className="font-bold text-[11px] leading-6">
                         {task.title}
                       </div>
-                      <div className="flex -ml-1 -mt-1 items-center">
+                      <div className="flex items-center -mt-1 -ml-1">
                         <img src={Diamond} alt="diamond" className="h-5" />
                         <div className="font-extrabold text-[11px] leading-6">
                           +{displayNumbers(task.drops)}
@@ -122,7 +125,7 @@ const Earn = () => {
               {task.id == 5 ? (
                 <DailyPump />
               ) : (
-                <DrawerContent className="flex pt-7 pb-8 flex-col items-center">
+                <DrawerContent className="flex flex-col items-center pb-8 pt-7">
                   <DrawerTitle className="ml-auto mr-5">
                     <DrawerClose>
                       <IoCloseCircleSharp color="#FFFFFF80" size={25} />
@@ -142,6 +145,20 @@ const Earn = () => {
                   <DrawerClose
                     className="w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]"
                     style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
+                    onClick={() => {
+                      toast.custom((t) => (
+                        <div
+                          className={`${
+                            t.visible ? "animate-enter" : "animate-leave"
+                          } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-3 px-3`}
+                        >
+                          <BsExclamationCircleFill size={25} />
+                          <h3 className="text-sm font-bold text-white">
+                            Task incomplete
+                          </h3>
+                        </div>
+                      ));
+                    }}
                   >
                     Check
                   </DrawerClose>

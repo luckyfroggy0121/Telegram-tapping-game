@@ -165,7 +165,7 @@ const Leaderboard = () => {
           }
           bgColor="#65E4F0"
           height="5px"
-          className="mt-2 w-full"
+          className="w-full mt-2"
           isLabelVisible={false}
           borderRadius="10px"
           baseBgColor="#C3C3C340"
@@ -190,7 +190,7 @@ const Leaderboard = () => {
             ))}
           </CarouselContent>
         </Carousel>
-        <div className="w-full flex flex-col gap-2 mt-5">
+        <div className="flex flex-col w-full gap-2 mt-5">
           {people.map((person, index) => (
             <div
               key={index}
@@ -215,9 +215,9 @@ const Leaderboard = () => {
                   ></div>
                 </div>
                 <div className="flex flex-col">
-                  <div className="font-bold text-[11px]">{person.name}</div>
+                  <div className="font-bold text-[11px]" style={{paddingLeft: '3px'}}>{person.name}</div>
                   <div className="flex items-center">
-                    <img src={Diamond} alt="diamond" className="h-4 w-4" />
+                    <img src={Diamond} alt="diamond" className="w-4 h-4" />
                     <div className="font-extrabold text-[11px]">
                       {displayNumbers(person.drops)}
                     </div>
