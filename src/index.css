@@ -160,6 +160,7 @@
   animation: animate-leave 0.3s ease-in forwards;
 }
 
+
 /* Enter animation */
 @keyframes animate-enter {
   from {
@@ -181,5 +182,20 @@
   to {
     opacity: 0;
     transform: translateY(100%);
+  }
+}
+
+.pulsate{
+  animation: pulsate 1.2s ease-in infinite;
+}
+
+/* pulsating animation */
+
+@keyframes pulsate {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
   }
 }

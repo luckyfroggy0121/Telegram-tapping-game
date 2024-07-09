@@ -83,7 +83,7 @@ const Earn = () => {
               className="flex items-center bg-[#C3C3C33D] h-[55px] justify-between w-full"
             >
               <div className="flex items-center gap-2">
-                <img src={task.image} alt={task.title} className="h-9" />
+                <img src={task.image} alt={task.title} className="h-9 w-9" />
                 <div className="flex flex-col">
                   <div className="font-bold text-[11px] leading-6">
                     {task.title}
@@ -106,7 +106,7 @@ const Earn = () => {
                   className="flex items-center bg-[#C3C3C33D] h-[55px] justify-between w-full"
                 >
                   <div className="flex items-center gap-2">
-                    <img src={task.image} alt={task.title} className="h-9"  />
+                    <img src={task.image} alt={task.title} className="h-9 w-9"/>
                     <div className="flex flex-col">
                       <div className="font-bold text-[11px] leading-6">
                         {task.title}

@@ -51,7 +51,7 @@ const Water = memo(({ incomingWaterLevel }: { incomingWaterLevel: number }) => {
     setWaterLevel({
       waterLevel: incomingWaterLevel,
       config: {
-        duration: 1000 / (transitionSpeed / 50),
+        duration: 1000 / (transitionSpeed / 20),
         easing: easings.easeOutCubic,
       },
     });
