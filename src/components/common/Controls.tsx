@@ -4,7 +4,6 @@ import EarnIcon from "@/assets/svg/earn.svg?react";
 import FriendsIcon from "@/assets/svg/friends.svg?react";
 import PumpIcon from "@/assets/svg/pump.svg?react";
 import { Button } from "@/components/ui/button";
-
 import { tabsAtom } from "@/lib/atom";
 import { displayNumbers } from "@/lib/utils";
 import { useState, useEffect } from "react";
@@ -43,7 +42,8 @@ const Controls = () => {
   const [tabs, setTabs] = useRecoilState(tabsAtom);
 
   const handleControl = (label: string) => {
-    if (label === "Earn") setTabs([...tabs, label.toLowerCase()]);
+    if (label === "Pump") setShowPumpDrawer(true);
+    else setTabs([...tabs, label.toLowerCase()]);
   };
 
   const [currentDay, setCurrentDay] = useState(0);
@@ -206,11 +206,7 @@ const Controls = () => {
         >
           <control.icon height={24} />
           <div className="font-bold">{control.label}</div>
-          {control.label !== "Earn" && (
-            <div className="absolute -top-[13px] right-0 py-0 px-2 bg-[#bd5ef8] text-white font-bold rounded-full text-[11px] h-fit">
-              <p className="h-4 flex items-center justify-center">soon</p>
-            </div>
-          )}
+          
         </Button>
       ))}
     </div>
