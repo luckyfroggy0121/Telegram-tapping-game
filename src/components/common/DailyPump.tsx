@@ -14,7 +14,10 @@ const dropsDays = [
   500, 1000, 2500, 5000, 15000, 25000, 100000, 500000, 1000000, 5000000,
 ];
 
-const DailyPump = () => {
+type Props = {
+  handleTaskCompletion?: (taskId: any) => void;
+};
+const DailyPump = ({ handleTaskCompletion }: Props) => {
   const [currentDay, setCurrentDay] = useState(0);
   const [totalDrops, setTotalDrops] = useState(0);
   const [collected, setCollected] = useState(Array(10).fill(false));
@@ -73,17 +76,17 @@ const DailyPump = () => {
     newCollected[currentDay] = true;
 
     toast.custom((t) => (
-        <div
-          className={`${
-            t.visible ? "animate-enter" : "animate-leave"
-          } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-3 px-3`}
-        >
-          <BsCheckCircleFill size={25} />
-          <h3 className="text-sm font-bold text-white">
-            You've received +{dropsDays[currentDay]} DROPS
-          </h3>
-        </div>
-      ));
+      <div
+        className={`${
+          t.visible ? "animate-enter" : "animate-leave"
+        } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-3 px-3`}
+      >
+        <BsCheckCircleFill size={25} />
+        <h3 className="text-sm font-bold text-white">
+          You've received +{dropsDays[currentDay]} DROPS
+        </h3>
+      </div>
+    ));
     setTotalDrops(newTotalDrops);
     setCollected(newCollected);
     setLastPumpTime(new Date());
@@ -106,7 +109,7 @@ const DailyPump = () => {
         <Confetti numberOfPieces={1500} recycle={false} gravity={0.09} />
       )}
       <DrawerTitle className="flex items-center justify-between w-full mr-5">
-        <div style={{width:'40px'}}></div>
+        <div style={{ width: "40px" }}></div>
         <div className="font-extrabold text-[24px] leading-6">Pump DROPS</div>
         <DrawerClose>
           <IoCloseCircleSharp color="#FFFFFF80" size={25} />
@@ -149,7 +152,10 @@ const DailyPump = () => {
           </Button>
         ) : (
           <DrawerClose asChild>
-            <Button className="bg-[#402F4D] font-bold h-12 w-full text-[16px] text-white rounded-full">
+            <Button
+              onClick={handleTaskCompletion && handleTaskCompletion}
+              className="bg-[#402F4D] font-bold h-12 w-full text-[16px] text-white rounded-full"
+            >
               Come Back Tommorrow
             </Button>
           </DrawerClose>

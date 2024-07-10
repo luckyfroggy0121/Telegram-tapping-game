@@ -54,3 +54,35 @@ export const seaCreatures: SeaCreature[] = [
     drops: 1000000000,
   },
 ];
+
+ export const levels = [
+  {
+    Medal: bronze,
+    name: "Bronze",
+    Fish: Rayfish,
+  },
+  {
+    Medal: silver,
+    name: "Silver",
+    Fish: Octopus,
+  },
+  {
+    Fish: Seahorse,
+    Medal: gold,
+    name: "Gold",
+  },
+  {
+    Fish: Draken,
+    Medal: platinum,
+    name: "Platinum",
+  },
+  {
+    Fish: Turtle,
+    Medal: diamond,
+    name: "Diamond",
+  },
+  {
+    Fish: Jellyfish,
+    name: "Epic",
+  },
+]
