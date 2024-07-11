@@ -5,13 +5,13 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { balanceAtom, energyAtom, tabsAtom } from "@/lib/atom";
-import { displayNumbers } from "@/lib/utils";
+import { balanceAtom, confettiAtom, energyAtom, tabsAtom } from "@/lib/atom";
+import { cn, displayNumbers } from "@/lib/utils";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Button } from "@/components/ui/button";
 import DropIcon from "@/assets/svg/dropIcon.svg";
 import EnergyIcon from "@/assets/svg/energyIcon.svg";
-import { FaChevronRight } from "react-icons/fa6";
+import { FaCheck, FaChevronRight } from "react-icons/fa6";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import Electrolite from "@/assets/svg/electrolyte.svg";
 import multitap from "@/assets/svg/multitap.svg";
@@ -26,6 +26,7 @@ const boosters = [
     drops: 20000,
     level: "Silver",
     message: "Boost has been increased by 500 points",
+    completed: false,
   },
   {
     image: multitap,
@@ -35,6 +36,7 @@ const boosters = [
     drops: 2000,
     level: "Silver",
     message: "You can now earn +2 DROPS per tap",
+    completed: false,
   },
 ];
 
@@ -43,6 +45,7 @@ const Boost = () => {
   const setTabs = useSetRecoilState(tabsAtom);
   const dailEnergy = localStorage.getItem("dailyEnergy") ?? "6";
   const setEnergy = useSetRecoilState(energyAtom);
+  const setShowConfetti = useSetRecoilState(confettiAtom);
 
   return (
     <div className="py-5 px-5 flex flex-col items-center">
@@ -150,7 +153,11 @@ const Boost = () => {
                     </div>
                   </div>
                 </div>
-                <FaChevronRight color="white" />
+                {booster.completed ? (
+                  <FaCheck />
+                ) : (
+                  <FaChevronRight color="white" />
+                )}
               </Button>
             </DrawerTrigger>
             <DrawerContent className="flex flex-col items-center pb-8 pt-7">
@@ -180,48 +187,28 @@ const Boost = () => {
                 </span>
                 <span className="font-bold">{booster.level} level</span>
               </p>
-              {booster.title === "Multitap" ? (
-                <DrawerClose
-                  className="w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]"
-                  style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
-                  onClick={() => {
-                    Toast(booster.message, "info");
-                    setTimeout(() => {
-                      setTabs((tabs) =>
-                        tabs.length === 1
-                          ? tabs
-                          : tabs.slice(0, tabs.length - 1)
-                      );
-                    }, 20);
-                  }}
-                >
-                  Get
-                </DrawerClose>
-              ) : balance >= 20000 && booster.title === "Electrolyte" ? (
-                <DrawerClose
-                  className="w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]"
-                  style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
-                  onClick={() => {
-                    Toast(booster.message, "info");
-                    setTimeout(() => {
-                      setTabs((tabs) =>
-                        tabs.length === 1
-                          ? tabs
-                          : tabs.slice(0, tabs.length - 1)
-                      );
-                    }, 20);
-                  }}
-                >
-                  Get
-                </DrawerClose>
-              ) : (
-                <DrawerClose
-                  className="w-[250px] bg-[#7054a5] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]"
-                  style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
-                >
-                  Insufficient Funds
-                </DrawerClose>
-              )}
+              <DrawerClose
+                className={cn(
+                  "w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]",
+                  balance < booster.drops ? "bg-[#7054a5]" : ""
+                )}
+                style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
+                onClick={() => {
+                  Toast(booster.message, "info");
+                  localStorage.setItem("dropsAmount", "2");
+                  setTimeout(() => {
+                    setTabs((tabs) =>
+                      tabs.length === 1 ? tabs : tabs.slice(0, tabs.length - 1)
+                    );
+                  }, 20);
+                  setShowConfetti(true);
+                  setTimeout(() => {
+                    setShowConfetti(false);
+                  }, 5000);
+                }}
+              >
+                {balance < booster.drops ? "Insufficeint Funds" : "Get"}
+              </DrawerClose>
             </DrawerContent>
           </Drawer>
         ))}

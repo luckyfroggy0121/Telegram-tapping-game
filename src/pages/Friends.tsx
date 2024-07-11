@@ -149,7 +149,7 @@ const Friends = () => {
           <DrawerContent className="pt-6 flex flex-col items-center pb-3">
             <DrawerTitle className="flex items-center w-full justify-between mr-5">
               <div></div>
-              <div className="font-extrabold text-[24px] leading-6">
+              <div className="font-extrabold translate-x-4 text-[24px] leading-6">
                 Level Up Bonus
               </div>
               <DrawerClose>

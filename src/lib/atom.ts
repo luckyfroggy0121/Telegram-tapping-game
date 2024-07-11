@@ -31,3 +31,8 @@ export const energyAtom = atom<number>({
   key: "energyAtom",
   default: 500,
 });
+
+export const confettiAtom = atom<boolean>({
+  key: "confettiAtom",
+  default: false,
+});

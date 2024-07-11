@@ -6,9 +6,10 @@ import { Button } from "../ui/button";
 import { displayNumbers } from "@/lib/utils";
 
 import Diamond from "@/assets/images/diamond.png";
-import Confetti from "react-confetti";
 import PumpIcon from "@/assets/svg/pumpIcon.svg";
 import { Toast } from "@/lib/toast";
+import { useSetRecoilState } from "recoil";
+import { confettiAtom } from "@/lib/atom";
 
 const dropsDays = [
   500, 1000, 2500, 5000, 15000, 25000, 100000, 500000, 1000000, 5000000,
@@ -23,7 +24,7 @@ const DailyPump = ({ handleTaskCompletion }: Props) => {
   const [collected, setCollected] = useState(Array(10).fill(false));
   const [lastPumpTime, setLastPumpTime] = useState<Date | null>(null);
   const [isPumpAvailable, setIsPumpAvailable] = useState(true);
-  const [showConfetti, setShowConfetti] = useState(false);
+  const setShowConfetti = useSetRecoilState(confettiAtom);
 
   // pumping functionality
 
@@ -79,7 +80,7 @@ const DailyPump = ({ handleTaskCompletion }: Props) => {
     setTotalDrops(newTotalDrops);
     setCollected(newCollected);
     setLastPumpTime(new Date());
-    setShowConfetti(true);
+    if (!handleTaskCompletion) setShowConfetti(true);
 
     setTimeout(() => {
       setShowConfetti(false);
@@ -94,9 +95,6 @@ const DailyPump = ({ handleTaskCompletion }: Props) => {
   };
   return (
     <DrawerContent className="flex flex-col items-center pt-6 pb-3">
-      {showConfetti && (
-        <Confetti numberOfPieces={1500} recycle={false} gravity={0.09} />
-      )}
       <DrawerTitle className="flex items-center justify-between w-full mr-5">
         <div style={{ width: "40px" }}></div>
         <div className="font-extrabold text-[24px] leading-6">Pump DROPS</div>
@@ -133,7 +131,10 @@ const DailyPump = ({ handleTaskCompletion }: Props) => {
       <div className="w-full px-4 mt-4">
         {isPumpAvailable ? (
           <Button
-            onClick={handlePump}
+            onClick={() => {
+              handlePump();
+              handleTaskCompletion && handleTaskCompletion(4);
+            }}
             disabled={!isPumpAvailable}
             className="bg-[#9712F4] font-bold h-12 w-full text-[16px] rounded-full"
           >
@@ -141,10 +142,7 @@ const DailyPump = ({ handleTaskCompletion }: Props) => {
           </Button>
         ) : (
           <DrawerClose asChild>
-            <Button
-              onClick={() => handleTaskCompletion && handleTaskCompletion(4)}
-              className="bg-[#402F4D] font-bold h-12 w-full text-[16px] text-white rounded-full"
-            >
+            <Button className="bg-[#402F4D] font-bold h-12 w-full text-[16px] text-white rounded-full">
               Come Back Tommorrow
             </Button>
           </DrawerClose>

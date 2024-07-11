@@ -9,7 +9,6 @@ import { seaCreatures } from "@/lib/seacreatures";
 import { cn, displayNumbers } from "@/lib/utils";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useEffect, useState } from "react";
-import Confetti from "react-confetti";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import {
   currentDataAtom,
@@ -18,6 +17,7 @@ import {
   levelAtom,
   balanceAtom,
   energyAtom,
+  confettiAtom,
 } from "@/lib/atom";
 import {
   Drawer,
@@ -31,7 +31,7 @@ import { FaChevronRight } from "react-icons/fa6";
 import { Toast } from "@/lib/toast";
 
 const HomePage = () => {
-  const [showConfetti, setShowConfetti] = useState(false);
+  const setShowConfetti = useSetRecoilState(confettiAtom);
   const [tabs, setTabs] = useRecoilState(tabsAtom);
   const setCurrentSeaCreature = useSetRecoilState(currentDataAtom);
   const [currentTank, setCurrentTank] = useRecoilState(currentTankAtom);
@@ -51,12 +51,14 @@ const HomePage = () => {
   const { Medal, drops, title, Fish } = seaCreatures[level];
 
   const currentLevelProgress = (balance / drops) * 100;
+  const amount = localStorage.getItem("dropsAmount") ?? "1";
 
+  console.log(amount)
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const addition = eval("100 / (10*(level+1))");
     if (level < 6 && currentLevelProgress <= 100 && energy > 0) {
       setEnergy((prev) => Math.max(prev - 1, 0));
-      setBalance((prev) => prev + 1);
+      setBalance((prev) => prev + Number(amount));
       const newProgress = waterLevel + addition;
 
       setWaterLevel(() => {
@@ -73,7 +75,7 @@ const HomePage = () => {
       }
       const clickX = event.clientX;
       const clickY = event.clientY;
-      setNumbers([...numbers, { number: 1, x: clickX, y: clickY }]);
+      setNumbers([...numbers, { number: Number(amount), x: clickX, y: clickY }]);
     }
     if (energy === 0) {
       Toast("You're exhausted. Wait for Energy to come up.", "info");
@@ -249,14 +251,6 @@ const HomePage = () => {
               )}
             </div>
           </div>
-          {showConfetti && (
-            <Confetti
-              className="absolute top-0 z-50 w-full h-screen"
-              numberOfPieces={1500}
-              recycle={false}
-              gravity={0.09}
-            />
-          )}
         </div>
       </div>
       <Controls />
