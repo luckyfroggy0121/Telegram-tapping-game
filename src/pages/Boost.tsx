@@ -23,7 +23,7 @@ const boosters = [
     title: "Electrolyte",
     subtitle: "Increase the amount of energy",
     desc: "+500 energy points for Silver level",
-    drops: 20000,
+    drops: 3000,
     level: "Silver",
     message: "Boost has been increased by 500 points",
   },

@@ -4,7 +4,7 @@ import DropIcon from "@/assets/svg/dropIcon.svg";
 // import DropIcon from "@/assets/images/drop.png";
 import Telegram from "@/assets/images/tele.gif";
 import Twitter from "@/assets/svg/twitter.svg";
-import Youtube from "@/assets/svg/earn/youtube.svg";
+import Youtube from "@/assets/svg/youtube.svg";
 import Community from "@/assets/images/community.png";
 import DailPump from "@/assets/images/dailpump.png";
 import JoinTank from "@/assets/images/jointank.png";
