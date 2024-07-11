@@ -86,7 +86,7 @@ const HomePage = () => {
     const timer = setInterval(() => {
       setEnergy((prev) => Math.min(prev + 1, maxEnergy)); // Add energy up to 500
     }, 2000);
-    if (energy >= 500) clearInterval(timer);
+    if (energy >= maxEnergy) clearInterval(timer);
     return () => clearInterval(timer);
   }, [balance]);
 
@@ -206,7 +206,9 @@ const HomePage = () => {
           />
           <div className="flex items-center gap-1 mt-2">
             <EnergyIcon />
-            <div className="font-extrabold text-[10px]">{energy}/{maxEnergy}</div>
+            <div className="font-extrabold text-[10px]">
+              {energy}/{maxEnergy}
+            </div>
           </div>
         </div>
         {numbers.map((num, index) => (

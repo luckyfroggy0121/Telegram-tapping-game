@@ -196,6 +196,7 @@ const Boost = () => {
                     if (localStorage.getItem("energyMax") === "1000") {
                       return Toast("You are already at 1000 energy ms", "info");
                     }
+                    setEnergy(1000);
                     localStorage.setItem("energyMax", "1000");
                   }
                   Toast(booster.message, "info");
