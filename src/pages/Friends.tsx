@@ -1,6 +1,6 @@
 import Diamond from "@/assets/images/diamond.png";
 import FriendsIcon from "@/assets/svg/friends.svg";
-import telegram from "@/assets/images/tele.png";
+import telegram from "@/assets/images/tele.gif";
 import premium from "@/assets/images/premium.gif";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,8 +16,6 @@ import { displayNumbers } from "@/lib/utils";
 import FriendIcon from "@/assets/svg/friend.svg?react";
 import { LevelDatable } from "@/components/common/level-datatable";
 import { LevelFriend } from "@/interface/LevelFriend";
-import DailyPump from "@/components/common/DailyPump";
-
 const inviteOptions = [
   {
     title: "Telegram User",
@@ -127,19 +125,15 @@ const Friends = () => {
         ))}
       </div>
       <div className="flex flex-col gap-4 mt-5 px-12 w-full">
-        <Drawer>
-          <DrawerTrigger>
-            <Button
-              className="bg-[#9712F4] font-bold h-12 w-full text-[16px] rounded-full"
-              style={{
-                boxShadow: "0px 4px 4px 0px #00000040",
-              }}
-            >
-              Pump
-            </Button>
-          </DrawerTrigger>
-          <DailyPump />
-        </Drawer>
+        <Button
+          className="bg-[#9712F4] font-bold h-12 w-full text-[16px] rounded-full"
+          style={{
+            boxShadow: "0px 4px 4px 0px #00000040",
+          }}
+        >
+          Invite Friends
+        </Button>
+
         <Drawer>
           <DrawerTrigger asChild>
             <Button
@@ -161,9 +155,9 @@ const Friends = () => {
                 <IoCloseCircleSharp color="#FFFFFF80" size={25} />
               </DrawerClose>
             </DrawerTitle>
-            <img src={Diamond} alt="diamond" />
-            <HandIcon />
-            <div className="text-white/80 max-w-[18rem] text-center text-[14px] font-extrabold leading-[18px] mt-4 mb-2">
+            <img src={Diamond} alt="diamond" className="mt-2" />
+            <HandIcon height={35} />
+            <div className="text-white/80 text-center text-[14px] font-extrabold leading-[18px] mt-4 mb-2">
               Earn more DROPS when a friend reaches a certain level
             </div>
             <LevelDatable data={friendsLevel} />

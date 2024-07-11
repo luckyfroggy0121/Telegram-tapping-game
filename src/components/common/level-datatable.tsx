@@ -88,7 +88,7 @@ export function LevelDatable<TData, TValue>({ data }: DataTableProps<TData>) {
 
   return (
     <div className="w-full px-6">
-      <Table>
+      <Table className="border-separate rowspacing">
         <TableHeader className="*:border-none">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>

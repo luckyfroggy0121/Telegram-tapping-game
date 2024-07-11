@@ -84,7 +84,8 @@
     color: white;
   }
 
-  html, body {
+  html,
+  body {
     overflow-x: hidden;
   }
 
@@ -93,8 +94,6 @@
     padding: 0;
     box-sizing: border-box;
   }
-
-
 }
 
 @font-face {
@@ -150,6 +149,10 @@
   font-weight: 200;
 }
 
+.rowspacing {
+  border-collapse: separate;
+  border-spacing: 0 5px;
+}
 /* toast animations */
 
 .animate-enter {
@@ -159,7 +162,6 @@
 .animate-leave {
   animation: animate-leave 0.3s ease-in forwards;
 }
-
 
 /* Enter animation */
 @keyframes animate-enter {
@@ -185,14 +187,15 @@
   }
 }
 
-.pulsate{
+.pulsate {
   animation: pulsate 1.2s ease-in infinite;
 }
 
 /* pulsating animation */
 
 @keyframes pulsate {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
