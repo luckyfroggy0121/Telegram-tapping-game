@@ -16,7 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { displayNumbers } from "@/lib/utils";
+import { displayMinimizedNumbers } from "@/lib/utils";
 
 interface DataTableProps<TData> {
   data: TData[];
@@ -57,7 +57,7 @@ const columns: ColumnDef<LevelFriend>[] = [
         <div className="flex items-center gap-[2px]">
           <img src={Diamond} alt="drop" className="h-4" />
           <h2 className="text-[13px] font-extrabold leading-[18px]">
-            +{displayNumbers(row.original.friend)}
+            +{displayMinimizedNumbers(row.original.friend)}
           </h2>
         </div>
       );
@@ -71,7 +71,7 @@ const columns: ColumnDef<LevelFriend>[] = [
         <div className="flex items-center gap-[2px]">
           <img src={Diamond} alt="drop" className="h-4" />
           <h2 className="text-[13px] font-extrabold leading-[18px]">
-            +{displayNumbers(row.original.premium)}
+            +{displayMinimizedNumbers(row.original.premium)}
           </h2>
         </div>
       );
@@ -116,7 +116,7 @@ export function LevelDatable<TData, TValue>({ data }: DataTableProps<TData>) {
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
-                className="!border-none bg-[#C3C3C33D]"
+                className="!border-none bg-[#C3C3C33D] "
               >
                 {row.getVisibleCells().map((cell) => {
                   return (
