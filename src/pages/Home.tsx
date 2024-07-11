@@ -51,14 +51,14 @@ const HomePage = () => {
   const { Medal, drops, title, Fish } = seaCreatures[level];
 
   const currentLevelProgress = (balance / drops) * 100;
-  const amount = localStorage.getItem("dropsAmount") ?? "1";
+  const amount = Number(localStorage.getItem("dropsAmount") ?? "1");
+  const maxEnergy = Number(localStorage.getItem("energyMax") ?? "500");
 
-  console.log(amount)
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const addition = eval("100 / (10*(level+1))");
     if (level < 6 && currentLevelProgress <= 100 && energy > 0) {
       setEnergy((prev) => Math.max(prev - 1, 0));
-      setBalance((prev) => prev + Number(amount));
+      setBalance((prev) => prev + amount);
       const newProgress = waterLevel + addition;
 
       setWaterLevel(() => {
@@ -75,7 +75,7 @@ const HomePage = () => {
       }
       const clickX = event.clientX;
       const clickY = event.clientY;
-      setNumbers([...numbers, { number: Number(amount), x: clickX, y: clickY }]);
+      setNumbers([...numbers, { number: amount, x: clickX, y: clickY }]);
     }
     if (energy === 0) {
       Toast("You're exhausted. Wait for Energy to come up.", "info");
@@ -84,7 +84,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setEnergy((prev) => Math.min(prev + 1, 500)); // Add energy up to 500
+      setEnergy((prev) => Math.min(prev + 1, maxEnergy)); // Add energy up to 500
     }, 2000);
     if (energy >= 500) clearInterval(timer);
     return () => clearInterval(timer);
@@ -206,7 +206,7 @@ const HomePage = () => {
           />
           <div className="flex items-center gap-1 mt-2">
             <EnergyIcon />
-            <div className="font-extrabold text-[10px]">{energy}/500</div>
+            <div className="font-extrabold text-[10px]">{energy}/{maxEnergy}</div>
           </div>
         </div>
         {numbers.map((num, index) => (

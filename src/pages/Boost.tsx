@@ -5,13 +5,13 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { balanceAtom, confettiAtom, energyAtom, tabsAtom } from "@/lib/atom";
+import { balanceAtom, energyAtom, tabsAtom } from "@/lib/atom";
 import { cn, displayNumbers } from "@/lib/utils";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { Button } from "@/components/ui/button";
 import DropIcon from "@/assets/svg/dropIcon.svg";
 import EnergyIcon from "@/assets/svg/energyIcon.svg";
-import { FaCheck, FaChevronRight } from "react-icons/fa6";
+import { FaChevronRight } from "react-icons/fa6";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import Electrolite from "@/assets/svg/electrolyte.svg";
 import multitap from "@/assets/svg/multitap.svg";
@@ -26,7 +26,6 @@ const boosters = [
     drops: 20000,
     level: "Silver",
     message: "Boost has been increased by 500 points",
-    completed: false,
   },
   {
     image: multitap,
@@ -36,16 +35,14 @@ const boosters = [
     drops: 2000,
     level: "Silver",
     message: "You can now earn +2 DROPS per tap",
-    completed: false,
   },
 ];
 
 const Boost = () => {
-  const balance = useRecoilValue(balanceAtom);
+  const [balance, setBalance] = useRecoilState(balanceAtom);
   const setTabs = useSetRecoilState(tabsAtom);
   const dailEnergy = localStorage.getItem("dailyEnergy") ?? "6";
   const setEnergy = useSetRecoilState(energyAtom);
-  const setShowConfetti = useSetRecoilState(confettiAtom);
 
   return (
     <div className="py-5 px-5 flex flex-col items-center">
@@ -153,11 +150,7 @@ const Boost = () => {
                     </div>
                   </div>
                 </div>
-                {booster.completed ? (
-                  <FaCheck />
-                ) : (
-                  <FaChevronRight color="white" />
-                )}
+                <FaChevronRight color="white" />
               </Button>
             </DrawerTrigger>
             <DrawerContent className="flex flex-col items-center pb-8 pt-7">
@@ -194,18 +187,26 @@ const Boost = () => {
                 )}
                 style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
                 onClick={() => {
+                  if (booster.title === "Multitap") {
+                    if (localStorage.getItem("dropsAmount") == "2") {
+                      return Toast("You are already adding 2 drops", "info");
+                    }
+                    localStorage.setItem("dropsAmount", "2");
+                  } else {
+                    if (localStorage.getItem("energyMax") === "1000") {
+                      return Toast("You are already at 1000 energy ms", "info");
+                    }
+                    localStorage.setItem("energyMax", "1000");
+                  }
                   Toast(booster.message, "info");
-                  localStorage.setItem("dropsAmount", "2");
                   setTimeout(() => {
                     setTabs((tabs) =>
                       tabs.length === 1 ? tabs : tabs.slice(0, tabs.length - 1)
                     );
                   }, 20);
-                  setShowConfetti(true);
-                  setTimeout(() => {
-                    setShowConfetti(false);
-                  }, 5000);
+                  setBalance(balance - booster.drops);
                 }}
+                disabled={balance < booster.drops}
               >
                 {balance < booster.drops ? "Insufficeint Funds" : "Get"}
               </DrawerClose>
