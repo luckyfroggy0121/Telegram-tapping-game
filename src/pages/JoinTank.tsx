@@ -19,10 +19,9 @@ import {
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { currentTankAtom, tabsAtom } from "@/lib/atom";
-import toast from "react-hot-toast";
 import { MdPerson } from "react-icons/md";
 import { displayMinimizedNumbers } from "@/lib/utils";
-import { BsCheckCircleFill} from "react-icons/bs";
+import { Toast } from "@/lib/toast";
 
 const tanks = [
   {
@@ -117,18 +116,7 @@ const JoinTank = () => {
                   setTabs((tabs) =>
                     tabs.length === 1 ? tabs : tabs.slice(0, tabs.length - 1)
                   );
-                  toast.custom((t) => (
-                    <div
-                      className={`${
-                        t.visible ? "animate-enter" : "animate-leave"
-                      } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-3 px-3`}
-                    >
-                      <BsCheckCircleFill size={25} />
-                      <h3 className="text-sm font-bold text-white">
-                        You joined the {tank.name} Tank
-                      </h3>
-                    </div>
-                  ));
+                 Toast(`You joined the ${tank.name} Tank`, "info")
                 }}
                 className="w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px] mb-2"
                 style={{ boxShadow: "0px 4px 4px 0px #00000040" }}

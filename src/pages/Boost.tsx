@@ -5,18 +5,17 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { balanceAtom, tabsAtom } from "@/lib/atom";
+import { balanceAtom, energyAtom, tabsAtom } from "@/lib/atom";
 import { displayNumbers } from "@/lib/utils";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Button } from "@/components/ui/button";
 import DropIcon from "@/assets/svg/dropIcon.svg";
 import EnergyIcon from "@/assets/svg/energyIcon.svg";
 import { FaChevronRight } from "react-icons/fa6";
-import toast from "react-hot-toast";
-import { BsExclamationCircleFill } from "react-icons/bs";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import Electrolite from "@/assets/svg/electrolyte.svg";
 import multitap from "@/assets/svg/multitap.svg";
+import { Toast } from "@/lib/toast";
 
 const boosters = [
   {
@@ -40,9 +39,11 @@ const boosters = [
 ];
 
 const Boost = () => {
-  const [balance] = useRecoilState(balanceAtom);
-
+  const balance = useRecoilValue(balanceAtom);
   const setTabs = useSetRecoilState(tabsAtom);
+  const dailEnergy = localStorage.getItem("dailyEnergy") ?? "6";
+  const setEnergy = useSetRecoilState(energyAtom);
+
   return (
     <div className="py-5 px-5 flex flex-col items-center">
       <h2 className="text-[20px] leading-6 font-medium pl-3">Your balance</h2>
@@ -69,7 +70,7 @@ const Boost = () => {
                   <div className="font-bold text-[11px] leading-6">
                     <h2 className="text-xs leading-6 font-bold">Full energy</h2>
                     <h2 className="text-xs font-semibold leading-6 text-start">
-                      6/6
+                      {dailEnergy}/6
                     </h2>
                   </div>
                 </div>
@@ -101,25 +102,17 @@ const Boost = () => {
               className="w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]"
               style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
               onClick={() => {
-                toast.custom((t) => (
-                  <div
-                    className={`${
-                      t.visible ? "animate-enter" : "animate-leave"
-                    } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-3 px-3`}
-                  >
-                    <BsExclamationCircleFill size={25} />
-                    <h3 className="text-sm font-bold text-white">
-                      Energy successfully recharged
-                    </h3>
-                  </div>
-                ));
+                localStorage.setItem(
+                  "dailyEnergy",
+                  (Number(dailEnergy) - 1).toString()
+                );
+                setEnergy(500);
+                Toast("Energy successfully recharged", "info");
                 setTimeout(() => {
-                    setTabs((tabs) =>
-                      tabs.length === 1
-                        ? tabs
-                        : tabs.slice(0, tabs.length - 1)
-                    );
-                  }, 20);
+                  setTabs((tabs) =>
+                    tabs.length === 1 ? tabs : tabs.slice(0, tabs.length - 1)
+                  );
+                }, 20);
               }}
             >
               Get
@@ -185,27 +178,14 @@ const Boost = () => {
                 <span className="text-[24px] font-bold">
                   {displayNumbers(booster.drops)}
                 </span>
-                <span className="font-bold">
-                  {"  "} {booster.level} level
-                </span>
+                <span className="font-bold">{booster.level} level</span>
               </p>
               {booster.title === "Multitap" ? (
                 <DrawerClose
                   className="w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]"
                   style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
                   onClick={() => {
-                    toast.custom((t) => (
-                      <div
-                        className={`${
-                          t.visible ? "animate-enter" : "animate-leave"
-                        } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-3 px-3`}
-                      >
-                        <BsExclamationCircleFill size={25} />
-                        <h3 className="text-sm font-bold text-white">
-                          {booster.message}
-                        </h3>
-                      </div>
-                    ));
+                    Toast(booster.message, "info");
                     setTimeout(() => {
                       setTabs((tabs) =>
                         tabs.length === 1
@@ -222,18 +202,7 @@ const Boost = () => {
                   className="w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]"
                   style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
                   onClick={() => {
-                    toast.custom((t) => (
-                      <div
-                        className={`${
-                          t.visible ? "animate-enter" : "animate-leave"
-                        } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-3 px-3`}
-                      >
-                        <BsExclamationCircleFill size={25} />
-                        <h3 className="text-sm font-bold text-white">
-                          {booster.message}
-                        </h3>
-                      </div>
-                    ));
+                    Toast(booster.message, "info");
                     setTimeout(() => {
                       setTabs((tabs) =>
                         tabs.length === 1

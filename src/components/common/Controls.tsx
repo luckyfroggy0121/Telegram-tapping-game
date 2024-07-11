@@ -11,7 +11,6 @@ import { useState, useEffect } from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { useRecoilState } from "recoil";
 import Confetti from "react-confetti";
-import toast, { Toaster } from "react-hot-toast";
 import {
   Drawer,
   DrawerClose,
@@ -19,7 +18,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "../ui/drawer";
-import { BsCheckCircleFill } from "react-icons/bs";
+import { Toast } from "@/lib/toast";
 
 const bottomControls = [
   {
@@ -109,18 +108,7 @@ const Controls = () => {
     const newCollected = [...collected];
     newCollected[currentDay] = true;
 
-    toast.custom((t) => (
-      <div
-        className={`${
-          t.visible ? "animate-enter" : "animate-leave"
-        } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-3 px-3`}
-      >
-        <BsCheckCircleFill size={25} />
-        <h3 className="text-sm font-bold text-white">
-          You've received +{dropsDays[currentDay]} DROPS
-        </h3>
-      </div>
-    ));
+    Toast(`You've received +${dropsDays[currentDay]} DROPS`, "info");
     setTotalDrops(newTotalDrops);
     setCollected(newCollected);
     setLastPumpTime(new Date());
@@ -207,7 +195,6 @@ const Controls = () => {
               </DrawerClose>
             )}
           </div>
-          <Toaster position="bottom-center" />
         </DrawerContent>
       </Drawer>
       {bottomControls.map((control, index) => {

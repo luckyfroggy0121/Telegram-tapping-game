@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import DropIcon from "@/assets/svg/dropIcon.svg?react";
 import EnergyIcon from "@/assets/svg/energyIcon.svg?react";
-import ThumbsUp from "@/assets/svg/thumbs.svg?react";
 import AnimatedNumber from "@/components/common/AnimatedNumber";
 import Controls from "@/components/common/Controls";
 import Water from "@/components/common/Water";
@@ -12,7 +11,6 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { useEffect, useState } from "react";
 import Confetti from "react-confetti";
 import { useRecoilState, useSetRecoilState } from "recoil";
-
 import {
   currentDataAtom,
   tabsAtom,
@@ -30,8 +28,7 @@ import {
 } from "@/components/ui/drawer";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { FaChevronRight } from "react-icons/fa6";
-import toast from "react-hot-toast";
-import { BsExclamationCircleFill } from "react-icons/bs";
+import { Toast } from "@/lib/toast";
 
 const HomePage = () => {
   const [showConfetti, setShowConfetti] = useState(false);
@@ -79,7 +76,7 @@ const HomePage = () => {
       setNumbers([...numbers, { number: 1, x: clickX, y: clickY }]);
     }
     if (energy === 0) {
-      toast.error("You can't pump with no energy.");
+      Toast("You're exhausted. Wait for Energy to come up.", "info");
     }
   };
 
@@ -102,18 +99,12 @@ const HomePage = () => {
     if (currentLevelProgress >= 100) {
       setShowConfetti(true);
       if (currentLevelProgress === 100)
-        toast.custom((t) => (
-          <div
-            className={`${
-              t.visible ? "animate-enter" : "animate-leave"
-            } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-2 px-3`}
-          >
-            <ThumbsUp />
-            <h3 className="text-xs font-bold text-white">
-              {title} Level Completed - {seaCreatures[level + 1].title} Unlocked
-            </h3>
-          </div>
-        ));
+        Toast(
+          `${title} Level Completed - ${
+            seaCreatures[level + 1].title
+          } Unlocked`,
+          "success"
+        );
       setTimeout(() => {
         setLevel(level + 1);
       }, 5000);
@@ -164,18 +155,7 @@ const HomePage = () => {
               <DrawerClose
                 onClick={() => {
                   setCurrentTank({ name: "", image: "" });
-                  toast.custom((t) => (
-                    <div
-                      className={`${
-                        t.visible ? "animate-enter" : "animate-leave"
-                      } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-3 px-3`}
-                    >
-                      <BsExclamationCircleFill size={25} />
-                      <h3 className="text-sm font-bold text-white">
-                        You left the {currentTank.name} Tank
-                      </h3>
-                    </div>
-                  ));
+                  Toast(`You left the ${currentTank.name} Tank`, "info");
                 }}
                 className="w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]"
                 style={{ boxShadow: "0px 4px 4px 0px #00000040" }}

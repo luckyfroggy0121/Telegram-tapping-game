@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import SaveIcon from "@/assets/svg/save.svg?react";
 import DropIcon from "@/assets/svg/dropIcon.svg";
 // import DropIcon from "@/assets/images/drop.png";
@@ -11,8 +12,6 @@ import { Button } from "@/components/ui/button";
 import { FaCheck, FaChevronRight } from "react-icons/fa6";
 import Diamond from "@/assets/images/diamond.png";
 import { displayNumbers } from "@/lib/utils";
-import toast from "react-hot-toast";
-import { BsExclamationCircleFill } from "react-icons/bs";
 // import { LiaCheckSolid } from "react-icons/lia";
 
 import {
@@ -26,64 +25,66 @@ import DailyPump from "@/components/common/DailyPump";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import Confetti from "react-confetti";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { balanceAtom, currentTankAtom, tabsAtom } from "@/lib/atom";
+import { Toast } from "@/lib/toast";
 
+const allTasks = [
+  {
+    id: 1,
+    title: "Join SmartLitre Community",
+    drops: 5000,
+    image: Telegram,
+    completed: false,
+    link: "https://t.me/smartlitrecommunity",
+  },
+  {
+    id: 2,
+    title: "Follow SmartLitre on X/Twitter",
+    drops: 5000,
+    image: Twitter,
+    completed: false,
+    link: "https://x.com/smartlitre?s=21&t=AXJCLgvmsPnKoMsdF5V9Cw",
+  },
+  {
+    id: 3,
+    title: "Watch SmartLitre Game Demo",
+    drops: 5000,
+    image: Youtube,
+    completed: false,
+    link: "http://www.youtube.com/@SmartLitre",
+  },
+  {
+    id: 4,
+    title: "Invite 3 friends",
+    drops: 25000,
+    image: Community,
+    completed: false,
+  },
+  {
+    id: 5,
+    title: "Daily Pump",
+    drops: 6649000,
+    image: DailPump,
+    completed: false,
+  },
+  {
+    id: 6,
+    title: "Join a Tank",
+    drops: 5000,
+    image: JoinTank,
+    completed: false,
+  },
+];
 
 const Earn = () => {
   const [showConfetti, setShowConfetti] = useState(false);
-  const [currentTank] = useRecoilState(currentTankAtom);
-  const [, setBalance] = useRecoilState(balanceAtom);
+  const currentTank = useRecoilValue(currentTankAtom);
+  const setBalance = useSetRecoilState(balanceAtom);
   const [tabs, setTabs] = useRecoilState(tabsAtom);
-  
+
   // Initialize state for task completion
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "Join SmartLitre Community",
-      drops: 5000,
-      image: Telegram,
-      completed: false,
-      link: "https://t.me/smartlitrecommunity",
-    },
-    {
-      id: 2,
-      title: "Follow SmartLitre on X/Twitter",
-      drops: 5000,
-      image: Twitter,
-      completed: false,
-      link: "https://x.com/smartlitre?s=21&t=AXJCLgvmsPnKoMsdF5V9Cw",
-    },
-    {
-      id: 3,
-      title: "Watch SmartLitre Game Demo",
-      drops: 5000,
-      image: Youtube,
-      completed: false,
-      link: "http://www.youtube.com/@SmartLitre",
-    },
-    {
-      id: 4,
-      title: "Invite 3 friends",
-      drops: 25000,
-      image: Community,
-      completed: false,
-    },
-    {
-      id: 5,
-      title: "Daily Pump",
-      drops: 6649000,
-      image: DailPump,
-      completed: false,
-    },
-    {
-      id: 6,
-      title: "Join a Tank",
-      drops: 5000,
-      image: JoinTank,
-      completed: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState(allTasks);
 
   // Function to handle task completion
   const handleTaskCompletion = (taskId: number) => {
@@ -94,16 +95,7 @@ const Earn = () => {
           task.id === taskId ? { ...task, completed: true } : task
         )
       );
-      toast.custom((t) => (
-        <div
-          className={`${
-            t.visible ? "animate-enter" : "animate-leave"
-          } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-3 px-3`}
-        >
-          <BsExclamationCircleFill size={25} />
-          <h3 className="text-sm font-bold text-white">Task complete</h3>
-        </div>
-      ));
+      Toast("Task complete", "info");
       setShowConfetti(true);
     }
     setTimeout(() => {
@@ -111,8 +103,8 @@ const Earn = () => {
     }, 5000);
   };
 
-  const handleLinktasksCompletion = (taskId: number, URL: any) => {
-    window.location.href = URL;
+  const handleLinktasksCompletion = (taskId: number, URL?: string) => {
+    if (URL) window.location.href = URL;
     localStorage.setItem("linkTaskId", taskId.toString());
   };
 
@@ -126,16 +118,7 @@ const Earn = () => {
         )
       );
       setShowConfetti(true);
-      toast.custom((t) => (
-        <div
-          className={`${
-            t.visible ? "animate-enter" : "animate-leave"
-          } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-3 px-3`}
-        >
-          <BsExclamationCircleFill size={25} />
-          <h3 className="text-sm font-bold text-white">Task complete</h3>
-        </div>
-      ));
+      Toast("Task complete", "info");
       setTimeout(() => {
         setShowConfetti(false);
       }, 5000);
@@ -154,16 +137,7 @@ const Earn = () => {
             )
           );
           setShowConfetti(true);
-          toast.custom((t) => (
-            <div
-              className={`${
-                t.visible ? "animate-enter" : "animate-leave"
-              } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-3 px-3`}
-            >
-              <BsExclamationCircleFill size={25} />
-              <h3 className="text-sm font-bold text-white">Task complete</h3>
-            </div>
-          ));
+          Toast("Task complete", "info");
         }
       }
       localStorage.removeItem("linkTaskId");
@@ -276,11 +250,18 @@ const Earn = () => {
                     className="w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]"
                     style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
                     onClick={() => {
-                      task.completed
-                        ? ""
-                        : task.id === 6
-                        ? setTabs([...tabs, "jointank"])
-                        : handleTaskCompletion(task.id);
+                      // task.completed
+                      //   ? ""
+                      //   : task.id === 6
+                      //   ? setTabs([...tabs, "jointank"])
+                      //   : handleTaskCompletion(task.id);
+                      if (task.completed) {
+                        return;
+                      }
+                      if (task.id === 6) {
+                        setTabs([...tabs, "jointank"]);
+                      }
+                      return;
                     }}
                   >
                     {task.completed ? "Completed" : "Check"}

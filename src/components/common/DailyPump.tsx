@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { DrawerClose, DrawerContent, DrawerTitle } from "../ui/drawer";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { Button } from "../ui/button";
@@ -8,14 +8,14 @@ import { displayNumbers } from "@/lib/utils";
 import Diamond from "@/assets/images/diamond.png";
 import Confetti from "react-confetti";
 import PumpIcon from "@/assets/svg/pumpIcon.svg";
-import { BsCheckCircleFill } from "react-icons/bs";
+import { Toast } from "@/lib/toast";
 
 const dropsDays = [
   500, 1000, 2500, 5000, 15000, 25000, 100000, 500000, 1000000, 5000000,
 ];
 
 type Props = {
-  handleTaskCompletion?: (taskId: any) => void;
+  handleTaskCompletion?: (taskId: number) => void;
 };
 const DailyPump = ({ handleTaskCompletion }: Props) => {
   const [currentDay, setCurrentDay] = useState(0);
@@ -75,18 +75,7 @@ const DailyPump = ({ handleTaskCompletion }: Props) => {
     const newCollected = [...collected];
     newCollected[currentDay] = true;
 
-    toast.custom((t) => (
-      <div
-        className={`${
-          t.visible ? "animate-enter" : "animate-leave"
-        } flex items-center justify-start gap-2 w-full bg-[#6a1fc9] rounded-full py-3 px-3`}
-      >
-        <BsCheckCircleFill size={25} />
-        <h3 className="text-sm font-bold text-white">
-          You've received +{dropsDays[currentDay]} DROPS
-        </h3>
-      </div>
-    ));
+    Toast(`You've received +${dropsDays[currentDay]} DROPS`, "info");
     setTotalDrops(newTotalDrops);
     setCollected(newCollected);
     setLastPumpTime(new Date());
@@ -153,7 +142,7 @@ const DailyPump = ({ handleTaskCompletion }: Props) => {
         ) : (
           <DrawerClose asChild>
             <Button
-              onClick={handleTaskCompletion && handleTaskCompletion}
+              onClick={() => handleTaskCompletion && handleTaskCompletion(4)}
               className="bg-[#402F4D] font-bold h-12 w-full text-[16px] text-white rounded-full"
             >
               Come Back Tommorrow
