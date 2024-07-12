@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import SaveIcon from "@/assets/svg/save.svg?react";
-import DropIcon from "@/assets/svg/dropIcon.svg";
+import DropIcon from "@/assets/svg/dropIcon.svg?react";
 import Telegram from "@/assets/svg/telegram.svg";
 import Twitter from "@/assets/svg/twitter.svg";
 import Youtube from "@/assets/svg/youtube.svg";
@@ -145,8 +145,8 @@ const Earn = () => {
         Earn more DROPS
       </div>
       <div className="flex flex-col items-center mt-1">
-        <img src={DropIcon} alt="drop" />
-        <SaveIcon className="-mt-4" />
+        <DropIcon height={50} width={50} className="mt-3" />
+        <SaveIcon className="mt-2" />
       </div>
       <div className="mt-3 font-extrabold text-[13px] leading-6">Tasks</div>
       <div className="flex flex-col gap-[5px] mt-1 w-full">

@@ -168,7 +168,7 @@ const HomePage = () => {
           </Drawer>
         )}
         <div className="flex mt-1 justify-center items-center gap-2 font-extrabold text-[36px]">
-          <DropIcon className="mt-1 h-9" />
+          <DropIcon className="-mt-1" height={30} width={30} />
           <div>{displayNumbers(parseInt(balance.toFixed(2)))}</div>
         </div>
         <Button
@@ -205,7 +205,7 @@ const HomePage = () => {
             baseBgColor="#C3C3C340"
           />
           <div className="flex items-center gap-1 mt-2">
-            <EnergyIcon />
+            <EnergyIcon width={20} height={20} />
             <div className="font-extrabold text-[10px]">
               {energy}/{maxEnergy}
             </div>
