@@ -13,6 +13,7 @@
       document.addEventListener("DOMContentLoaded", function() {
         if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
           Telegram.WebApp.expand();
+          Telegram.WebApp.disableVerticalSwipes();
         } else {
           console.error('Telegram WebApp is not available');
         }

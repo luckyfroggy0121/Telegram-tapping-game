@@ -174,7 +174,7 @@ const Boost = () => {
                 {booster.desc}
               </p>
               <p className="text-sm font-extrabold text-white leading-[18px] mt-2 mb-6 flex items-center gap-1">
-                <img src={DropIcon} alt="drop" className="h-7" />
+                <img src={DropIcon} alt="drop" className="h-7 mt-1" />
                 <span className="text-[24px] font-bold">
                   {displayNumbers(booster.drops)}
                 </span>

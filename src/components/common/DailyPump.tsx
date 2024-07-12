@@ -114,12 +114,8 @@ const DailyPump = ({ handleTaskCompletion }: Props) => {
             key={index}
             className={`font-extrabold text-[12px] leading-[18px] flex flex-col h-auto  ${
               collected[index]
-                ? "bg-[#20C962] border-2 border-[#20C962] hover:bg-[#38c76f]"
+                ? "bg-[#20C962]/50 border-2 border-[#20C962] hover:bg-[#38c76f]"
                 : "bg-[#C3C3C33D] border-2 border-transparent hover:bg-[#f7eded3d]"
-            } ${
-              currentDay === index
-                ? "border border-[#20C962]"
-                : "border border-transparent"
             }`}
           >
             <div>Day {index + 1}</div>
@@ -143,7 +139,7 @@ const DailyPump = ({ handleTaskCompletion }: Props) => {
         ) : (
           <DrawerClose asChild>
             <Button className="bg-[#402F4D] font-bold h-12 w-full text-[16px] text-white rounded-full">
-              Come Back Tommorrow
+              Come Back Tomorrow
             </Button>
           </DrawerClose>
         )}

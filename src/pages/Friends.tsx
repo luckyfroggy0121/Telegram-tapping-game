@@ -1,6 +1,6 @@
 import Diamond from "@/assets/images/diamond.png";
 import FriendsIcon from "@/assets/svg/friends.svg";
-import telegram from "@/assets/images/tele.gif";
+import telegram from "@/assets/svg/telegram.svg";
 import premium from "@/assets/images/premium.gif";
 import { Button } from "@/components/ui/button";
 import {

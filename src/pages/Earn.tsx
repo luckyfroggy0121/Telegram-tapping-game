@@ -1,18 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import SaveIcon from "@/assets/svg/save.svg?react";
 import DropIcon from "@/assets/svg/dropIcon.svg";
-// import DropIcon from "@/assets/images/drop.png";
-import Telegram from "@/assets/images/tele.gif";
+import Telegram from "@/assets/svg/telegram.svg";
 import Twitter from "@/assets/svg/twitter.svg";
 import Youtube from "@/assets/svg/youtube.svg";
 import Community from "@/assets/images/community.png";
-import DailPump from "@/assets/images/dailpump.png";
 import JoinTank from "@/assets/images/jointank.png";
 import { Button } from "@/components/ui/button";
 import { FaCheck, FaChevronRight } from "react-icons/fa6";
 import Diamond from "@/assets/images/diamond.png";
 import { displayNumbers } from "@/lib/utils";
-// import { LiaCheckSolid } from "react-icons/lia";
 
 import {
   Drawer,
@@ -21,7 +18,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import DailyPump from "@/components/common/DailyPump";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
@@ -66,13 +62,6 @@ const allTasks = [
     completed: false,
   },
   {
-    id: 5,
-    title: "Daily Pump",
-    drops: 6649000,
-    image: DailPump,
-    completed: false,
-  },
-  {
     id: 6,
     title: "Join a Tank",
     drops: 5000,
@@ -91,21 +80,21 @@ const Earn = () => {
   const [tasks, setTasks] = useState(allTasks);
 
   // Function to handle task completion
-  const handleTaskCompletion = (taskId: number) => {
-    const task = tasks.filter((t) => t.id === taskId);
-    if (!task[0].completed) {
-      setTasks(
-        tasks.map((task) =>
-          task.id === taskId ? { ...task, completed: true } : task
-        )
-      );
-      Toast("Task complete", "info");
-      setShowConfetti(true);
-    }
-    setTimeout(() => {
-      setShowConfetti(false);
-    }, 5000);
-  };
+  // const handleTaskCompletion = (taskId: number) => {
+  //   const task = tasks.filter((t) => t.id === taskId);
+  //   if (!task[0].completed) {
+  //     setTasks(
+  //       tasks.map((task) =>
+  //         task.id === taskId ? { ...task, completed: true } : task
+  //       )
+  //     );
+  //     Toast("Task complete", "info");
+  //     setShowConfetti(true);
+  //   }
+  //   setTimeout(() => {
+  //     setShowConfetti(false);
+  //   }, 5000);
+  // };
 
   const handleLinktasksCompletion = (taskId: number, URL?: string) => {
     if (URL) window.location.href = URL;
@@ -228,11 +217,7 @@ const Earn = () => {
                   )}
                 </Button>
               </DrawerTrigger>
-              {task.id == 5 ? (
-                <DailyPump
-                  handleTaskCompletion={() => handleTaskCompletion(task.id)}
-                />
-              ) : (
+              {
                 <DrawerContent className="flex flex-col items-center pb-8 pt-7">
                   <DrawerTitle className="ml-auto mr-5">
                     <DrawerClose>
@@ -273,7 +258,7 @@ const Earn = () => {
                     {task.completed ? "Completed" : "Check"}
                   </DrawerClose>
                 </DrawerContent>
-              )}
+              }
             </Drawer>
           );
         })}

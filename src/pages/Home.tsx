@@ -224,14 +224,14 @@ const HomePage = () => {
           <div
             onClick={handleClick}
             className={cn(
-              "w-full grow bg-contain bg-center bg-no-repeat relative overflow-hidden flex flex-col justify-center items-center transition-all duration-100",
-              currentLevelProgress >= 100 ? "pulsate" : ""
+              "w-full grow bg-contain bg-center bg-no-repeat relative overflow-hidden flex flex-col justify-center items-center",
+              currentLevelProgress >= 100 ? "animate-bouncing" : ""
             )}
           >
             <div
               className={cn(
-                "w-full bg-contain bg-center bg-no-repeat bg-[#4d307a] relative overflow-hidden transition-all duration-100",
-                currentLevelProgress >= 100 ? "" : ""
+                "w-full bg-contain bg-center bg-no-repeat bg-[#4d307a] relative overflow-hidden",
+                currentLevelProgress >= 100 ? "animate-bouncing" : ""
               )}
               style={
                 currentLevelProgress >= 100
