@@ -168,7 +168,7 @@ const HomePage = () => {
           </Drawer>
         )}
         <div className="flex mt-1 justify-center items-center gap-2 font-extrabold text-[36px]">
-          <DropIcon className="-mt-0.5" height={30} width={30} />
+          <DropIcon className="mt-0.5" height={30} width={30} />
           <div>{displayNumbers(parseInt(balance.toFixed(2)))}</div>
         </div>
         <Button
