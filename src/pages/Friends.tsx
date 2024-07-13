@@ -92,7 +92,7 @@ const friendsLevel: LevelFriend[] = [
 
 const Friends = () => {
   return (
-    <div className="flex flex-col pt-3 items-center">
+    <div className="flex flex-col items-center pt-3">
       <div className="font-extrabold text-[20px]">Friends</div>
       <img src={FriendsIcon} alt="friends" className="w-[10rem] mt-2" />
       <div className="font-extrabold text-[14px] leading-[18px] mt-2 text-white/80">
@@ -114,7 +114,7 @@ const Friends = () => {
               className="h-[3rem] mt-[9px]"
             />
             <div className="flex items-center gap-0.5 mt-2">
-              <DropIcon className="h-4 w-4" />
+              <DropIcon className="w-4 h-4" />
               <div className="font-extrabold text-[20px]">
                 {displayNumbers(option.drops)}
               </div>
@@ -125,7 +125,7 @@ const Friends = () => {
           </div>
         ))}
       </div>
-      <div className="flex flex-col gap-4 mt-5 px-12 w-full">
+      <div className="flex flex-col w-full gap-4 px-12 mt-5">
         <Button
           className="bg-[#9712F4] font-bold h-12 w-full text-[16px] rounded-full"
           style={{
@@ -146,8 +146,8 @@ const Friends = () => {
               Level Up Bonus
             </Button>
           </DrawerTrigger>
-          <DrawerContent className="pt-6 flex flex-col items-center pb-3">
-            <DrawerTitle className="flex items-center w-full justify-between mr-5">
+          <DrawerContent className="flex flex-col items-center pt-6 pb-3">
+            <DrawerTitle className="flex items-center justify-between w-full mr-5">
               <div></div>
               <div className="font-extrabold translate-x-4 text-[24px] leading-6">
                 Level Up Bonus
@@ -165,11 +165,11 @@ const Friends = () => {
           </DrawerContent>
         </Drawer>
       </div>
-      <div className="flex flex-col gap-2 px-5 mt-3 w-full">
+      <div className="flex flex-col w-full gap-2 px-5 mt-3">
         <div className="font-extrabold text-[15px] leading-[24px]">
           Friends List
         </div>
-        <div className="flex flex-col gap-3 mt-2 w-full">
+        <div className="flex flex-col w-full gap-3 mt-2">
           {friends.map((friend, index) => {
             const option = inviteOptions.find(
               (option) => option.title === friend.option
@@ -206,7 +206,7 @@ const Friends = () => {
                       </div>
                     </div>
                     <div className="flex items-center gap-1 -mt-0.5">
-                      <DropIcon className="-mt-1 h-3 w-3" />
+                      <DropIcon className="w-3 h-3" />
                       <div className="font-extrabold text-[11px] leading-6">
                         +{displayNumbers(friend.amount)}
                       </div>
