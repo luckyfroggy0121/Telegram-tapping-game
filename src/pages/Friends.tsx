@@ -1,5 +1,5 @@
 import FriendsIcon from "@/assets/svg/friends.svg";
-import telegram from "@/assets/svg/telegram.svg";
+import telegram from "@/assets/images/telegram.gif";
 import premium from "@/assets/images/premium.gif";
 import { Button } from "@/components/ui/button";
 import {
