@@ -205,7 +205,7 @@ const HomePage = () => {
             baseBgColor="#C3C3C340"
           />
           <div className="flex items-center gap-1 mt-2">
-            <EnergyIcon width={20} height={20} />
+            <EnergyIcon />
             <div className="font-extrabold text-[10px]">
               {energy}/{maxEnergy}
             </div>

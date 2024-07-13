@@ -8,7 +8,7 @@ import bronze from "@/assets/svg/bronze.svg?react";
 import silver from "@/assets/svg/silver.svg?react";
 import gold from "@/assets/svg/gold.svg?react";
 import platinum from "@/assets/svg/platinum.svg?react";
-import diamond from "@/assets/svg/diamond.svg?react";
+import DropIcon from "@/assets/svg/dropIcon.svg?react";
 import { SeaCreature } from "@/interface/SeaCreature";
 
 export const seaCreatures: SeaCreature[] = [
@@ -43,7 +43,7 @@ export const seaCreatures: SeaCreature[] = [
   {
     name: "Turtle",
     Fish: Turtle,
-    Medal: diamond,
+    Medal: DropIcon,
     title: "Diamond",
     drops: 100000000,
   },
@@ -78,7 +78,7 @@ export const seaCreatures: SeaCreature[] = [
   },
   {
     Fish: Turtle,
-    Medal: diamond,
+    Medal: DropIcon,
     name: "Diamond",
   },
   {

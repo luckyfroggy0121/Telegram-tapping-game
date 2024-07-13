@@ -1,4 +1,3 @@
-import Diamond from "@/assets/images/diamond.png";
 import FriendsIcon from "@/assets/svg/friends.svg";
 import telegram from "@/assets/svg/telegram.svg";
 import premium from "@/assets/images/premium.gif";
@@ -13,9 +12,10 @@ import {
 import HandIcon from "@/assets/svg/hand.svg?react";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { displayNumbers } from "@/lib/utils";
-import FriendIcon from "@/assets/svg/friend.svg?react";
 import { LevelDatable } from "@/components/common/level-datatable";
 import { LevelFriend } from "@/interface/LevelFriend";
+import DropIcon from "@/assets/svg/dropIcon.svg?react";
+import { seaCreatures } from "@/lib/seacreatures";
 
 const inviteOptions = [
   {
@@ -113,8 +113,8 @@ const Friends = () => {
               alt={option.title}
               className="h-[3rem] mt-[9px]"
             />
-            <div className="flex items-center mt-2">
-              <img src={Diamond} alt="diamond" className="h-5 w-5 mt-1" />
+            <div className="flex items-center gap-0.5 mt-2">
+              <DropIcon className="h-5 w-5" />
               <div className="font-extrabold text-[20px]">
                 {displayNumbers(option.drops)}
               </div>
@@ -156,8 +156,8 @@ const Friends = () => {
                 <IoCloseCircleSharp color="#FFFFFF80" size={25} />
               </DrawerClose>
             </DrawerTitle>
-            <img src={Diamond} alt="diamond" className="mt-2" />
-            <HandIcon height={35} />
+            <DropIcon className="mt-2 h-11 w-11" />
+            <HandIcon height={50} />
             <div className="text-white/80 text-center text-[14px] font-extrabold leading-[18px] mt-4 mb-2">
               Earn more DROPS when a friend reaches a certain level
             </div>
@@ -177,30 +177,36 @@ const Friends = () => {
             return (
               <div
                 key={index}
-                className="bg-[#C3C3C33D] rounded-[11px] flex justify-between pr-5 items-center w-full"
+                className="bg-[#C3C3C33D] pl-2 py-2 rounded-[11px] flex justify-between pr-5 items-center w-full"
               >
                 <div className="flex items-center gap-2">
-                  <div className="flex flex-col items-center">
-                    <div className="relative">
-                      <FriendIcon height={70} width={70} />
+                  <div className="rounded-full w-[2.5rem] flex items-center justify-center h-[2.5rem] border-white border px-1 pb-3 pt-2 bg-[#934dca]">
+                    <div
+                      className="w-full h-full bg-contain bg-center bg-[#5417b0] relative overflow-hidden mt-2"
+                      style={{
+                        maskImage: `url(${
+                          seaCreatures.find(
+                            (seacreature) => seacreature.title === friend.level
+                          )?.Fish
+                        })`,
+                        maskSize: "100% 100%",
+                        maskPosition: "center",
+                      }}
+                    ></div>
+                  </div>
+                  <div className="flex flex-col ">
+                    <div className="flex items-center gap-1">
                       <img
                         src={option?.image}
                         alt={option?.title}
-                        className="absolute bottom-2 right-2 w-5"
+                        className="w-4 h-4"
                       />
+                      <div className="font-bold text-[11px] leading-6">
+                        {friend.name}
+                      </div>
                     </div>
-                    <div className="text-[8px] -mt-2">{friend.level} Level</div>
-                  </div>
-                  <div className="flex flex-col">
-                    <div className="font-bold text-[11px] leading-6">
-                      {friend.name}
-                    </div>
-                    <div className="flex items-center -mt-1">
-                      <img
-                        src={Diamond}
-                        alt="diamond"
-                        className="h-4 w-4 mt-0.5"
-                      />
+                    <div className="flex items-center gap-1 -mt-0.5">
+                      <DropIcon className="-mt-1 h-4 w-4" />
                       <div className="font-extrabold text-[11px] leading-6">
                         +{displayNumbers(friend.amount)}
                       </div>

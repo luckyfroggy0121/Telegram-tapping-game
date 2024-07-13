@@ -1,6 +1,6 @@
 import { LevelFriend } from "@/interface/LevelFriend";
 import { levels } from "@/lib/seacreatures";
-import Diamond from "@/assets/images/diamond.png";
+import DropIcon from "@/assets/svg/dropIcon.svg?react";
 import {
   ColumnDef,
   flexRender,
@@ -55,7 +55,7 @@ const columns: ColumnDef<LevelFriend>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center gap-[2px]">
-          <img src={Diamond} alt="drop" className="h-4" />
+          <DropIcon className="h-6 w-6"/>
           <h2 className="text-[13px] font-extrabold leading-[18px]">
             +{displayMinimizedNumbers(row.original.friend)}
           </h2>
@@ -69,7 +69,7 @@ const columns: ColumnDef<LevelFriend>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center gap-[2px]">
-          <img src={Diamond} alt="drop" className="h-4" />
+          <DropIcon className="h-6 w-6"/>
           <h2 className="text-[13px] font-extrabold leading-[18px]">
             +{displayMinimizedNumbers(row.original.premium)}
           </h2>

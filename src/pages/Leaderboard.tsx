@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { seaCreatures } from "@/lib/seacreatures";
 import ProgressBar from "@ramonak/react-progress-bar";
-import Diamond from "@/assets/images/diamond.png";
+import DropIcon from "@/assets/svg/dropIcon.svg?react";
 import { displayNumbers } from "@/lib/utils";
 import { type CarouselApi } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
@@ -214,10 +214,10 @@ const Leaderboard = () => {
                     }
                   ></div>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-0.5">
                   <div className="font-bold text-[11px]" style={{paddingLeft: '3px'}}>{person.name}</div>
-                  <div className="flex items-center">
-                    <img src={Diamond} alt="diamond" className="w-4 h-4" />
+                  <div className="flex items-center gap-0.5">
+                    <DropIcon className="w-3 h-3 -mt-1" />
                     <div className="font-extrabold text-[11px]">
                       {displayNumbers(person.drops)}
                     </div>

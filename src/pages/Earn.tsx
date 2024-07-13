@@ -8,9 +8,7 @@ import Community from "@/assets/images/community.png";
 import JoinTank from "@/assets/images/jointank.png";
 import { Button } from "@/components/ui/button";
 import { FaCheck, FaChevronRight } from "react-icons/fa6";
-import Diamond from "@/assets/images/diamond.png";
 import { displayNumbers } from "@/lib/utils";
-
 import {
   Drawer,
   DrawerClose,
@@ -145,8 +143,8 @@ const Earn = () => {
         Earn more DROPS
       </div>
       <div className="flex flex-col items-center mt-1">
-        <DropIcon height={50} width={50} className="mt-3" />
-        <SaveIcon className="mt-2" />
+        <DropIcon className="mt-3" height={50} width={50} />
+        <SaveIcon className="w-44" />
       </div>
       <div className="mt-3 font-extrabold text-[13px] leading-6">Tasks</div>
       <div className="flex flex-col gap-[5px] mt-1 w-full">
@@ -169,8 +167,8 @@ const Earn = () => {
                   <div className="font-bold text-[11px] leading-6">
                     {task.title}
                   </div>
-                  <div className="flex items-center -mt-1 -ml-1">
-                    <img src={Diamond} alt="diamond" className="h-5" />
+                  <div className="flex items-center gap-0.5 -mt-1 -ml-1">
+                    <DropIcon className="h-4 w-4" />
                     <div className="font-extrabold text-[11px] leading-6">
                       +{displayNumbers(task.drops)}
                     </div>
@@ -202,8 +200,8 @@ const Earn = () => {
                       <div className="font-bold text-[11px] leading-6">
                         {task.title}
                       </div>
-                      <div className="flex items-center -mt-1 -ml-1">
-                        <img src={Diamond} alt="diamond" className="h-5" />
+                      <div className="flex items-center -mt-1 gap-0.5 -ml-1">
+                        <DropIcon className="h-4 w-4 -mt-0.5" />
                         <div className="font-extrabold text-[11px] leading-6">
                           +{displayNumbers(task.drops)}
                         </div>

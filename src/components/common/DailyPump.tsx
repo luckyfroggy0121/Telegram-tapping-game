@@ -4,8 +4,7 @@ import { DrawerClose, DrawerContent, DrawerTitle } from "../ui/drawer";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { Button } from "../ui/button";
 import { displayNumbers } from "@/lib/utils";
-
-import Diamond from "@/assets/images/diamond.png";
+import DropIcon from "@/assets/svg/dropIcon.svg?react";
 import PumpIcon from "@/assets/svg/pumpIcon.svg";
 import { Toast } from "@/lib/toast";
 import { useSetRecoilState } from "recoil";
@@ -119,7 +118,7 @@ const DailyPump = ({ handleTaskCompletion }: Props) => {
             }`}
           >
             <div>Day {index + 1}</div>
-            <img src={Diamond} alt="diamond" />
+            <DropIcon className="my-1 h-6 w-6"/>
             <div>{displayNumbers(drops)}</div>
           </Button>
         ))}
