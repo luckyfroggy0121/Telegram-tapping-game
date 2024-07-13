@@ -24,7 +24,7 @@ export const levelAtom = atom<number>({
 
 export const balanceAtom = atom<number>({
   key: "balanceAtom",
-  default: 4990,
+  default: 4960,
 });
 
 export const energyAtom = atom<number>({

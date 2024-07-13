@@ -114,7 +114,7 @@ const Friends = () => {
               className="h-[3rem] mt-[9px]"
             />
             <div className="flex items-center gap-0.5 mt-2">
-              <DropIcon className="h-5 w-5" />
+              <DropIcon className="h-4 w-4" />
               <div className="font-extrabold text-[20px]">
                 {displayNumbers(option.drops)}
               </div>
@@ -206,7 +206,7 @@ const Friends = () => {
                       </div>
                     </div>
                     <div className="flex items-center gap-1 -mt-0.5">
-                      <DropIcon className="-mt-1 h-4 w-4" />
+                      <DropIcon className="-mt-1 h-3 w-3" />
                       <div className="font-extrabold text-[11px] leading-6">
                         +{displayNumbers(friend.amount)}
                       </div>
