@@ -55,7 +55,7 @@ const columns: ColumnDef<LevelFriend>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center gap-[2px]">
-          <DropIcon className="h-6 w-6"/>
+          <DropIcon className="h-4 w-4"/>
           <h2 className="text-[13px] font-extrabold leading-[18px]">
             +{displayMinimizedNumbers(row.original.friend)}
           </h2>
@@ -69,7 +69,7 @@ const columns: ColumnDef<LevelFriend>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center gap-[2px]">
-          <DropIcon className="h-6 w-6"/>
+          <DropIcon className="h-4 w-4"/>
           <h2 className="text-[13px] font-extrabold leading-[18px]">
             +{displayMinimizedNumbers(row.original.premium)}
           </h2>

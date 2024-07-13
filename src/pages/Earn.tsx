@@ -168,7 +168,7 @@ const Earn = () => {
                     {task.title}
                   </div>
                   <div className="flex items-center gap-0.5 -mt-1 -ml-1">
-                    <DropIcon className="h-4 w-4" />
+                    <DropIcon className="h-3 w-3  -mt-0.5" />
                     <div className="font-extrabold text-[11px] leading-6">
                       +{displayNumbers(task.drops)}
                     </div>
@@ -201,7 +201,7 @@ const Earn = () => {
                         {task.title}
                       </div>
                       <div className="flex items-center -mt-1 gap-0.5 -ml-1">
-                        <DropIcon className="h-4 w-4 -mt-0.5" />
+                        <DropIcon className="h-3 w-3  -mt-0.5" />
                         <div className="font-extrabold text-[11px] leading-6">
                           +{displayNumbers(task.drops)}
                         </div>
