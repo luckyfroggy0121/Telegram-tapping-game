@@ -93,6 +93,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    outline: none; /* Remove focus outline */
+    box-shadow: none; /* Remove any box shadow */
+    border: none; /* Remove any border */
+    -webkit-appearance: none; /* Remove default webkit appearance */
+    -webkit-box-shadow: none; /* Remove iOS specific box shadow */
+    -webkit-border-radius: 0; /* Remove any border radius */
+    -moz-appearance: none; /* Remove default moz appearance */
+    appearance: none; /* Remove default appearance */
+
   }
 }
 
