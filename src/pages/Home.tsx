@@ -70,11 +70,11 @@ const HomePage = () => {
         if (newProgress === 100) return 99;
         return newProgress;
       });
-      if (newProgress === 100) {
-        setTimeout(() => {
-          setWaterLevel(0);
-        }, 800);
-      }
+      // if (newProgress === 100) {
+      //   setTimeout(() => {
+      //     setWaterLevel(0);
+      //   }, 800);
+      // }
       const clickX = event.clientX;
       const clickY = event.clientY;
       setNumbers([...numbers, { number: amount, x: clickX, y: clickY }]);
@@ -171,7 +171,7 @@ const HomePage = () => {
           </Drawer>
         )}
         <div className="flex mt-1 justify-center items-center gap-2 font-extrabold text-[36px]">
-          <DropIcon className="-mt-1" height={30} width={30} />
+          <DropIcon className="" height={28} width={28} />
           <div>{displayNumbers(parseInt(balance.toFixed(2)))}</div>
         </div>
         <Button

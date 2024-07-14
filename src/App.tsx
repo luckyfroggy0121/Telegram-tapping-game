@@ -5,13 +5,20 @@ import { Suspense, useState, useEffect } from "react";
 import GameLayout from "./layout/GameLayout";
 import SplashPage from "./pages/Splash";
 
-const App = () => {
+interface User {
+  userId: string;
+  userName: string;
+}
+
+const App = ({ user }: { user: User }) => {
   const [showGame, setShowGame] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowGame(true);
     }, 2000);
+
+    console.log(user);
 
     return () => clearTimeout(timer);
   }, []);
