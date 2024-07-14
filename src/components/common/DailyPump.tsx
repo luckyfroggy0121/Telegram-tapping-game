@@ -8,15 +8,17 @@ import DropIcon from "@/assets/svg/dropIcon.svg?react";
 import PumpIcon from "@/assets/svg/pumpIcon.svg";
 import { Toast } from "@/lib/toast";
 import Confetti from "react-confetti";
+import { useSetRecoilState } from "recoil";
+import { balanceAtom } from "@/lib/atom";
 
 const dropsDays = [
   500, 1000, 2500, 5000, 15000, 25000, 100000, 500000, 1000000, 5000000,
 ];
 
-type Props = {
-  handleTaskCompletion?: (taskId: number) => void;
-};
-const DailyPump = ({ handleTaskCompletion }: Props) => {
+
+const DailyPump = (
+  
+) => {
   const [currentDay, setCurrentDay] = useState(0);
   const [totalDrops, setTotalDrops] = useState(0);
   const [collected, setCollected] = useState(Array(10).fill(false));
@@ -67,6 +69,8 @@ const DailyPump = ({ handleTaskCompletion }: Props) => {
     }
   }, [lastPumpTime]);
 
+  const setBalance = useSetRecoilState(balanceAtom);
+
   const handlePump = () => {
     if (collected[currentDay] || !isPumpAvailable) return;
 
@@ -75,10 +79,14 @@ const DailyPump = ({ handleTaskCompletion }: Props) => {
     newCollected[currentDay] = true;
 
     Toast(`You've received +${dropsDays[currentDay]} DROPS`, "info");
+    setBalance((prev) => {
+      const newBalance = prev + dropsDays[currentDay];
+      localStorage.setItem("balance", newBalance.toString());
+      return newBalance;
+    });
     setTotalDrops(newTotalDrops);
     setCollected(newCollected);
     setLastPumpTime(new Date());
-    if (!handleTaskCompletion) setShowConfetti(true);
 
     setTimeout(() => {
       setShowConfetti(false);
@@ -130,7 +138,6 @@ const DailyPump = ({ handleTaskCompletion }: Props) => {
           <Button
             onClick={() => {
               handlePump();
-              handleTaskCompletion && handleTaskCompletion(4);
             }}
             disabled={!isPumpAvailable}
             className="bg-[#9712F4] font-bold h-12 w-full text-[16px] rounded-full"

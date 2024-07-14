@@ -41,6 +41,7 @@ const boosters = [
 const Boost = () => {
   const [balance, setBalance] = useRecoilState(balanceAtom);
   const setTabs = useSetRecoilState(tabsAtom);
+  const maxEnergy = Number(localStorage.getItem("energyMax") ?? "500");
   const dailEnergy = localStorage.getItem("dailyEnergy") ?? "6";
   const setEnergy = useSetRecoilState(energyAtom);
 
@@ -58,7 +59,7 @@ const Boost = () => {
           Free daily boosters
         </h2>
         <Drawer>
-          <DrawerTrigger asChild>
+          <DrawerTrigger asChild disabled={dailEnergy === "0"}>
             <Button className="flex items-center bg-[#C3C3C33D] h-[62px] justify-between w-full">
               <div className="flex items-center gap-2">
                 <EnergyIcon />
@@ -102,7 +103,7 @@ const Boost = () => {
                   "dailyEnergy",
                   (Number(dailEnergy) - 1).toString()
                 );
-                setEnergy(500);
+                setEnergy(maxEnergy);
                 Toast("Energy successfully recharged", "info");
                 setTimeout(() => {
                   setTabs((tabs) =>
@@ -201,7 +202,9 @@ const Boost = () => {
                       tabs.length === 1 ? tabs : tabs.slice(0, tabs.length - 1)
                     );
                   }, 20);
-                  setBalance(balance - booster.drops);
+                  const newBalance = balance - booster.drops;
+                  setBalance(newBalance);
+                  localStorage.setItem("balance", newBalance.toString());
                 }}
                 disabled={balance < booster.drops}
               >
