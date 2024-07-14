@@ -2,7 +2,7 @@
 import SaveIcon from "@/assets/svg/save.svg?react";
 import DropIcon from "@/assets/svg/dropIcon.svg?react";
 import Telegram from "@/assets/images/telegram.gif";
-import Twitter from "@/assets/svg/twitter.svg";
+import Twitter from "@/assets/images/tweeter.png";
 // import Youtube from "@/assets/svg/youtube.svg";
 import Community from "@/assets/images/community.png";
 import JoinTank from "@/assets/images/jointank.png";
