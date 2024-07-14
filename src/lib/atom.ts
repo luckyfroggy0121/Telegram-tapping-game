@@ -19,12 +19,12 @@ export const currentTankAtom = atom<CurrentTank>({
 
 export const levelAtom = atom<number>({
   key: "levelAtom",
-  default: 0,
+  default: Number(localStorage.getItem("level") ?? "0"),
 });
 
 export const balanceAtom = atom<number>({
   key: "balanceAtom",
-  default: 4960,
+  default: Number(localStorage.getItem("balance") ?? "0"),
 });
 
 export const energyAtom = atom<number>({
