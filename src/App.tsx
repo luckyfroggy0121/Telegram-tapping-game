@@ -28,7 +28,6 @@ const App = ({ user }: { user: User }) => {
       <Layout>
         <Suspense fallback={<LoadingPage />}>
           {showGame ? <GameLayout /> : <SplashPage />}
-          <h1>{user.userId}</h1>
         </Suspense>
       </Layout>
     </RecoilRoot>
