@@ -68,11 +68,11 @@ const HomePage = () => {
         if (newProgress === 100) return 99;
         return newProgress;
       });
-      if (newProgress === 100) {
-        setTimeout(() => {
-          setWaterLevel(0);
-        }, 800);
-      }
+      // if (newProgress === 100) {
+      //   setTimeout(() => {
+      //     setWaterLevel(0);
+      //   }, 800);
+      // }
       const clickX = event.clientX;
       const clickY = event.clientY;
       setNumbers([...numbers, { number: amount, x: clickX, y: clickY }]);
