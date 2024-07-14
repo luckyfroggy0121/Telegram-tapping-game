@@ -16,6 +16,7 @@ import { IoCloseCircleSharp } from "react-icons/io5";
 import Electrolite from "@/assets/svg/electrolyte.svg";
 import multitap from "@/assets/svg/multitap.svg";
 import { Toast } from "@/lib/toast";
+import { useEffect, useState } from "react";
 
 const boosters = [
   {
@@ -42,14 +43,28 @@ const Boost = () => {
   const [balance, setBalance] = useRecoilState(balanceAtom);
   const setTabs = useSetRecoilState(tabsAtom);
   const maxEnergy = Number(localStorage.getItem("energyMax") ?? "500");
-  const dailEnergy = localStorage.getItem("dailyEnergy") ?? "6";
+  const [dailEnergy, setDailEnergy] = useState(
+    Number(localStorage.getItem("dailyEnergy") ?? "6")
+  );
   const setEnergy = useSetRecoilState(energyAtom);
+  const LastEnergyTime = localStorage.getItem("lastEnergyTime");
+  useEffect(() => {
+    if (LastEnergyTime) {
+      const now = new Date();
+      const timeDiff = now.getTime() - new Date(LastEnergyTime).getTime();
+      const hoursPassed = timeDiff / (1000 * 60 * 60);
+      if (hoursPassed >= 24) {
+        localStorage.setItem("dailyEnergy", "6");
+        setDailEnergy(6);
+      }
+    }
+  }, [LastEnergyTime]);
 
   return (
     <div className="py-5 px-5 flex flex-col items-center">
       <h2 className="text-[20px] leading-6 font-medium pl-3">Your balance</h2>
       <h2 className="flex items-center gap-2 justify-center mt-[17px]">
-        <DropIcon className="h-9 -mt-1" />
+        <DropIcon height={28} width={28} className="-mt-1" />
         <span className="text-[33px] font-extrabold leading-6">
           {displayNumbers(balance)}
         </span>
@@ -59,7 +74,7 @@ const Boost = () => {
           Free daily boosters
         </h2>
         <Drawer>
-          <DrawerTrigger asChild disabled={dailEnergy === "0"}>
+          <DrawerTrigger asChild disabled={dailEnergy === 0}>
             <Button className="flex items-center bg-[#C3C3C33D] h-[62px] justify-between w-full">
               <div className="flex items-center gap-2">
                 <EnergyIcon />
@@ -101,8 +116,14 @@ const Boost = () => {
               onClick={() => {
                 localStorage.setItem(
                   "dailyEnergy",
-                  (Number(dailEnergy) - 1).toString()
+                  (dailEnergy - 1).toString()
                 );
+                localStorage.setItem(
+                  "lastEnergyTime",
+                  new Date().toISOString()
+                );
+                setDailEnergy(dailEnergy - 1);
+
                 setEnergy(maxEnergy);
                 Toast("Energy successfully recharged", "info");
                 setTimeout(() => {
