@@ -3,7 +3,7 @@ import SaveIcon from "@/assets/svg/save.svg?react";
 import DropIcon from "@/assets/svg/dropIcon.svg?react";
 import Telegram from "@/assets/images/telegram.gif";
 import Twitter from "@/assets/svg/twitter.svg";
-import Youtube from "@/assets/svg/youtube.svg";
+// import Youtube from "@/assets/svg/youtube.svg";
 import Community from "@/assets/images/community.png";
 import JoinTank from "@/assets/images/jointank.png";
 import { Button } from "@/components/ui/button";
@@ -44,14 +44,14 @@ const allTasks = [
     completed: false,
     link: "https://x.com/smartlitre?s=21&t=AXJCLgvmsPnKoMsdF5V9Cw",
   },
-  {
-    id: 3,
-    title: "Watch SmartLitre Game Demo",
-    drops: 5000,
-    image: Youtube,
-    completed: false,
-    link: "http://www.youtube.com/@SmartLitre",
-  },
+  // {
+  //   id: 3,
+  //   title: "Watch SmartLitre Game Demo",
+  //   drops: 5000,
+  //   image: Youtube,
+  //   completed: false,
+  //   link: "http://www.youtube.com/@SmartLitre",
+  // },
   {
     id: 4,
     title: "Invite 3 friends",
