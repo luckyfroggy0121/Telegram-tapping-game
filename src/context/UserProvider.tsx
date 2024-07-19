@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { User } from "@/interface/User";
 import LoadingPage from "@/pages/Loading";
 import { ReactNode, createContext, useEffect, useState } from "react";

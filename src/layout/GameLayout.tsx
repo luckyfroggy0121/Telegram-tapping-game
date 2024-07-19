@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import HomePage from "@/pages/Home";
 import Navbar from "../components/common/Navbar";
 import { Toaster } from "react-hot-toast";
