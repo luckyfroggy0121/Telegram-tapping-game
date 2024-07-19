@@ -7,4 +7,6 @@ export interface User {
   level?: number
   balance?: number;
   tank?: string;
+  energyMax?: number;
+  dropsAmount?: number;
 }

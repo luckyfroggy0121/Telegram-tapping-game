@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { User } from "@/interface/User";
 import LoadingPage from "@/pages/Loading";
 import { ReactNode, createContext, useEffect, useState } from "react";
@@ -12,6 +13,8 @@ import {
   doc,
   setDoc,
 } from "firebase/firestore";
+import { useSetRecoilState } from "recoil";
+import { errorAtom } from "@/lib/atom";
 
 // function to get the current user from the firestore
 export const getUserByTelegramId = async (id: number): Promise<User | null> => {
@@ -84,41 +87,41 @@ export type ContextProps = {
 export default function UserProvider({ children }: ContextProps) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const setError = useSetRecoilState(errorAtom);
 
   useEffect(() => {
     const initializeTelegramWebApp = async () => {
-      setLoading(true);
-      if (window.Telegram && window.Telegram.WebApp) {
-        const webApp = window.Telegram.WebApp;
-        webApp.expand();
-        webApp.disableVerticalSwipes();
+      try {
+        setLoading(true);
+        if (window.Telegram && window.Telegram.WebApp) {
+          const webApp = window.Telegram.WebApp;
+          webApp.expand();
+          webApp.disableVerticalSwipes();
 
-        const teleUser = webApp.initDataUnsafe?.user;
-        const currentUser = {
-          id: teleUser.id,
-          first_name: teleUser.first_name,
-          last_name: teleUser.last_name,
-          username: teleUser.username,
-          balance: Number(localStorage.getItem("balance")),
-          level: Number(localStorage.getItem("level")),
-          tank: JSON.stringify(localStorage.getItem("currentTank")),
-        } as User;
+          const teleUser = webApp.initDataUnsafe?.user;
+          const currentUser = {
+            id: teleUser.id,
+            first_name: teleUser.first_name,
+            last_name: teleUser.last_name,
+            username: teleUser.username,
+            balance: Number(localStorage.getItem("balance") ?? 0),
+            level: Number(localStorage.getItem("level") ?? 0),
+            energyMax: Number(localStorage.getItem("energyMax") ?? "500"),
+            dropsAmount: Number(localStorage.getItem("dropsAmount") ?? "1"),
+            tank: JSON.stringify(localStorage.getItem("currentTank")),
+          } as User;
 
-        const telegramId = teleUser?.id;
-        if (telegramId) {
-          await saveUser(currentUser);
-
-          const fetchedUser = await fetchUser(telegramId.toString());
-          if (fetchedUser) {
-             setUser(fetchedUser);
-          }else{
+          const telegramId = teleUser?.id;
+          if (telegramId) {
+            saveUser(currentUser);
             setUser(currentUser);
+            setLoading(false);
           }
-          setLoading(false);
+        } else {
+          setError("Telegram WebApp is not available");
         }
-      } else {
-        console.error("Telegram WebApp is not available");
-        setLoading(false);
+      } catch (error) {
+        setError("Telegram User not available");
       }
     };
 
