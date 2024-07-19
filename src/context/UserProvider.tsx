@@ -99,8 +99,10 @@ export default function UserProvider({ children }: ContextProps) {
           first_name: teleUser.first_name,
           last_name: teleUser.last_name,
           username: teleUser.username,
-          balance: Number(localStorage.getItem("balance")),
-          level: Number(localStorage.getItem("level")),
+          balance: Number(localStorage.getItem("balance") ?? 0),
+          level: Number(localStorage.getItem("level") ?? 0),
+          energyMax: Number(localStorage.getItem("energyMax") ?? "500"),
+          dropsAmount: Number(localStorage.getItem("dropsAmount") ?? "1"),
           tank: JSON.stringify(localStorage.getItem("currentTank")),
         } as User;
 
@@ -110,8 +112,8 @@ export default function UserProvider({ children }: ContextProps) {
 
           const fetchedUser = await fetchUser(telegramId.toString());
           if (fetchedUser) {
-             setUser(fetchedUser);
-          }else{
+            setUser(fetchedUser);
+          } else {
             setUser(currentUser);
           }
           setLoading(false);

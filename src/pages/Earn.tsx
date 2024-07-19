@@ -73,7 +73,6 @@ const Earn = () => {
   const currentTank = useRecoilValue(currentTankAtom);
   const setBalance = useSetRecoilState(balanceAtom);
   const [tabs, setTabs] = useRecoilState(tabsAtom);
-  
 
   // Initialize state for task completion
   const [tasks, setTasks] = useState(allTasks);
@@ -114,9 +113,6 @@ const Earn = () => {
       );
       setShowConfetti(true);
       Toast("Task complete", "info");
-      setTimeout(() => {
-        setShowConfetti(false);
-      }, 5000);
     }
   }, [currentTank]);
 
