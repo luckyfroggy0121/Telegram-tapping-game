@@ -52,17 +52,17 @@ const HomePage = () => {
   const { Medal, drops, title, Fish } = seaCreatures[level];
 
   const currentTankName = localStorage.getItem("currentTank");
-  const currentTankProps = tanks.filter(t => t.name === currentTankName)[0];
+  const currentTankProps = tanks.filter((t) => t.name === currentTankName)[0];
 
   const currentLevelProgress = (balance / drops) * 100;
   const amount = Number(localStorage.getItem("dropsAmount") ?? "1");
   const maxEnergy = Number(localStorage.getItem("energyMax") ?? "500");
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const addition = eval("100 / (10*(level+1))");
+    const addition = 100 / (10 * (level + 1));
     if (level < 6 && currentLevelProgress <= 100 && energy > 0) {
       setEnergy((prev) => Math.max(prev - 1, 0));
-      const newBalance =  balance + amount;
+      const newBalance = balance + amount;
       setBalance(newBalance);
       localStorage.setItem("balance", newBalance.toString());
       const newProgress = waterLevel + addition;
@@ -74,7 +74,7 @@ const HomePage = () => {
         if (newProgress === 100) return 99;
         return newProgress;
       });
-      
+
       const clickX = event.clientX;
       const clickY = event.clientY;
       setNumbers([...numbers, { number: amount, x: clickX, y: clickY }]);
@@ -139,7 +139,9 @@ const HomePage = () => {
                   alt={currentTankProps.name}
                   className="h-10"
                 />
-                <div className="font-bold text-[15px]">{currentTankProps.name}</div>
+                <div className="font-bold text-[15px]">
+                  {currentTankProps.name}
+                </div>
               </div>
               <FaChevronRight fontSize={20} className="text-white" />
             </DrawerTrigger>
