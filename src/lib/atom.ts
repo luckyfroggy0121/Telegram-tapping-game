@@ -36,3 +36,7 @@ export const confettiAtom = atom<boolean>({
   key: "confettiAtom",
   default: false,
 });
+
+export const errorAtom = atom<string>({
+  key: "ErrorATom",
+});
