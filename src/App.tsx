@@ -4,25 +4,24 @@ import LoadingPage from "./pages/Loading";
 import { Suspense, useState, useEffect } from "react";
 import GameLayout from "./layout/GameLayout";
 import SplashPage from "./pages/Splash";
+import { useUser } from "./hooks/useUser";
 
-interface User {
-  userId: string;
-  userName: string;
-}
 
-const App = ({ user }: { user: User }) => {
+const App = () => {
   const [showGame, setShowGame] = useState(false);
+  const { user } = useUser();
+
+  console.log("this is the user: ", user);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowGame(true);
     }, 2000);
 
-    console.log(user);
-
     return () => clearTimeout(timer);
   }, []);
-  
+
+
   return (
     <RecoilRoot>
       <Layout>

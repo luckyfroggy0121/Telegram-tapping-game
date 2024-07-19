@@ -23,7 +23,7 @@ import { MdPerson } from "react-icons/md";
 import { displayMinimizedNumbers } from "@/lib/utils";
 import { Toast } from "@/lib/toast";
 
-const tanks = [
+ export const tanks = [
   {
     name: "Binance",
     image: binance,
@@ -113,6 +113,7 @@ const JoinTank = () => {
               <DrawerClose
                 onClick={() => {
                   setCurrentTank(tank);
+                  localStorage.setItem("currentTank",tank.name)
                   setTabs((tabs) =>
                     tabs.length === 1 ? tabs : tabs.slice(0, tabs.length - 1)
                   );

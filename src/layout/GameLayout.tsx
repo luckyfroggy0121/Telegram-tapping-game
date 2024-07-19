@@ -10,6 +10,8 @@ import Boost from "@/pages/Boost";
 import Friends from "@/pages/Friends";
 import Confetti from "react-confetti";
 
+
+
 const tabs = [
   {
     name: "home",

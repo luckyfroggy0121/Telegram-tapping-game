@@ -29,6 +29,7 @@ import {
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { FaChevronRight } from "react-icons/fa6";
 import { Toast } from "@/lib/toast";
+import { tanks } from "./JoinTank";
 
 const HomePage = () => {
   const setShowConfetti = useSetRecoilState(confettiAtom);
@@ -49,6 +50,9 @@ const HomePage = () => {
   const [waterLevel, setWaterLevel] = useState(0);
 
   const { Medal, drops, title, Fish } = seaCreatures[level];
+
+  const currentTankName = localStorage.getItem("currentTank");
+  const currentTankProps = tanks.filter(t => t.name === currentTankName)[0];
 
   const currentLevelProgress = (balance / drops) * 100;
   const amount = Number(localStorage.getItem("dropsAmount") ?? "1");
@@ -116,7 +120,7 @@ const HomePage = () => {
   return (
     <>
       <div className="flex flex-col items-center h-full px-3 grow shrink basis-auto">
-        {currentTank.name === "" && currentTank.image === "" ? (
+        {!currentTankName ? (
           <Button
             onClick={() => {
               setTabs([...tabs, "jointank"]);
@@ -131,11 +135,11 @@ const HomePage = () => {
             <DrawerTrigger className="flex items-center gap-2 py-[6px] px-[13px] justify-between w-full bg-[#8d2aec] rounded-full">
               <div className="flex items-center gap-2">
                 <img
-                  src={currentTank.image}
-                  alt={currentTank.name}
+                  src={currentTankProps.image}
+                  alt={currentTankProps.name}
                   className="h-10"
                 />
-                <div className="font-bold text-[15px]">{currentTank.name}</div>
+                <div className="font-bold text-[15px]">{currentTankProps.name}</div>
               </div>
               <FaChevronRight fontSize={20} className="text-white" />
             </DrawerTrigger>
@@ -146,16 +150,17 @@ const HomePage = () => {
                 </DrawerClose>
               </DrawerTitle>
               <img
-                src={currentTank.image}
-                alt={currentTank.name}
+                src={currentTankProps.image}
+                alt={currentTankProps.name}
                 className="w-[100px]"
               />
               <div className="font-bold text-[24px] leading-[18px] my-8">
-                {currentTank.name}
+                {currentTankProps.name}
               </div>
               <DrawerClose
                 onClick={() => {
                   setCurrentTank({ name: "", image: "" });
+                  localStorage.removeItem("currentTank");
                   Toast(`You left the ${currentTank.name} Tank`, "info");
                 }}
                 className="w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]"

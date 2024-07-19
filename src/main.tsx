@@ -1,25 +1,38 @@
 import ReactDOM from "react-dom/client";
-import { useEffect, useState } from 'react';
+import { useEffect } from "react";
 import "./index.css";
 import App from "./App";
+import BaseProvider from "./context/BaseProvider";
+import { initialTelegramData } from "./interface/initialTelegramData";
+import { useUser } from "./hooks/useUser";
 
-const getQueryParams = (search: string) => {
-  const params = new URLSearchParams(search);
-  const userId = params.get('userId') || '';
-  const userName = params.get('userName') || '';
-  return { userId, userName };
-};
+interface TelegramWebApp {
+  initDataUnsafe: initialTelegramData;
+  expand: () => void;
+  disableVerticalSwipes: () => void;
+  onEvent:any
+  offEvent:any
+}
+
+declare global {
+  interface Window {
+    Telegram?: {
+      WebApp?: TelegramWebApp;
+    };
+  }
+}
 
 const Main = () => {
-  const [user, setUser] = useState({ userId: '', userName: '' });
+  const { user } = useUser();
 
   useEffect(() => {
-    const { userId, userName } = getQueryParams(window.location.search);
-    setUser({ userId, userName });
+    console.log(user);
   }, []);
-
-  return <App user={user} />;
+  return (
+    <BaseProvider>
+      <App />
+    </BaseProvider>
+  );
 };
-
 
 ReactDOM.createRoot(document.getElementById("root")!).render(<Main />);

@@ -19,6 +19,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.1.6",
+    "firebase": "^10.12.3",
     "lodash": "^4.17.21",
     "lucide-react": "^0.397.0",
     "react": "^18.3.1",
