@@ -173,7 +173,7 @@ const Boost = () => {
 
           return (
             <Drawer key={idx}>
-              <DrawerTrigger asChild>
+              <DrawerTrigger asChild disabled={level > currentLevel}>
                 <Button className="flex items-center bg-[#C3C3C33D] h-[62px] justify-between w-full">
                   <div className="flex items-center gap-2">
                     <img
@@ -235,9 +235,7 @@ const Boost = () => {
                 <DrawerClose
                   className={cn(
                     "w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]",
-                    balance < drops || level > currentLevel
-                      ? "bg-[#7054a5]"
-                      : ""
+                    balance < drops ? "bg-[#7054a5]" : ""
                   )}
                   style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
                   onClick={() => {
@@ -275,11 +273,7 @@ const Boost = () => {
                   }}
                   disabled={balance < drops}
                 >
-                  {balance < drops
-                    ? "Insufficeint Funds"
-                    : level > currentLevel
-                    ? "Level up to " + seacreatureTitle + " level"
-                    : "Get"}
+                  {balance < drops ? "Insufficeint Funds" : "Get"}
                 </DrawerClose>
               </DrawerContent>
             </Drawer>
