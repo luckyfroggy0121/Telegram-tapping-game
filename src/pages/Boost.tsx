@@ -235,7 +235,9 @@ const Boost = () => {
                 <DrawerClose
                   className={cn(
                     "w-[250px] bg-[#9712F4] h-[48px] font-bold text-[16px] leading-5 rounded-[30px]",
-                    balance < drops || currentLevel === 0 ? "bg-[#7054a5]" : ""
+                    balance < drops || level > currentLevel
+                      ? "bg-[#7054a5]"
+                      : ""
                   )}
                   style={{ boxShadow: "0px 4px 4px 0px #00000040" }}
                   onClick={() => {
@@ -275,8 +277,8 @@ const Boost = () => {
                 >
                   {balance < drops
                     ? "Insufficeint Funds"
-                    : level === 0
-                    ? "Level up to Silver level"
+                    : level > currentLevel
+                    ? "Level up to " + seacreatureTitle + " level"
                     : "Get"}
                 </DrawerClose>
               </DrawerContent>
