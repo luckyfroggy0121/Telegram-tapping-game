@@ -97,34 +97,13 @@ const Earn = () => {
   const handleLinktasksCompletion = (taskId: number, URL?: string) => {
     if (URL) window.location.href = URL;
     localStorage.setItem("linkTaskId", taskId.toString());
-  };
-
-  useEffect(() => {
-    const task = tasks.filter((t) => t.id === 6);
-    if (currentTank.name !== "" && !task[0].completed) {
-      setBalance((prev) => {
-        localStorage.setItem("balance", (prev + 5000).toString());
-        return prev + 5000;
-      });
-      setTasks(
-        tasks.map((task) =>
-          task.id === 6 ? { ...task, completed: true } : task
-        )
-      );
-      setShowConfetti(true);
-      Toast("Task complete", "info");
-    }
-  }, [currentTank]);
-
-  useEffect(() => {
     setTimeout(() => {
-      const taskId = localStorage.getItem("linkTaskId");
       if (taskId && tabs[1] === "earn") {
-        const task = tasks.filter((t) => t.id === parseInt(taskId));
+        const task = tasks.filter((t) => t.id === taskId);
         if (!task[0].completed) {
           setTasks(
             tasks.map((task) =>
-              task.id === parseInt(taskId) ? { ...task, completed: true } : task
+              task.id === taskId ? { ...task, completed: true } : task
             )
           );
           setShowConfetti(true);
@@ -133,10 +112,50 @@ const Earn = () => {
       }
       localStorage.removeItem("linkTaskId");
     }, 1000);
-    setTimeout(() => {
-      setShowConfetti(false);
-    }, 5000);
-  }, [tasks]);
+  };
+
+  useEffect(() => {
+    const task = tasks.filter((t) => t.id === 6);
+    if (currentTank.name !== "" && !task[0].completed) {
+      if (localStorage.getItem("joinedTank") !== "yes") {
+        setBalance((prev) => {
+          localStorage.setItem("balance", (prev + 5000).toString());
+          return prev + 5000;
+        });
+      }
+
+      setTasks(
+        tasks.map((task) =>
+          task.id === 6 ? { ...task, completed: true } : task
+        )
+      );
+      localStorage.setItem("joinedTank", "yes");
+      setShowConfetti(true);
+      Toast("Task complete", "info");
+    }
+  }, [currentTank]);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     const taskId = localStorage.getItem("linkTaskId");
+  //     if (taskId && tabs[1] === "earn") {
+  //       const task = tasks.filter((t) => t.id === parseInt(taskId));
+  //       if (!task[0].completed) {
+  //         setTasks(
+  //           tasks.map((task) =>
+  //             task.id === parseInt(taskId) ? { ...task, completed: true } : task
+  //           )
+  //         );
+  //         setShowConfetti(true);
+  //         Toast("Task complete", "info");
+  //       }
+  //     }
+  //     localStorage.removeItem("linkTaskId");
+  //   }, 1000);
+  //   setTimeout(() => {
+  //     setShowConfetti(false);
+  //   }, 5000);
+  // }, [tasks]);
   return (
     <div className="px-5 pt-2">
       <div className="font-extrabold text-center text-[20px] leading-6">

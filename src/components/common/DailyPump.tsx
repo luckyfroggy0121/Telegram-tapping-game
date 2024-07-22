@@ -7,9 +7,8 @@ import { displayNumbers } from "@/lib/utils";
 import DropIcon from "@/assets/svg/dropIcon.svg?react";
 import PumpIcon from "@/assets/svg/pumpIcon.svg";
 import { Toast } from "@/lib/toast";
-import Confetti from "react-confetti";
-import { useSetRecoilState } from "recoil";
-import { balanceAtom } from "@/lib/atom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { balanceAtom, confettiAtom } from "@/lib/atom";
 
 const dropsDays = [
   500, 1000, 2500, 5000, 15000, 25000, 100000, 500000, 1000000, 5000000,
@@ -24,7 +23,7 @@ const DailyPump = (
   const [collected, setCollected] = useState(Array(10).fill(false));
   const [lastPumpTime, setLastPumpTime] = useState<Date | null>(null);
   const [isPumpAvailable, setIsPumpAvailable] = useState(true);
-  const [showConfetti, setShowConfetti] = useState(false);
+  const [, setShowConfetti] = useRecoilState(confettiAtom)
 
   // pumping functionality
 
@@ -87,10 +86,7 @@ const DailyPump = (
     setTotalDrops(newTotalDrops);
     setCollected(newCollected);
     setLastPumpTime(new Date());
-
-    setTimeout(() => {
-      setShowConfetti(false);
-    }, 5000);
+    setShowConfetti(true);
 
     if (currentDay === 9) {
       setCurrentDay(0);
@@ -101,9 +97,6 @@ const DailyPump = (
   };
   return (
     <DrawerContent className="flex flex-col items-center pt-6 pb-3">
-      {showConfetti && (
-        <Confetti numberOfPieces={1500} recycle={false} gravity={0.09} />
-      )}
       <DrawerTitle className="flex items-center justify-between w-full mr-5">
         <div style={{ width: "40px" }}></div>
         <div className="font-extrabold text-[24px] leading-6">Pump DROPS</div>

@@ -15,7 +15,7 @@ import { displayNumbers } from "@/lib/utils";
 import { LevelDatable } from "@/components/common/level-datatable";
 import { LevelFriend } from "@/interface/LevelFriend";
 import DropIcon from "@/assets/svg/dropIcon.svg?react";
-import { seaCreatures } from "@/lib/seacreatures";
+// import { seaCreatures } from "@/lib/seacreatures";
 
 const inviteOptions = [
   {
@@ -30,32 +30,32 @@ const inviteOptions = [
   },
 ];
 
-const friends = [
-  {
-    name: "Athar",
-    level: "Bronze",
-    amount: 2000,
-    option: "Telegram User",
-  },
-  {
-    name: "Athar",
-    level: "Bronze",
-    amount: 2000,
-    option: "Telegram User",
-  },
-  {
-    name: "Athar",
-    level: "Bronze",
-    amount: 25000,
-    option: "Premium User",
-  },
-  {
-    name: "Athar",
-    level: "Bronze",
-    amount: 25000,
-    option: "Premium User",
-  },
-];
+// const friends = [
+//   {
+//     name: "Athar",
+//     level: "Bronze",
+//     amount: 2000,
+//     option: "Telegram User",
+//   },
+//   {
+//     name: "Athar",
+//     level: "Bronze",
+//     amount: 2000,
+//     option: "Telegram User",
+//   },
+//   {
+//     name: "Athar",
+//     level: "Bronze",
+//     amount: 25000,
+//     option: "Premium User",
+//   },
+//   {
+//     name: "Athar",
+//     level: "Bronze",
+//     amount: 25000,
+//     option: "Premium User",
+//   },
+// ];
 
 const friendsLevel: LevelFriend[] = [
   {
@@ -170,7 +170,7 @@ const Friends = () => {
           Friends List
         </div>
         <div className="flex flex-col w-full gap-3 mt-2">
-          {friends.map((friend, index) => {
+          {/* {friends.map((friend, index) => {
             const option = inviteOptions.find(
               (option) => option.title === friend.option
             );
@@ -218,7 +218,10 @@ const Friends = () => {
                 </div>
               </div>
             );
-          })}
+          })} */}
+          <div className="text-white/80 text-center text-[14px] font-extrabold leading-[18px] mt-4 mb-2">
+              currently there are no friends
+            </div>
         </div>
       </div>
     </div>

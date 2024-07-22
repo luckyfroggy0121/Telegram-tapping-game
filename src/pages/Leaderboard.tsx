@@ -9,13 +9,13 @@ import {
 } from "@/components/ui/carousel";
 import { seaCreatures } from "@/lib/seacreatures";
 import ProgressBar from "@ramonak/react-progress-bar";
-import DropIcon from "@/assets/svg/dropIcon.svg?react";
-import { displayNumbers } from "@/lib/utils";
+// import DropIcon from "@/assets/svg/dropIcon.svg?react";
+// import { displayNumbers } from "@/lib/utils";
 import { type CarouselApi } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 import Water from "@/components/common/Water";
 
-const people = [
+ export const people = [
   {
     name: "Hina",
     drops: 45000,
@@ -191,7 +191,7 @@ const Leaderboard = () => {
           </CarouselContent>
         </Carousel>
         <div className="flex flex-col w-full gap-2 mt-5">
-          {people.map((person, index) => (
+          {/* {people.map((person, index) => (
             <div
               key={index}
               className="flex bg-[#C3C3C33D] rounded-[11px] py-3 pl-3 pr-7 justify-between items-center w-full"
@@ -226,7 +226,10 @@ const Leaderboard = () => {
               </div>
               <div className="font-extrabold text-[10px]">{index + 1}</div>
             </div>
-          ))}
+          ))} */}
+          <div className="text-white/80 text-center text-[14px] font-extrabold leading-[18px] mt-4 mb-2">
+              currently there are no people in here
+          </div>
         </div>
       </div>
     )
