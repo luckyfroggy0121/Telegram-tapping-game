@@ -22,8 +22,8 @@ const firebaseConfig = {
   projectId: "smartlitre-422a0",
   storageBucket: "smartlitre-422a0.appspot.com",
   messagingSenderId: "1496083486",
-  appId: "1:1496083486:web:7fe249f9cbfd232ea2520f",
-  measurementId: "G-N0MH83K5KE"
+  appId: "1:1496083486:web:fbb888a80ca39cbca2520f",
+  measurementId: "G-CWVHTMRPHF"
 };
 
 // Initialize Firebase
