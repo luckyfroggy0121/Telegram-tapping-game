@@ -17,13 +17,13 @@ import {getFirestore} from "firebase/firestore"
 // };
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDfaYJJlbpGJWpT_RP64eoA-1hVTcMjnKI",
-  authDomain: "smartlitre-422a0.firebaseapp.com",
-  projectId: "smartlitre-422a0",
-  storageBucket: "smartlitre-422a0.appspot.com",
-  messagingSenderId: "1496083486",
-  appId: "1:1496083486:web:fbb888a80ca39cbca2520f",
-  measurementId: "G-CWVHTMRPHF"
+  apiKey: "AIzaSyB74ij25MDsBpKOe0B4mdeYIUHlBDmOYRM",
+  authDomain: "smartlitre-daniel.firebaseapp.com",
+  projectId: "smartlitre-daniel",
+  storageBucket: "smartlitre-daniel.appspot.com",
+  messagingSenderId: "279529940423",
+  appId: "1:279529940423:web:3d03ce67a32e71ce2ee5e2",
+  measurementId: "G-WKH89C35V5"
 };
 
 // Initialize Firebase
